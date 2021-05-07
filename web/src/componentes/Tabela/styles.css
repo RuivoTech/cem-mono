@@ -1,0 +1,119 @@
+.tabela {
+    border-radius: 10px;
+    clear: both;
+    margin-bottom: 25px;
+    color: #676a6c;
+    background-color: #FFFFFF;
+}
+
+.tabela::after, .tabela::before {
+    display: table;
+}
+
+.tabela-titulo {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 2px 0 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 7px 15px 15px 7px;
+    min-height: 48px;
+    vertical-align: middle;
+}
+
+.tabela-config {
+    display: block;
+    float: right;
+    margin-top: 0;
+    position: relative;
+    padding: 0;
+    text-align: right;
+}
+
+.button-group {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.button {
+    position: relative;
+    float: left;
+    font-size: 14px;
+    font-family: 'Raleway', 'Source Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 0;
+    text-align: center;
+}
+
+.button-default {
+    color: inherit;
+    background: white;
+    border: 1px solid #bdc0c2;
+}
+
+.tabela-corpo {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+
+.table {
+    width: 100%;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: rgba(38, 82, 55, 0.4);
+}
+
+thead {
+    cursor: pointer;
+}
+
+tbody {
+    width: 100%;
+}
+
+td {
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+    width: 25%;
+}
+
+.sorting_asc {
+    width: 15%;
+}
+
+.color-noir {
+    color: #676a6c !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.dataTables_info {
+    padding-top: 8px;
+    white-space: nowrap;
+}
+
+.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+}

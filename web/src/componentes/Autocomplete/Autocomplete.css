@@ -1,0 +1,46 @@
+.no-suggestions {
+  color: #999;
+  padding: 0.5rem;
+}
+  
+.suggestions {
+  z-index: 1;
+  width: 92%;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0;
+  background-color: #77C9D4;
+  color: #ffffff;
+  overflow-y: auto;
+  max-height: 280px;
+  position: absolute;
+}
+
+.suggestions::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #77C9D4;
+  border-radius: 10px; 
+}
+  
+.suggestions::-webkit-scrollbar {
+  width: 6px;
+  background-color: #77C9D4; 
+}
+  
+.suggestions::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 0, 0.1);
+  background-image: -webkit-linear-gradient(330deg, rgb(14, 141, 158) 0%, #06a71b 100%);
+  background-image: linear-gradient(120deg, rgb(14, 141, 158) 0%, #06a71b 100%); 
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  color: #007bff;
+  cursor: pointer;
+}

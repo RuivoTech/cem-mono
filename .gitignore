@@ -1,0 +1,7 @@
+app/node_modules
+
+web/node_modules
+web/build
+
+server/node_modules
+delivery/node_modules

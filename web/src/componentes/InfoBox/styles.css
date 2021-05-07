@@ -1,0 +1,66 @@
+.info-box {
+    height: 10vh;
+    display: flex;
+    cursor: pointer;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #FFFFFF
+}
+
+.info-box.hover-expand-effect:hover::after {
+    width: 100%;
+}
+
+.hover-expand-effect::after {
+    color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
+    content: ".";
+    position: absolute;
+    left: 35%;
+    top: 0;
+    width: 0;
+    height: 100%;
+    color: transparent;
+    -moz-transition: all 0.95s;
+    -o-transition: all 0.95s;
+    -webkit-transition: all 0.95s;
+    transition: all 0.95s;
+}
+
+.icon {
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.12);
+    width: 35%;
+    height: 100%;
+    font-size: 3vh;
+}
+
+.a:hover {
+    text-decoration: none;
+}
+
+.content {
+    display: inline-block;
+    padding: 7px 10px;
+    text-align: center;
+    width: 65%;
+}
+
+.text {
+    font-size: 2vh;
+    color: #fff;
+    font-family: 'Raleway', 'Source Sans', sans-serif;
+    font-weight: 300;
+}
+
+.number {
+    font-weight: 300;
+    font-size: 4vh;
+    color: #fff;
+}

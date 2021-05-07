@@ -1,0 +1,63 @@
+html {
+  font-size: 12px;
+}
+
+body {
+  background-color: #707070;
+  font-family: "Source Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #676a6c;
+  overflow: hidden;
+}
+
+table {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+a {
+  color: #676a6c;
+}
+
+input {
+  border: 1px solid #000000;
+}
+
+.bg-login {
+  background-color: #015249;
+}
+
+.menu {
+  width: 100%;
+  background-color: #BDBDBD;
+  box-shadow: 2px 2px 5px 2px rgba(30, 121, 124, 0.8);
+  color: #FFFFFF;
+  padding-top: 1vh;
+}
+
+.fa-bars {
+  font-size: 36px;
+  padding-right: 15px;
+}
+
+.botoes {
+  bottom: 15px;
+  position: absolute;
+  width: calc(100% - 280px);
+}
+
+#wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.wrapper-content {
+  margin: 2px;
+}

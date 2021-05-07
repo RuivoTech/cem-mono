@@ -1,0 +1,728 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+MERGED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+MERGED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:8:1-18:12
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/a65d6076e19ec393c728e4dca49568f4/flipper-network-plugin-0.37.0/AndroidManifest.xml:8:1-15:12
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4c2d2364c35e2c493fd776ce36e653fa/flipper-fresco-plugin-0.37.0/AndroidManifest.xml:8:1-15:12
+MERGED from [:react-native-community_masked-view] /dados/git/cem/app/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-gesture-handler] /dados/git/cem/app/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-onesignal] /dados/git/cem/app/node_modules/react-native-onesignal/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-reanimated] /dados/git/cem/app/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-safe-area-context] /dados/git/cem/app/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-screens] /dados/git/cem/app/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-svg] /dados/git/cem/app/node_modules/react-native-svg/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native:0.63.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/4d5520d50e74a5ce43ed664c67da26f0/jetified-react-native-0.63.2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:2:1-122:12
+MERGED from [androidx.browser:browser:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/98a91f0523198200907f97f14c7ec7c5/browser-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7cdbe72037a1ed81a14c329797fe455d/jetified-play-services-location-16.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d34099b7fadc227007c2a10e79628bd8/jetified-play-services-ads-identifier-16.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:2:1-17:12
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/501592299df769384ace3d298073e383/jetified-firebase-iid-interop-16.0.1/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/269517a5df52d4f01a2115b598b0e27b/jetified-play-services-tasks-16.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/3fa0a9e2b90ada12f612162e444c5a11/jetified-firebase-measurement-connector-17.0.1/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3017a25ce3cb2bf8b7edc16a81b382a0/play-services-places-placereport-16.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/51598253668f159c0734c1b850496d10/jetified-play-services-stats-16.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b9604666a0b9bbe1ab905eeb5622e5c4/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c4a0854b2c4c976f5fd7b439b5911773/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37b6f551bc5ae153b0b627de8f563815/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [org.webkit:android-jsc:r245459] /home/richieri/.gradle/caches/transforms-2/files-2.1/6dd6245206e34676e1ee3aa6ee0f68c9/android-jsc-r245459/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.fresco:flipper:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40741ffe3de6a11d99116b4e82d60d46/flipper-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:stetho:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/03aa51752e7d7098a02114b07907dabd/stetho-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fresco:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e9f56679cbe795a6f7c93e9a035f66f2/fresco-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/559ddc4b7f576fedc63e05921b88e895/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0288f1bca211d259126211029f92054c/drawee-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/766471e6648d662c31b10c1bbc5126fe/nativeimagefilters-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/57a87fccccbdbe36e69f72b01ce521f1/memory-type-native-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0abe31decb23fc939dbab3bf21d1ccec/memory-type-java-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b508a8e13388bdc4e88ee330cec4cdc/imagepipeline-native-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/104429b66e46c675401dada578683150/memory-type-ashmem-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe90bfac000734a7d0d9c150b7915ff6/imagepipeline-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/34efa7b8fb78d46cf2b753de7fbfc5a5/nativeimagetranscoder-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/237bbc58c0787eee6b78f947e2baeeaa/imagepipeline-base-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:soloader:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/65f592cbf7e10992754db73be6c6ba25/soloader-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe63e2f04783b5c513186b2b6e7e30fe/soloader-0.8.2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.android.material:material:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b1b165607eae60d70e4267b97e24514b/appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/28888a6f6660db47b3788df392c672a7/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/efb592adf2592d134c27edc4a56e19d2/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8cd6316737e8f518184be95be51b9ee8/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.2.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/37aaca75d3d19faa6fb296103cea95d8/fragment-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c062602fe4e1f75f724363688044d993/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c99af001058cd5265376dded8456f828/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40f1c5d439eea30faeaafe93e7bdf45f/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1b42f88dea3794bc67b44839b4ca1a7b/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/faa15558a5d57e35e462c9e1f0248694/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/89bcabef273c834c0566b445ed28172c/activity-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4300f0cd89d6453d731712a999b6e53f/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/f53bca436baf2a2670073f8750b0b7d5/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e0a79d4379c4eef3803202a497c19313/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/820068d4be612586a05a9daff9be7b77/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/6bd464ed06f075f4e42b3fde6a89e60a/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8dc6c78d6d7c962ba02416981491cd60/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e1a755a5eb4e9c5b244c1a9f660f0c11/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b41f2ef3d4a30256bbd9d1017371108/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7ce8a2eb9e81825ec9bcc373c597a746/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2786c84c1e653e40bd67508414ca298f/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/db36fbbf4470b1ce63fe644e40ae81d3/lifecycle-viewmodel-savedstate-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/304e6293e0820147023aa187c0f862e1/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/124ee19a63f3e171c196264ecc845daa/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4ce17f8b4390b23da9bedc3cee010ec1/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4da6ddd3c71dbaec92b0fdf3bbca4ce7/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2ef959591ee3dfd7e7d0f130ebacb270/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/babedcb26ba2505096ea9fb87ec93180/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d78ae12d9aa12e93077461f94a53335b/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3d5c1e204ac62dc0f6d5059f5e3eaa42/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37c50c3790fd1f696b8c9e7a44956408/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.soloader:annotation:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/3dcbfe15c31dc75e66a0a981bf1ad806/annotation-0.8.2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/49c90f8df32777bf965c3b9f77486d89/jetified-fbcore-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c114d4501470930b3986c4f9bd2da0fd/ui-common-2.2.0/AndroidManifest.xml:2:1-9:12
+INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:2:1-8:12
+INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:2:1-8:12
+INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:2:1-8:12
+	package
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:2:3-20
+		INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:2:3-20
+		INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+		INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:1-34:12
+		INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:4:5-67
+MERGED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:15:5-67
+MERGED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:15:5-67
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:16:5-67
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:16:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:4:22-64
+application
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:6:5-32:19
+MERGED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:6:5-32:19
+MERGED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:6:5-32:19
+MERGED from [com.facebook.react:react-native:0.63.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/4d5520d50e74a5ce43ed664c67da26f0/jetified-react-native-0.63.2/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.63.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/4d5520d50e74a5ce43ed664c67da26f0/jetified-react-native-0.63.2/AndroidManifest.xml:11:5-20
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:48:5-120:19
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:48:5-120:19
+MERGED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7cdbe72037a1ed81a14c329797fe455d/jetified-play-services-location-16.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7cdbe72037a1ed81a14c329797fe455d/jetified-play-services-location-16.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d34099b7fadc227007c2a10e79628bd8/jetified-play-services-ads-identifier-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d34099b7fadc227007c2a10e79628bd8/jetified-play-services-ads-identifier-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/501592299df769384ace3d298073e383/jetified-firebase-iid-interop-16.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/501592299df769384ace3d298073e383/jetified-firebase-iid-interop-16.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/269517a5df52d4f01a2115b598b0e27b/jetified-play-services-tasks-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/269517a5df52d4f01a2115b598b0e27b/jetified-play-services-tasks-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/3fa0a9e2b90ada12f612162e444c5a11/jetified-firebase-measurement-connector-17.0.1/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/3fa0a9e2b90ada12f612162e444c5a11/jetified-firebase-measurement-connector-17.0.1/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3017a25ce3cb2bf8b7edc16a81b382a0/play-services-places-placereport-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3017a25ce3cb2bf8b7edc16a81b382a0/play-services-places-placereport-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/51598253668f159c0734c1b850496d10/jetified-play-services-stats-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/51598253668f159c0734c1b850496d10/jetified-play-services-stats-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:22:5-26:19
+MERGED from [com.facebook.soloader:soloader:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe63e2f04783b5c513186b2b6e7e30fe/soloader-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe63e2f04783b5c513186b2b6e7e30fe/soloader-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.material:material:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2786c84c1e653e40bd67508414ca298f/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2786c84c1e653e40bd67508414ca298f/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [com.facebook.soloader:annotation:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/3dcbfe15c31dc75e66a0a981bf1ad806/annotation-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:annotation:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/3dcbfe15c31dc75e66a0a981bf1ad806/annotation-0.8.2/AndroidManifest.xml:11:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:8:7-39
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:8:7-39
+	tools:ignore
+		ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:7:75-114
+	android:roundIcon
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:10:7-41
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:10:7-41
+	tools:targetApi
+		ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:7:54-74
+	android:icon
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:9:7-36
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:9:7-36
+	android:allowBackup
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:11:7-34
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:11:7-34
+	android:theme
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:12:7-38
+	android:usesCleartextTraffic
+		ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:7:18-53
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:7:7-38
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:7:7-38
+activity#com.cem.MainActivity
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:13:7-30:18
+	android:screenOrientation
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:18:9-45
+	android:label
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:15:9-41
+	android:launchMode
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:17:9-40
+	android:windowSoftInputMode
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:19:9-51
+	android:configChanges
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:16:9-86
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:14:9-37
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:20:9-23:25
+action#android.intent.action.MAIN
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:21:13-65
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:21:21-62
+category#android.intent.category.LAUNCHER
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:22:13-73
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:22:23-70
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:cem
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:24:9-29:25
+action#android.intent.action.VIEW
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:25:13-65
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:25:21-62
+category#android.intent.category.DEFAULT
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:26:23-69
+category#android.intent.category.BROWSABLE
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:27:13-74
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:27:23-71
+data
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:28:13-42
+	android:scheme
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:28:19-39
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:31:7-84
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml:31:17-81
+uses-sdk
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+MERGED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/a65d6076e19ec393c728e4dca49568f4/flipper-network-plugin-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/a65d6076e19ec393c728e4dca49568f4/flipper-network-plugin-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4c2d2364c35e2c493fd776ce36e653fa/flipper-fresco-plugin-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4c2d2364c35e2c493fd776ce36e653fa/flipper-fresco-plugin-0.37.0/AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-community_masked-view] /dados/git/cem/app/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_masked-view] /dados/git/cem/app/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /dados/git/cem/app/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] /dados/git/cem/app/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-onesignal] /dados/git/cem/app/node_modules/react-native-onesignal/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-onesignal] /dados/git/cem/app/node_modules/react-native-onesignal/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-reanimated] /dados/git/cem/app/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /dados/git/cem/app/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-safe-area-context] /dados/git/cem/app/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /dados/git/cem/app/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /dados/git/cem/app/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-screens] /dados/git/cem/app/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-svg] /dados/git/cem/app/node_modules/react-native-svg/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /dados/git/cem/app/node_modules/react-native-svg/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.63.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/4d5520d50e74a5ce43ed664c67da26f0/jetified-react-native-0.63.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.63.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/4d5520d50e74a5ce43ed664c67da26f0/jetified-react-native-0.63.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:4:5-44
+MERGED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:4:5-44
+MERGED from [androidx.browser:browser:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/98a91f0523198200907f97f14c7ec7c5/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/98a91f0523198200907f97f14c7ec7c5/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7cdbe72037a1ed81a14c329797fe455d/jetified-play-services-location-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7cdbe72037a1ed81a14c329797fe455d/jetified-play-services-location-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d34099b7fadc227007c2a10e79628bd8/jetified-play-services-ads-identifier-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d34099b7fadc227007c2a10e79628bd8/jetified-play-services-ads-identifier-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/501592299df769384ace3d298073e383/jetified-firebase-iid-interop-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/501592299df769384ace3d298073e383/jetified-firebase-iid-interop-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/269517a5df52d4f01a2115b598b0e27b/jetified-play-services-tasks-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/269517a5df52d4f01a2115b598b0e27b/jetified-play-services-tasks-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/3fa0a9e2b90ada12f612162e444c5a11/jetified-firebase-measurement-connector-17.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/3fa0a9e2b90ada12f612162e444c5a11/jetified-firebase-measurement-connector-17.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3017a25ce3cb2bf8b7edc16a81b382a0/play-services-places-placereport-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3017a25ce3cb2bf8b7edc16a81b382a0/play-services-places-placereport-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/51598253668f159c0734c1b850496d10/jetified-play-services-stats-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/51598253668f159c0734c1b850496d10/jetified-play-services-stats-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b9604666a0b9bbe1ab905eeb5622e5c4/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b9604666a0b9bbe1ab905eeb5622e5c4/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c4a0854b2c4c976f5fd7b439b5911773/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c4a0854b2c4c976f5fd7b439b5911773/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37b6f551bc5ae153b0b627de8f563815/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37b6f551bc5ae153b0b627de8f563815/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [org.webkit:android-jsc:r245459] /home/richieri/.gradle/caches/transforms-2/files-2.1/6dd6245206e34676e1ee3aa6ee0f68c9/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] /home/richieri/.gradle/caches/transforms-2/files-2.1/6dd6245206e34676e1ee3aa6ee0f68c9/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:flipper:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40741ffe3de6a11d99116b4e82d60d46/flipper-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:flipper:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40741ffe3de6a11d99116b4e82d60d46/flipper-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:stetho:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/03aa51752e7d7098a02114b07907dabd/stetho-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:stetho:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/03aa51752e7d7098a02114b07907dabd/stetho-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e9f56679cbe795a6f7c93e9a035f66f2/fresco-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e9f56679cbe795a6f7c93e9a035f66f2/fresco-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/559ddc4b7f576fedc63e05921b88e895/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/559ddc4b7f576fedc63e05921b88e895/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0288f1bca211d259126211029f92054c/drawee-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0288f1bca211d259126211029f92054c/drawee-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/766471e6648d662c31b10c1bbc5126fe/nativeimagefilters-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/766471e6648d662c31b10c1bbc5126fe/nativeimagefilters-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/57a87fccccbdbe36e69f72b01ce521f1/memory-type-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/57a87fccccbdbe36e69f72b01ce521f1/memory-type-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0abe31decb23fc939dbab3bf21d1ccec/memory-type-java-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/0abe31decb23fc939dbab3bf21d1ccec/memory-type-java-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b508a8e13388bdc4e88ee330cec4cdc/imagepipeline-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b508a8e13388bdc4e88ee330cec4cdc/imagepipeline-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/104429b66e46c675401dada578683150/memory-type-ashmem-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/104429b66e46c675401dada578683150/memory-type-ashmem-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe90bfac000734a7d0d9c150b7915ff6/imagepipeline-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe90bfac000734a7d0d9c150b7915ff6/imagepipeline-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/34efa7b8fb78d46cf2b753de7fbfc5a5/nativeimagetranscoder-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/34efa7b8fb78d46cf2b753de7fbfc5a5/nativeimagetranscoder-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/237bbc58c0787eee6b78f947e2baeeaa/imagepipeline-base-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/237bbc58c0787eee6b78f947e2baeeaa/imagepipeline-base-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/65f592cbf7e10992754db73be6c6ba25/soloader-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/65f592cbf7e10992754db73be6c6ba25/soloader-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe63e2f04783b5c513186b2b6e7e30fe/soloader-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/fe63e2f04783b5c513186b2b6e7e30fe/soloader-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b1b165607eae60d70e4267b97e24514b/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/b1b165607eae60d70e4267b97e24514b/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/28888a6f6660db47b3788df392c672a7/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/28888a6f6660db47b3788df392c672a7/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/efb592adf2592d134c27edc4a56e19d2/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/efb592adf2592d134c27edc4a56e19d2/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8cd6316737e8f518184be95be51b9ee8/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8cd6316737e8f518184be95be51b9ee8/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/37aaca75d3d19faa6fb296103cea95d8/fragment-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/37aaca75d3d19faa6fb296103cea95d8/fragment-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c062602fe4e1f75f724363688044d993/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c062602fe4e1f75f724363688044d993/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c99af001058cd5265376dded8456f828/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c99af001058cd5265376dded8456f828/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40f1c5d439eea30faeaafe93e7bdf45f/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/40f1c5d439eea30faeaafe93e7bdf45f/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1b42f88dea3794bc67b44839b4ca1a7b/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/1b42f88dea3794bc67b44839b4ca1a7b/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/faa15558a5d57e35e462c9e1f0248694/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/faa15558a5d57e35e462c9e1f0248694/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/89bcabef273c834c0566b445ed28172c/activity-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/89bcabef273c834c0566b445ed28172c/activity-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4300f0cd89d6453d731712a999b6e53f/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4300f0cd89d6453d731712a999b6e53f/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/f53bca436baf2a2670073f8750b0b7d5/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/f53bca436baf2a2670073f8750b0b7d5/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e0a79d4379c4eef3803202a497c19313/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e0a79d4379c4eef3803202a497c19313/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/820068d4be612586a05a9daff9be7b77/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/820068d4be612586a05a9daff9be7b77/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/6bd464ed06f075f4e42b3fde6a89e60a/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/6bd464ed06f075f4e42b3fde6a89e60a/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8dc6c78d6d7c962ba02416981491cd60/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/8dc6c78d6d7c962ba02416981491cd60/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e1a755a5eb4e9c5b244c1a9f660f0c11/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/e1a755a5eb4e9c5b244c1a9f660f0c11/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/639e914bfc1efa21e36199d3ff2c5eef/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b41f2ef3d4a30256bbd9d1017371108/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3b41f2ef3d4a30256bbd9d1017371108/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7ce8a2eb9e81825ec9bcc373c597a746/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/7ce8a2eb9e81825ec9bcc373c597a746/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2786c84c1e653e40bd67508414ca298f/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2786c84c1e653e40bd67508414ca298f/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/db36fbbf4470b1ce63fe644e40ae81d3/lifecycle-viewmodel-savedstate-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/db36fbbf4470b1ce63fe644e40ae81d3/lifecycle-viewmodel-savedstate-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/304e6293e0820147023aa187c0f862e1/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/304e6293e0820147023aa187c0f862e1/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/124ee19a63f3e171c196264ecc845daa/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/124ee19a63f3e171c196264ecc845daa/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4ce17f8b4390b23da9bedc3cee010ec1/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4ce17f8b4390b23da9bedc3cee010ec1/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4da6ddd3c71dbaec92b0fdf3bbca4ce7/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/4da6ddd3c71dbaec92b0fdf3bbca4ce7/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2ef959591ee3dfd7e7d0f130ebacb270/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/2ef959591ee3dfd7e7d0f130ebacb270/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/babedcb26ba2505096ea9fb87ec93180/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/babedcb26ba2505096ea9fb87ec93180/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d78ae12d9aa12e93077461f94a53335b/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/d78ae12d9aa12e93077461f94a53335b/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3d5c1e204ac62dc0f6d5059f5e3eaa42/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/3d5c1e204ac62dc0f6d5059f5e3eaa42/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37c50c3790fd1f696b8c9e7a44956408/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/37c50c3790fd1f696b8c9e7a44956408/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.soloader:annotation:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/3dcbfe15c31dc75e66a0a981bf1ad806/annotation-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:annotation:0.8.2] /home/richieri/.gradle/caches/transforms-2/files-2.1/3dcbfe15c31dc75e66a0a981bf1ad806/annotation-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/49c90f8df32777bf965c3b9f77486d89/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/49c90f8df32777bf965c3b9f77486d89/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c114d4501470930b3986c4f9bd2da0fd/ui-common-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/c114d4501470930b3986c4f9bd2da0fd/ui-common-2.2.0/AndroidManifest.xml:5:5-7:41
+INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /dados/git/cem/app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:5:5-77
+	android:name
+		ADDED from /dados/git/cem/app/android/app/src/debug/AndroidManifest.xml:5:22-75
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from [com.facebook.flipper:flipper:0.37.0] /home/richieri/.gradle/caches/transforms-2/files-2.1/623174cd4892d9fb924ac44b102b25c0/flipper-0.37.0/AndroidManifest.xml:16:22-73
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:7:5-9:47
+	android:protectionLevel
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:9:9-44
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:8:9-63
+permission#com.cem.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:7:5-9:47
+	android:protectionLevel
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:9:9-44
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:8:9-63
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:11:22-76
+uses-permission#com.cem.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:11:22-76
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:17:5-82
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:26:5-82
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:17:22-79
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:18:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:18:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:23:5-66
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:23:22-63
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:24:22-76
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:29:5-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:29:22-78
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:31:5-86
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:31:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:32:5-87
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:32:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:33:5-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:33:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:34:5-83
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:34:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:35:5-88
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:35:22-85
+uses-permission#com.sonymobile.home.permission.PROVIDER_INSERT_BADGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:36:5-92
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:36:22-89
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:37:5-84
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:37:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:38:5-83
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:38:22-80
+uses-permission#com.huawei.android.launcher.permission.CHANGE_BADGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:39:5-91
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:39:22-88
+uses-permission#com.huawei.android.launcher.permission.READ_SETTINGS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:40:5-92
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:40:22-89
+uses-permission#com.huawei.android.launcher.permission.WRITE_SETTINGS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:41:5-93
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:41:22-90
+uses-permission#android.permission.READ_APP_BADGE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:42:5-73
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:42:22-70
+uses-permission#com.oppo.launcher.permission.READ_SETTINGS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:43:5-82
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:43:22-79
+uses-permission#com.oppo.launcher.permission.WRITE_SETTINGS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:44:5-83
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:44:22-80
+uses-permission#me.everything.badger.permission.BADGE_COUNT_READ
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:45:5-88
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:45:22-85
+uses-permission#me.everything.badger.permission.BADGE_COUNT_WRITE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:46:5-89
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:46:22-86
+meta-data#onesignal_app_id
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:49:9-51:51
+	android:value
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:51:13-48
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:50:13-44
+meta-data#onesignal_google_project_number
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:53:9-55:70
+	android:value
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:55:13-67
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:54:13-59
+receiver#com.onesignal.GcmBroadcastReceiver
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:57:9-67:20
+	android:permission
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:59:13-73
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:58:13-62
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+category:name:${applicationId}
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:62:13-66:29
+	android:priority
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:62:28-50
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+category:name:com.cem
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:62:13-66:29
+	android:priority
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:62:28-50
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:63:17-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:63:25-78
+category#${applicationId}
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:65:17-61
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:65:27-58
+category#com.cem
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:65:17-61
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:65:27-58
+receiver#com.onesignal.NotificationOpenedReceiver
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:68:9-77
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:68:19-74
+service#com.onesignal.HmsMessageServiceOneSignal
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:70:9-76:19
+	android:exported
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:72:13-37
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:71:13-68
+intent-filter#action:name:com.huawei.push.action.MESSAGING_EVENT
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:73:13-75:29
+action#com.huawei.push.action.MESSAGING_EVENT
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:74:17-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:74:25-78
+activity#com.onesignal.NotificationOpenedActivityHMS
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:78:9-84:20
+	android:theme
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:80:13-72
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:79:13-71
+intent-filter#action:name:android.intent.action.VIEW
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:81:13-83:29
+service#com.onesignal.GcmIntentService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:86:9-66
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:86:18-63
+service#com.onesignal.GcmIntentJobService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:87:9-89:72
+	android:permission
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:89:13-69
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:88:13-61
+service#com.onesignal.RestoreJobService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:90:9-92:72
+	android:permission
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:92:13-69
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:91:13-59
+service#com.onesignal.RestoreKickoffJobService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:93:9-95:72
+	android:permission
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:95:13-69
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:94:13-66
+service#com.onesignal.SyncService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:96:9-98:43
+	android:stopWithTask
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:98:13-40
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:97:13-53
+service#com.onesignal.SyncJobService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:99:9-101:72
+	android:permission
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:101:13-69
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:100:13-56
+activity#com.onesignal.PermissionsActivity
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:103:9-105:75
+	android:theme
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:105:13-72
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:104:13-61
+service#com.onesignal.NotificationRestoreService
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:107:9-76
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:107:18-73
+receiver#com.onesignal.BootUpReceiver
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:109:9-114:20
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:109:19-62
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.QUICKBOOT_POWERON
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:110:13-113:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:111:17-79
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:111:25-76
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:112:17-82
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:112:25-79
+receiver#com.onesignal.UpgradeReceiver
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:115:9-119:20
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:115:19-63
+intent-filter#action:name:android.intent.action.MY_PACKAGE_REPLACED
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:116:13-118:29
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:117:17-84
+	android:name
+		ADDED from [com.onesignal:OneSignal:3.15.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/c84897d2d1848a4fc79d43d1eed5cdeb/jetified-OneSignal-3.15.3/AndroidManifest.xml:117:25-81
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:29:13-82
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:31:13-33:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:31:28-51
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:32:17-78
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:17.3.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/f0f4733d1786a1fbe0f23e61c6da6ce2/jetified-firebase-messaging-17.3.4/AndroidManifest.xml:32:25-75
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:29:9-35:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:30:13-84
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:41:13-43:29
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:50:9-56:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:52:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:51:13-77
+intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:53:13-55:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:53:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:54:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.0.4] /home/richieri/.gradle/caches/transforms-2/files-2.1/15d49a27188bb56affbef7893569710f/jetified-firebase-iid-17.0.4/AndroidManifest.xml:54:25-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:10:9-14:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:12:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:13:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:14:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:16.0.3] /home/richieri/.gradle/caches/transforms-2/files-2.1/e22935cc9cc39e3d1937e46ebf90b06c/jetified-firebase-common-16.0.3/AndroidManifest.xml:11:13-77
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/30ad96135d75764a8f9a85bdfcb1035c/jetified-play-services-base-16.0.1/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/richieri/.gradle/caches/transforms-2/files-2.1/33f1629e543c45f6ccdca987ff9aa7de/jetified-play-services-basement-16.0.1/AndroidManifest.xml:24:13-58

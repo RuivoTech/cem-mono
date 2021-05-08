@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c0f999023977deeb65fd072862d3ee86",
+    "revision": "182b54a5c896a2d1f659f8c9ac18a23c",
     "url": "/cem-mono/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cem-mono/static/css/2.f002f919.chunk.css"
   },
   {
-    "revision": "339fbd7b5d41c4ca84f0",
+    "revision": "f6cda291cfdfeebb8af0",
     "url": "/cem-mono/static/css/main.2ad9e6a7.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cem-mono/static/js/2.7b5aa7ef.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "339fbd7b5d41c4ca84f0",
-    "url": "/cem-mono/static/js/main.395e8523.chunk.js"
+    "revision": "f6cda291cfdfeebb8af0",
+    "url": "/cem-mono/static/js/main.f8dcd47f.chunk.js"
   },
   {
     "revision": "25a941240d68b82efb89",

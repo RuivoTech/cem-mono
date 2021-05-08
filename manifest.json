@@ -1,0 +1,15 @@
+{
+  "short_name": "Sistema CEM",
+  "name": "Cadastro de membros CEM",
+  "icons": [
+    {
+      "src": "cem.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./cem-react",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,109 @@
+.itemContainer {
+    width: 100vw;
+    margin: 0 auto;
+}
+
+.itemLogo {
+    width: 100vw;
+    height: 150px;
+    object-fit: cover;
+}
+
+.itemInformation {
+    padding: 10px;
+}
+
+.itemTitle {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    color: var(--color-secundary);
+    padding: 10px;
+}
+
+.itemDescription {
+    width: calc(100vw - 20px);
+    padding: 10px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--color-secundary);
+}
+
+.itemMoney {
+    padding: 10px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 25px;
+    color: var(--color-primary);
+}
+
+.itemObservation {
+    width: calc(100vw - 20px);
+    padding: 10px;
+}
+
+.labelDescription {
+    padding: 10px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.textDescription {
+    padding: 10px;
+    margin: 10px;
+    background: #FFFFFF;
+    border: 1px solid #B3B3B3;
+    box-sizing: border-box;
+    border-radius: 6px;
+    resize: none;
+    height: 100px;
+}
+
+.itemCount {
+    position: fixed;
+    width: 100vw;
+    height: 70px;
+    left: 0px;
+    bottom: 0px;
+    border-top: 1px solid rgba(69, 69, 69, 0.5);
+    display: flex;
+    padding: 10px;
+}
+
+.buttonAdd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    height: 50px;
+    margin: 0px 0px 0px 10px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    transition: border-radius linear 0.05s, width linear 0.05s;
+}
+
+@media (min-width: 700px) {
+    .itemContainer {
+        width: 60vw;
+    }
+    .itemLogo, .itemInformation, .itemDescription, .itemMoney, .itemObservation {
+        width: 60vw;
+    }
+    .itemCount {
+        width: 60vw;
+        left: auto;
+    }
+}

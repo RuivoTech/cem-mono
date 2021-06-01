@@ -1,0 +1,129 @@
+:root {
+    font-size: 60%;
+    --color-background: #FFFFFF;
+    --color-primary: #00BBAE;
+    --color-secundary: #454545;
+    --color-border: #b2b2b2;
+    --color-text-base: #474747;
+    --color-text-primary: #FFFFFF;
+    --color-text-secundary: #b2b2b2;
+    --color-purple: #441C55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100vh;
+    max-width: 100vw;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+body, input:not([type="radio"]), button, textarea {
+    font: 500 1.6rem Ubuntu;
+    color: var(--color-text-base);
+}
+
+input:not([type="radio"]), textarea, select {
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 0px #B3B3B3;
+    border: none;
+    color: #454545;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+[type="radio"]:checked, [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:checked + label, [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: var(--color-text-base);
+}
+
+[type="radio"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--color-primary);
+    border-radius: 100%;
+    background: var(--color-background);
+}
+
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 100%;
+    background: var(--color-background);
+}
+
+[type="radio"]:checked + label:after, [type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+[type="radio"]:disabled + label {
+    color: var(--color-text-secundary);
+    cursor: default;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #B2B2B2;
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #B2B2B2;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #B2B2B2;
+}

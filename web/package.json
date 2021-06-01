@@ -1,5 +1,5 @@
 {
-  "homepage": "http://cem2.ruivotech.com.br/",
+  "homepage": "https://ruivotech.github.io/cem-mono/",
   "name": "cem",
   "version": "2.2.4",
   "private": true,
@@ -31,10 +31,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "mv build/* ../build && cd ../delivery && yarn build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d ../build"
   },
   "eslintConfig": {
     "extends": "react-app"

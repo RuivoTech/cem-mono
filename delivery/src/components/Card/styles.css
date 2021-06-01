@@ -1,0 +1,81 @@
+.cardContainer {
+    width: calc(100vw - 20px);
+    height: 80px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px #3B7677;
+    display: block;
+    cursor: pointer;
+}
+
+.cardContainer:active {
+    border: 2px solid #3B7677;
+}
+
+.cardContent {
+    display: flex;
+}
+
+.cardImage {
+    border-radius: 5px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.cardLogo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cardText {
+    width: calc(100vw - 70px);
+}
+
+.cardTitle {
+    width: calc(100vw - 120px);
+    margin-left: 10px;
+    color: var(--color-secundary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6em;
+    line-height: 1em;
+}
+
+.cardDescription {
+    width: calc(100vw - 120px);
+    height: 30px;
+    margin-left: 10px;
+    margin-bottom: 2px;
+    color: var(--color-secundary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.8em;
+    line-height: 1.2em;
+}
+
+.cardMoney {
+    width: calc(100vw - 120px);
+    margin-left: 10px;
+    color: var(--color-primary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.8em;
+    line-height: 1.2em;
+}
+
+@media (min-width: 700px) {
+    .cardContainer {
+        width: 50vw;
+        display: block;
+    }
+    .cardText, .cardTitle, .cardDescription, .cardMoney {
+        width: calc(50vw - 80px);
+    }
+}

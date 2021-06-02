@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cem-mono/delivery/static/css/main.c811a914.chunk.css",
-    "main.js": "/cem-mono/delivery/static/js/main.51b67562.chunk.js",
-    "main.js.map": "/cem-mono/delivery/static/js/main.51b67562.chunk.js.map",
+    "main.js": "/cem-mono/delivery/static/js/main.5cc5b62e.chunk.js",
+    "main.js.map": "/cem-mono/delivery/static/js/main.5cc5b62e.chunk.js.map",
     "runtime-main.js": "/cem-mono/delivery/static/js/runtime-main.92e6ac66.js",
     "runtime-main.js.map": "/cem-mono/delivery/static/js/runtime-main.92e6ac66.js.map",
     "static/js/2.0075bf64.chunk.js": "/cem-mono/delivery/static/js/2.0075bf64.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.92e6ac66.js",
     "static/js/2.0075bf64.chunk.js",
     "static/css/main.c811a914.chunk.css",
-    "static/js/main.51b67562.chunk.js"
+    "static/js/main.5cc5b62e.chunk.js"
   ]
 }

@@ -22,9 +22,10 @@ function Store() {
             <Menu showCart />
             <div className="orderContainer">
                 {
-                    items.map(item => {
-                        return <Card item={item} key={item.id} />
-                    })
+                    items ?
+                        items.map(item => {
+                            return <Card item={item} key={item.id} />
+                        }) : null
                 }
             </div>
             <Location />

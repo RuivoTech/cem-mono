@@ -8,6 +8,9 @@ import Quantity from '../../components/Quantity';
 import Button from "../../components/Button";
 
 import { Context } from "../../services/Context";
+import { baseURL } from "../../services/api";
+
+import errorImage from "../../assets/images/sem_imagem.png";
 
 import './styles.css';
 
@@ -39,7 +42,9 @@ function Item({ location }) {
         return (
             <>
                 <span className="buttonLabel">Adicionar</span>
-                <span className="buttonValue">{(itemSelected.cost * quantity).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span>
+                <span className="buttonValue">
+                    {(itemSelected.cost * quantity).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                </span>
             </>
         )
     }
@@ -69,7 +74,15 @@ function Item({ location }) {
             <Menu showBack showCart />
             <div className="itemContainer">
                 <div className="itemImageCard">
-                    <img src={itemSelected.url} alt={itemSelected.title} className="itemLogo" />
+                    <img
+                        src={baseURL + "/" + itemSelected.image}
+                        alt={itemSelected.title}
+                        className="itemLogo"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = errorImage
+                        }}
+                    />
                 </div>
                 <div className="itemInformation">
                     <h2 className="itemTitle">{itemSelected.title}</h2>

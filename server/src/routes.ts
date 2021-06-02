@@ -13,6 +13,8 @@ import DizimosController from "./controllers/DizimosController";
 import OfertasController from "./controllers/OfertasController";
 import RelatoriosController from "./controllers/RelatoriosController";
 
+import Delivery from "./router/Delivery";
+
 const routes = express.Router();
 
 const homeController = new HomeController();
@@ -27,6 +29,8 @@ const inscricoesController = new InscricoesController();
 const dizimosController = new DizimosController();
 const ofertasController = new OfertasController();
 const relatoriosController = new RelatoriosController();
+
+routes.use("/delivery", Delivery);
 
 routes.post("/login", loginController.login);
 

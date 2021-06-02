@@ -11,9 +11,11 @@ import Item from "./pages/Item";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 
+import api from "./services/api";
+
 import "./assets/styles/global.css";
 
-const store = [
+/* const store = [
   {
     id: 1,
     title: "marmita individual",
@@ -28,15 +30,16 @@ const store = [
     cost: 44.00,
     url: "https://www.familia.com.br/wp-content/uploads/2017/12/featuredImageId97833.jpg"
   }
-]
+] */
 
 function App() {
   const [cart, setCart] = useState([]);
   const [saveCart, setSaveCart] = useState(false);
 
   useEffect(() => {
-    const saveStore = () => {
-      saveSessionStore(store);
+    const saveStore = async () => {
+      const store = await api.get("/store");
+      saveSessionStore(store.data);
     }
 
     const cartSession = getCartSession();

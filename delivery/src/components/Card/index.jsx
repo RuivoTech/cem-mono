@@ -1,7 +1,10 @@
 import React from 'react';
-import './styles.css';
 
 import { useHistory } from 'react-router';
+
+import { baseURL } from "../../services/api";
+
+import './styles.css';
 
 function Card({ item }) {
     const history = useHistory();
@@ -14,7 +17,7 @@ function Card({ item }) {
         <div className="cardContainer" onClick={() => { handleClick(item.id) }}>
             <div className="cardContent">
                 <div className="cardImage">
-                    <img src={item.url} alt={item.title} className="cardLogo" />
+                    <img src={baseURL + "/" + item.image} alt={item.title} className="cardLogo" />
                 </div>
                 <div className="cardText">
                     <h3 className="cardTitle">{item.title}</h3>

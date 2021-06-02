@@ -6,6 +6,7 @@
 .itemLogo {
     width: 100vw;
     height: 150px;
+    display: block;
     object-fit: cover;
 }
 

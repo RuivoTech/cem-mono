@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/cem-mono/delivery/static/css/main.ab7136cd.chunk.css",
-    "main.js": "/cem-mono/delivery/static/js/main.d5cabd80.chunk.js",
-    "main.js.map": "/cem-mono/delivery/static/js/main.d5cabd80.chunk.js.map",
-    "runtime-main.js": "/cem-mono/delivery/static/js/runtime-main.89e948ad.js",
-    "runtime-main.js.map": "/cem-mono/delivery/static/js/runtime-main.89e948ad.js.map",
-    "static/js/2.149a542a.chunk.js": "/cem-mono/delivery/static/js/2.149a542a.chunk.js",
-    "static/js/2.149a542a.chunk.js.map": "/cem-mono/delivery/static/js/2.149a542a.chunk.js.map",
-    "static/js/3.31b61d64.chunk.js": "/cem-mono/delivery/static/js/3.31b61d64.chunk.js",
-    "static/js/3.31b61d64.chunk.js.map": "/cem-mono/delivery/static/js/3.31b61d64.chunk.js.map",
+    "main.css": "/cem-mono/delivery/static/css/main.c811a914.chunk.css",
+    "main.js": "/cem-mono/delivery/static/js/main.b1aedc8a.chunk.js",
+    "main.js.map": "/cem-mono/delivery/static/js/main.b1aedc8a.chunk.js.map",
+    "runtime-main.js": "/cem-mono/delivery/static/js/runtime-main.92e6ac66.js",
+    "runtime-main.js.map": "/cem-mono/delivery/static/js/runtime-main.92e6ac66.js.map",
+    "static/js/2.0075bf64.chunk.js": "/cem-mono/delivery/static/js/2.0075bf64.chunk.js",
+    "static/js/2.0075bf64.chunk.js.map": "/cem-mono/delivery/static/js/2.0075bf64.chunk.js.map",
     "index.html": "/cem-mono/delivery/index.html",
-    "static/css/main.ab7136cd.chunk.css.map": "/cem-mono/delivery/static/css/main.ab7136cd.chunk.css.map",
-    "static/js/2.149a542a.chunk.js.LICENSE.txt": "/cem-mono/delivery/static/js/2.149a542a.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/cem-mono/delivery/static/media/logo.6ce24c58.svg"
+    "static/css/main.c811a914.chunk.css.map": "/cem-mono/delivery/static/css/main.c811a914.chunk.css.map",
+    "static/js/2.0075bf64.chunk.js.LICENSE.txt": "/cem-mono/delivery/static/js/2.0075bf64.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/cem-mono/delivery/static/media/fundo.5165a086.jpg",
+    "static/media/logo_cem_branca.7c34f684.png": "/cem-mono/delivery/static/media/logo_cem_branca.7c34f684.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.89e948ad.js",
-    "static/js/2.149a542a.chunk.js",
-    "static/css/main.ab7136cd.chunk.css",
-    "static/js/main.d5cabd80.chunk.js"
+    "static/js/runtime-main.92e6ac66.js",
+    "static/js/2.0075bf64.chunk.js",
+    "static/css/main.c811a914.chunk.css",
+    "static/js/main.b1aedc8a.chunk.js"
   ]
 }

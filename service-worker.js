@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cem-mono/precache-manifest.666e8a50c12fc3b67ed3cbb9238840de.js"
+  "/cem-mono/precache-manifest.83e4d2cce40011cd2353f87b7e28bf63.js"
 );
 
 self.addEventListener('message', (event) => {

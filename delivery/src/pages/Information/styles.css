@@ -1,0 +1,39 @@
+#informationcontainer {
+    text-align: center;
+}
+
+.informationContent {
+    width: 100vw;
+    height: calc(100vh - 70px);
+}
+
+.btnSave {
+    background-color: var(--color-primary);
+    width: 94vw;
+}
+
+.btnDisabled {
+    background-color: var(--color-text-secundary);
+    cursor: auto;
+}
+
+.informationObservation sup {
+    color: red;
+}
+
+@media (min-width: 700px) {
+    .informationContent {
+        width: 60vw;
+        margin: 0 auto;
+    }
+    #input {
+        width: 60vw;
+        margin-bottom: 20px;
+    }
+    #input:first-child {
+        margin-top: 20px;
+    }
+    .informationContent button {
+        width: 58vw;
+    }
+}

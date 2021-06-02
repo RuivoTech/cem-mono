@@ -1,0 +1,111 @@
+.sidebar {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    transition: 1.0s;
+}
+
+.sidebarBackground {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    display: block;
+    background-color: var(--color-secundary);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebarContent {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--color-secundary);
+    position: absolute;
+    z-index: 2;
+}
+
+.userInfo {
+    height: 50px;
+    padding-left: 5px;
+    padding-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.userName {
+    padding-left: 5px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--color-text-primary);
+}
+
+.userPhone {
+    padding-left: 5px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color-text-secundary);
+}
+
+.show {
+    width: 250px;
+    left: 0px;
+    transition-delay: .2s;
+    z-index: 3;
+}
+
+.hide {
+    width: 0vw;
+    left: 0px;
+}
+
+.show + .sidebarBackground {
+    opacity: .6;
+    transition: .5s;
+    z-index: 2;
+}
+
+.hide + .sidebarBackground {
+    opacity: 0;
+    transition: .5s;
+    z-index: -1;
+}
+
+.sidebarLink {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.sidebarLink span {
+    width: 60vw;
+    margin-left: 20px;
+}
+
+.active {
+    color: var(--color-text-primary);
+    background-color: var(--color-primary);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .6;
+    }
+}

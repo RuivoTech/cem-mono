@@ -1,0 +1,59 @@
+#locationContainer {
+    width: 100vw;
+    height: 50px;
+    background-color: var(--color-background);
+    position: fixed;
+    bottom: 0px;
+    border-top: 1px solid rgba(69, 69, 69, 0.5);
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 1px rgba(0, 187, 174, 0.8);
+}
+
+.locationIcon, .editIcon {
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editIcon {
+    margin-left: 5vw;
+}
+
+.locationInformation {
+    width: 70vw;
+    text-align: left;
+    color: var(--color-secundary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 11px;
+}
+
+.locationAddress {
+    width: 70vw;
+    text-align: left;
+    color: var(--color-secundary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 11px;
+}
+
+@media (min-width: 700px) {
+    #locationContainer {
+        margin: 0 auto;
+        padding-left: 25vw;
+        padding-right: 25vw;
+    }
+    .locationAddress {
+        width: 40vw;
+    }
+    .editIcon {
+        margin: 0;
+    }
+}

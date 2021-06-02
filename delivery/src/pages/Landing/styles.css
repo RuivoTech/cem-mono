@@ -1,0 +1,121 @@
+#page-landing {
+    background: url("../../assets/images/fundo.jpg");
+    box-shadow: inset 0px 100vh 100vw rgba(0, 0, 0, 0.25);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 100vw;
+    height: 150px;
+    margin: 2em;
+    background-color: var(--color-background);
+    border-radius: 10px;
+    position: relative;
+    top: 60px;
+}
+
+.textVisit {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.4em;
+    line-height: 23px;
+    text-align: center;
+    color: #454545;
+    margin: 1em;
+}
+
+.textInformation {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 21px;
+    text-align: center;
+    color: #454545;
+    margin: 1em;
+}
+
+.btnInformation {
+    background-color: var(--color-primary);
+    position: absolute;
+    top: 300px;
+}
+
+.btnLater {
+    background-color: var(--color-secundary);
+    position: absolute;
+    top: 400px;
+}
+
+.developed {
+    width: 100vw;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+
+.developed a {
+    background-color: var(--color-background);
+    border-radius: 5px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--color-text-base);
+    text-decoration: none;
+}
+
+@media (min-width: 700px) {
+    :root {
+        font-size: 62.5%;
+    }
+    .card {
+        width: 70vw;
+    }
+    .btnInformation {
+        width: 25em;
+    }
+    .btnLater {
+        width: 25em;
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 50vw;
+    }
+    .btnInformation {
+        width: 50vw;
+    }
+    .btnLater {
+        width: 50vw;
+    }
+}
+
+@media (min-width: 1040px) {
+    .card {
+        width: 50vw;
+    }
+    .btnInformation {
+        width: 25em;
+    }
+    .btnLater {
+        width: 25em;
+    }
+}
+
+@media (min-width: 1500px) {
+    .card {
+        width: 30vw;
+    }
+    .btnInformation {
+        width: 25em;
+    }
+    .btnLater {
+        width: 25em;
+    }
+}

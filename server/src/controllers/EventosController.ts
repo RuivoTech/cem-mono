@@ -31,7 +31,7 @@ class EventoController {
 
     async inscricao(request: Request, response: Response) {
         const params = request.params;
-        const eventos = await eventoModel.inscricao({ ativo: Boolean(params.ativo) });
+        const eventos = await eventoModel.inscricao({ status: Boolean(params.ativo) });
 
         return response.json(eventos);
     }

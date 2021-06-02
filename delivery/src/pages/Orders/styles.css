@@ -1,0 +1,74 @@
+.ordersContainer {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    margin: 0 auto;
+}
+
+.orderCard {
+    width: calc(100vw - 20px);
+    min-height: 75px;
+    box-shadow: 0px 2px 5px #3B7677;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.orderTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderData {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 11px;
+    line-height: 13px;
+    color: var(--color-secundary);
+}
+
+.orderData span {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 13px;
+    color: var(--color-purple)
+}
+
+.orderCost {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    color: var(--color-purple);
+}
+
+.orderCardItems {
+    margin-top: 10px;
+}
+
+.orderCardItem {
+    display: flex;
+}
+
+.orderCardItemQuantity {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--color-primary);
+    margin-right: 10px;
+}
+
+.orderCardDescription {
+    width: calc(100vw - 50px);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--color-purple);
+}

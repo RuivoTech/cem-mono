@@ -1,0 +1,60 @@
+.menuContainer {
+    width: 100vw;
+    height: 50px;
+    background-color: #454545;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.menuBars {
+    cursor: pointer;
+}
+
+.logo {
+    width: 30px;
+}
+
+.goBack {
+    cursor: pointer;
+}
+
+.user {
+    display: block;
+    cursor: pointer;
+}
+
+.menuDescription {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: var(--color-text-secundary);
+}
+
+.menuCart {
+    margin-right: 0px;
+    cursor: pointer;
+}
+
+.menuCartIcon {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+.menuCartCount {
+    position: relative;
+    left: -18px;
+    top: -10px;
+    z-index: 100;
+    color: var(--color-text-primary);
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+}

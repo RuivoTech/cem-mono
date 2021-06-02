@@ -1,0 +1,24 @@
+#input {
+    width: 100vw;
+    height: 70px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.inputLabel {
+    font-family: Archivo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: #454545;
+}
+
+.inputRequired {
+    color: red;
+}
+
+.required div {
+    color: red;
+}

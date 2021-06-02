@@ -7,7 +7,7 @@ interface Quantidade {
 }
 
 interface Params {
-    ativo: boolean
+    status: boolean
 }
 
 class EventoModel {
@@ -88,7 +88,10 @@ class EventoModel {
     }
 
     async inscricao(params: Params) {
-        const eventos = await knex("eventos").select("id", "titulo as descricao").where(params).andWhere("dataInicio", "<>", "null");
+        const eventos = await knex("eventos")
+            .select("id", "titulo as descricao")
+            .where(params)
+            .andWhere("dataInicio", "<>", "null");
 
         return eventos;
     }

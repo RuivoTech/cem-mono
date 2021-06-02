@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-export const baseURL = "http://localhost:3333";
+export const baseURL = "https://cem-api.ruivotech.com.br";
 
 const api = Axios.create({
     baseURL

@@ -8,6 +8,8 @@ import { useToasts } from "react-toast-notifications";
 import logo2 from "../../images/Logo2.jpg";
 import logo1 from "../../images/Logo1.jpg";
 
+import "./styles.css";
+
 const Inscricoes = () => {
     const [inscricao, setInscricao] = useState({});
     const [eventos, setEventos] = useState([]);
@@ -88,11 +90,7 @@ const Inscricoes = () => {
                 }}
                 />
 
-                <div className="card" style={{
-                    width: "34vw",
-                    borderRadius: "10px",
-                    boxShadow: "15px 15px 12px 2px rgba(61, 61, 61, 0.8)"
-                }}>
+                <div className="card inscricaoCard">
                     <div className="card-header">
                         <h3 style={{
                             textAlign: "center",

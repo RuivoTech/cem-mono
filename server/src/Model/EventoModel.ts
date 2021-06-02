@@ -7,7 +7,7 @@ interface Quantidade {
 }
 
 interface Params {
-    ativo: boolean
+    status: boolean
 }
 
 class EventoModel {

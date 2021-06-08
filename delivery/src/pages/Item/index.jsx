@@ -9,10 +9,13 @@ import Button from "../../components/Button";
 
 import { Context } from "../../services/Context";
 import { baseURL } from "../../services/api";
+import Utils from "../../services/Utils";
 
 import errorImage from "../../assets/images/sem_imagem.png";
 
 import './styles.css';
+
+const utils = new Utils();
 
 function Item({ location }) {
     const [itemSelected, setItemSelected] = useState({
@@ -25,7 +28,7 @@ function Item({ location }) {
     });
     const [quantity, setQuantity] = useState(1);
     const [observation, setObservation] = useState("");
-    const { setItemCart, getStore } = useContext(Context);
+    const { setCartItem, getStore } = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
@@ -43,7 +46,7 @@ function Item({ location }) {
             <>
                 <span className="buttonLabel">Adicionar</span>
                 <span className="buttonValue">
-                    {(itemSelected.cost * quantity).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                    {utils.toLocale(itemSelected.cost * quantity)}
                 </span>
             </>
         )
@@ -58,15 +61,14 @@ function Item({ location }) {
             id: itemSelected.id,
             title: itemSelected.title,
             description: itemSelected.description,
-            cost: itemSelected.cost * quantity,
+            cost: itemSelected.cost,
             quantity,
             observation
         }
 
-        setItemCart(itemCart);
-        setTimeout(() => {
-            history.push("/carrinho");
-        }, 500);
+        setCartItem(itemCart);
+
+        history.push("/carrinho");
     }
 
     return (
@@ -90,7 +92,7 @@ function Item({ location }) {
                         {itemSelected.description}
                     </p>
                     <p className="itemMoney">
-                        {itemSelected.cost.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                        {utils.toLocale(itemSelected.cost)}
                     </p>
                 </div>
                 <div className="itemObservation">
@@ -109,8 +111,8 @@ function Item({ location }) {
                     ></textarea>
                 </div>
                 <div className="itemCount">
-                    <Quantity handleChangeValue={(value) => handleChangeValue(value)} />
-                    <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} />
+                    <Quantity handleChangeValue={(value) => handleChangeValue(value)} item={itemSelected} />
+                    <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} showLoading />
                 </div>
             </div>
         </>

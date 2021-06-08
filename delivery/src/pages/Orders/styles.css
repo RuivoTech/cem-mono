@@ -72,3 +72,17 @@
     line-height: 21px;
     color: var(--color-purple);
 }
+
+@media (min-width: 700px) {
+    .ordersContent {
+        width: 60vw;
+        margin: 0 auto;
+        font-size: 1.6em;
+    }
+    .orderCard {
+        width: 60vw;
+    }
+    .orderTitle, .orderCost {
+        font-size: 1.8rem;
+    }
+}

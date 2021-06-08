@@ -1,71 +1,165 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 import Menu from "../../components/Menu";
 import Button from "../../components/Button";
-import { useHistory } from 'react-router';
 
 import { Context } from "../../services/Context";
+import { getInformation } from "../../services/auth";
+import api from "../../services/api";
+import Utils from "../../services/Utils";
 
 import './styles.css';
+import Quantity from '../../components/Quantity';
 
 function Cart() {
-    const { getCartItems } = useContext(Context);
-    const [typeDelivery, setTypeDelivery] = useState(1);
+    const utils = new Utils();
+    const { getCartItems, saveCartItems, removeCartItem } = useContext(Context);
+    const [cartItems, setCartItems] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
+    const [showItemEdit, setShowItemEdit] = useState(false);
     const history = useHistory();
+    const [typeDelivery, setTypeDelivery] = useState(0);
+    const [itemSelected, setItemSelected] = useState({
+        id: "",
+        title: "",
+        description: "",
+        cost: 0,
+        quantity: 0,
+        observation: ""
+    });
+    const [keyItemSelected, setKeyItemSelected] = useState(-1);
 
     useEffect(() => {
         let total = 0;
-        getCartItems().map(cartItem => {
-            return total += cartItem.cost;
+        const sessionCartItems = getCartItems();
+        sessionCartItems.map(cartItem => {
+            return total += (cartItem.cost * cartItem.quantity);
         });
+
+        setCartItems(sessionCartItems);
 
         setSubTotal(total);
     }, [getCartItems]);
 
-    const handleChange = (value) => {
-        setTypeDelivery(value);
+    useEffect(() => {
+        let total = 0;
+        cartItems.map(cartItem => {
+            return total += (cartItem.cost * cartItem.quantity);
+        });
+        setSubTotal(total);
+
+        saveCartItems(cartItems);
+        // eslint-disable-next-line
+    }, [cartItems])
+
+    const handleChangeValue = (value) => {
+        setItemSelected({
+            ...itemSelected,
+            quantity: value
+        });
     }
 
-    const handleClick = () => {
-        console.log("Finalizou!!");
+    const handleChangeType = (event) => {
+        setTypeDelivery(event.target.value);
+    }
+
+    const handleSelectItem = (item, key) => {
+        setItemSelected(item);
+        setKeyItemSelected(key);
+        setShowItemEdit(!showItemEdit);
+    }
+
+    const handleSubmit = () => {
+        const informations = getInformation();
+        const order = {
+            name: informations.name,
+            contact: informations.contact,
+            zipCode: informations.postalCode,
+            address: informations.address,
+            number: informations.number,
+            complement: informations.complement,
+            city: informations.city,
+            type: typeDelivery,
+            items: getCartItems()
+        }
+        api.post("/order", order)
+            .then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+
+    const handleClickEdit = async () => {
+        if (itemSelected.quantity === 0) {
+            removeCartItem(keyItemSelected);
+            setShowItemEdit(!showItemEdit);
+        } else {
+            const itemsFiltered = getCartItems().map((cartItem, key) => {
+                return parseInt(key) === parseInt(keyItemSelected) ? itemSelected : cartItem;
+            });
+
+            setCartItems(itemsFiltered);
+            setShowItemEdit(!showItemEdit);
+        }
+    }
+
+    const buttonLabel = () => {
+        return (
+            itemSelected.quantity === 0 ?
+                <span className="buttonRemoveLabel">Remover</span>
+                :
+                <>
+                    <span className="buttonLabel">Atualizar</span>
+                    <span className="buttonValue">
+                        {utils.toLocale(itemSelected.cost * itemSelected.quantity)}
+                    </span>
+                </>
+        )
+    }
+
+    const handleShowEditItem = event => {
+        if (event.target.id === "cartItemEdit") {
+            setShowItemEdit(!showItemEdit);
+        }
     }
 
     return (
         <>
             <Menu showBack description="quase acabando!" />
             <div className="cartContainer">
-                <div className="typeDelivery">
-                    <div className="radioCheck">
-                        <input
-                            type="radio"
-                            name="typeDelivery"
-                            id="typeDelivery"
-                            onChange={() => { handleChange(1) }}
-                            checked={typeDelivery === 1}
-                            value="1"
-                        />
-                        <label htmlFor="typeDelivery">Retirar</label>
-                    </div>
-                    <div className="radioCheck">
-                        <input
-                            type="radio"
-                            name="typeDelivery"
-                            id="typeDelivery"
-                            onChange={() => { handleChange(2) }}
-                            checked={typeDelivery === 2}
-                            value="2"
-                        />
-                        <label htmlFor="typeDelivery">Entregar</label>
-                    </div>
-                </div>
                 <div className="cartContent">
+                    <div className="typeDelivery">
+                        <div>
+                            <input
+                                type="radio"
+                                name="type"
+                                id="typeFetch"
+                                value="0"
+                                checked={parseInt(typeDelivery) === 0 ? true : false}
+                                onChange={(event) => { handleChangeType(event) }}
+                            />
+                            <label htmlFor="typeFetch">Retirar</label>
+                        </div>
+                        <div>
+                            <input
+                                type="radio"
+                                name="type"
+                                id="typeDeliver"
+                                value="1"
+                                checked={parseInt(typeDelivery) === 1 ? true : false}
+                                onChange={(event) => { handleChangeType(event) }}
+                            />
+                            <label htmlFor="typeDeliver">Entregar</label>
+                        </div>
+                    </div>
                     <h3 className="cartText">seu pedido!</h3>
                     <div className="cartItems">
                         {
-                            getCartItems().map((item, key) => {
+                            cartItems.map((item, key) => {
                                 return (
-                                    <div className="cartItem" key={key}>
+                                    <div className="cartItem" key={key} onClick={() => handleSelectItem(item, key)}>
                                         <p className="cartQuantity">{`${item.quantity}x`}</p>
                                         <div className="cartTitle">
                                             {item.title}
@@ -77,7 +171,7 @@ function Cart() {
                                             </p>
                                         </div>
                                         <p className="cartValue">
-                                            {item.cost.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                                            {utils.toLocale(item.cost * item.quantity)}
                                         </p>
                                     </div>
                                 )
@@ -90,17 +184,53 @@ function Cart() {
                         <p className="cartSubTotalText">
                             subtotal:{" "}
                             <span>
-                                {subTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                                {utils.toLocale(subTotal)}
+                            </span>
+                        </p>
+                        <p className="cartSubTotalText">
+                            entrega:{" "}
+                            <span>
+                                {parseInt(typeDelivery) === 0 ? "retirar" : utils.toLocale("5.00")}
                             </span>
                         </p>
                     </div>
                     <div className="cartOrderEnd">
-                        <p className="cartTotaltext">total:</p>
+                        <p className="cartTotalText">
+                            total:{" "}
+                        </p>
                         <p className="cartTotalValue">
-                            {subTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                            {utils.toLocale(subTotal + (parseInt(typeDelivery) === 1 ? 5.00 : 0))}
                         </p>
                         <Button label="Pedir mais!!" className="cartButtonReturn" onClick={() => history.push("/loja")} />
-                        <Button label="Finalizar" className="cartButton" onClick={() => handleClick()} />
+                        <Button
+                            label="Finalizar"
+                            className="cartButton"
+                            onClick={() => handleSubmit()}
+                            showLoading
+                        />
+                    </div>
+                </div>
+                <div
+                    className={`cartItemEdit ${showItemEdit ? "showItemEdit" : "hideItemEdit"}`}
+                    onClick={event => handleShowEditItem(event)}
+                    id="cartItemEdit"
+                >
+                    <div className="cartItemEditContent" id="cartItemEditContent">
+                        <p className="cartItemEditTitle">
+                            {itemSelected.title}
+                        </p>
+                        <div className="itemCount">
+                            <Quantity
+                                handleChangeValue={(value) => handleChangeValue(value)}
+                                update
+                                item={itemSelected}
+                            />
+                            <Button
+                                className={`buttonAdd ${itemSelected.quantity === 0 ? "buttonRemove" : null}`}
+                                label={buttonLabel()}
+                                onClick={() => handleClickEdit()}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

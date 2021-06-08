@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import "./styles.css";
 
-function Button({ className, label, onClick, ...rest }) {
+function Button({ className, label, onClick, showLoading = false, ...rest }) {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleOnClick = (event) => {
+        if (isLoading) return;
+
+        setIsLoading(!isLoading);
+        if (showLoading) {
+            setTimeout(() => {
+                onClick(event);
+                setIsLoading(false);
+            }, 2000);
+        } else {
+            onClick(event);
+        }
+    };
+
     return (
         <button
-            className={`${className} btn`}
-            onClick={event => onClick(event)}
+            className={`${isLoading ? "loading " : className}`}
+            onClick={handleOnClick}
             {...rest}
         >
-            {label}
+            {showLoading ? <div className="spinner" /> : null}
+            <p className="text">{label}</p>
         </button>
     );
 }

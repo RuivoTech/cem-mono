@@ -17,7 +17,9 @@ function Menu({ showBack, showCart, description }) {
     const { getQuantityCartItems } = useContext(Context);
 
     useEffect(() => {
-        setQuantityCart(getQuantityCartItems());
+        const quantityCart = getQuantityCartItems();
+
+        setQuantityCart(quantityCart);
     }, [getQuantityCartItems]);
 
     const handleClickSidebar = () => {

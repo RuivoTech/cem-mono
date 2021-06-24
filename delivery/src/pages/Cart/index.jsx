@@ -14,12 +14,14 @@ import Quantity from '../../components/Quantity';
 
 function Cart() {
     const utils = new Utils();
-    const { getCartItems, saveCartItems, removeCartItem } = useContext(Context);
+    const history = useHistory();
+    const { getCartItems, removeCartItem, clearCart, setOrder } = useContext(Context);
     const [cartItems, setCartItems] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
+    const [buttonStatus, setButtonStatus] = useState("none");
     const [showItemEdit, setShowItemEdit] = useState(false);
-    const history = useHistory();
     const [typeDelivery, setTypeDelivery] = useState(0);
+    const [keyItemSelected, setKeyItemSelected] = useState(-1);
     const [itemSelected, setItemSelected] = useState({
         id: "",
         title: "",
@@ -28,9 +30,17 @@ function Cart() {
         quantity: 0,
         observation: ""
     });
-    const [keyItemSelected, setKeyItemSelected] = useState(-1);
 
     useEffect(() => {
+        const sessionCartItems = getCartItems();
+        setCartItems(sessionCartItems);
+        let total = 0;
+        sessionCartItems.map(cartItem => total += (cartItem.cost * cartItem.quantity))
+        setSubTotal(total);
+        // eslint-disable-next-line
+    }, []);
+
+    const updateCartItems = () => {
         let total = 0;
         const sessionCartItems = getCartItems();
         sessionCartItems.map(cartItem => {
@@ -40,18 +50,7 @@ function Cart() {
         setCartItems(sessionCartItems);
 
         setSubTotal(total);
-    }, [getCartItems]);
-
-    useEffect(() => {
-        let total = 0;
-        cartItems.map(cartItem => {
-            return total += (cartItem.cost * cartItem.quantity);
-        });
-        setSubTotal(total);
-
-        saveCartItems(cartItems);
-        // eslint-disable-next-line
-    }, [cartItems])
+    };
 
     const handleChangeValue = (value) => {
         setItemSelected({
@@ -71,6 +70,17 @@ function Cart() {
     }
 
     const handleSubmit = () => {
+        if (!verifyInformations()) {
+            const informName = window.confirm("Quem é você? Consegue me informar?");
+            if (informName) {
+                history.push("/dados?from=cart&delivery=" + typeDelivery);
+                return;
+            } else {
+                return;
+            }
+        }
+
+        setButtonStatus("loading");
         const informations = getInformation();
         const order = {
             name: informations.name,
@@ -83,18 +93,42 @@ function Cart() {
             type: typeDelivery,
             items: getCartItems()
         }
+
         api.post("/order", order)
             .then(response => {
-                console.log(response.data);
+                setOrder(response.data);
+                setButtonStatus("success");
+                setTimeout(() => {
+                    clearCart();
+                    setCartItems([]);
+                    history.push("/pedidos");
+                }, 1000);
             }).catch(error => {
-                console.log(error);
+                setButtonStatus("error");
+                console.error(error);
             });
+    }
+
+    const verifyInformations = () => {
+        const informations = getInformation();
+
+        if (informations === null) {
+            return false;
+        }
+
+        if (!informations.name && !informations.contact) {
+            return false;
+        }
+
+        return true;
     }
 
     const handleClickEdit = async () => {
         if (itemSelected.quantity === 0) {
             removeCartItem(keyItemSelected);
+
             setShowItemEdit(!showItemEdit);
+            updateCartItems();
         } else {
             const itemsFiltered = getCartItems().map((cartItem, key) => {
                 return parseInt(key) === parseInt(keyItemSelected) ? itemSelected : cartItem;
@@ -201,12 +235,17 @@ function Cart() {
                         <p className="cartTotalValue">
                             {utils.toLocale(subTotal + (parseInt(typeDelivery) === 1 ? 5.00 : 0))}
                         </p>
-                        <Button label="Pedir mais!!" className="cartButtonReturn" onClick={() => history.push("/loja")} />
+                        <Button
+                            label="Pedir mais!!"
+                            className="cartButtonReturn"
+                            onClick={() => history.push("/loja")}
+                        />
                         <Button
                             label="Finalizar"
                             className="cartButton"
                             onClick={() => handleSubmit()}
                             showLoading
+                            status={buttonStatus}
                         />
                     </div>
                 </div>

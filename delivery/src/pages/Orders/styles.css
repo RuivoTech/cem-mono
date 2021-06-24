@@ -45,6 +45,10 @@
     color: var(--color-purple);
 }
 
+.orderCost span {
+    color: var(--color-primary);
+}
+
 .orderCardItems {
     margin-top: 10px;
 }

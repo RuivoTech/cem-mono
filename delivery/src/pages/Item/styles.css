@@ -113,4 +113,7 @@
         width: 60vw;
         left: auto;
     }
+    .buttonAdd {
+        width: 50vw;
+    }
 }

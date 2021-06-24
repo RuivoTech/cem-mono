@@ -5,6 +5,15 @@
     margin-bottom: 100px;
 }
 
+.errorMessage {
+    font-size: 1.6em;
+    font-weight: 400;
+    font-family: Ubuntu;
+    color: var(--color-text-error);
+    margin: 20px;
+    text-align: center;
+}
+
 @media (max-width: 767px) {
     .orderContainer {
         width: 100vw;

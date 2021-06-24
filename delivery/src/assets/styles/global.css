@@ -9,6 +9,7 @@
     --color-text-primary: #FFFFFF;
     --color-text-secundary: #b2b2b2;
     --color-purple: #441C55;
+    --color-text-error: #ff0000;
 }
 
 * {
@@ -127,4 +128,10 @@ input:focus, textarea:focus, select:focus {
 ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #B2B2B2;
+}
+
+@keyframes rotate-spinner {
+    100% {
+        transform: rotate(360deg);
+    }
 }

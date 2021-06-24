@@ -255,6 +255,11 @@
     .cartButtonReturn {
         width: calc(30vw - 150px);
     }
+    .itemCount {
+        width: 60vw;
+        position: absolute;
+        justify-content: space-around;
+    }
 }
 
 @keyframes loading-btn--rotation {

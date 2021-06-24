@@ -9,12 +9,18 @@
 
 .btnSave {
     background-color: var(--color-primary);
-    width: 94vw;
+    width: 90vw;
 }
 
 .btnDisabled {
     background-color: var(--color-text-secundary);
     cursor: auto;
+    pointer-events: none;
+}
+
+.buttonContainer {
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 .informationObservation sup {
@@ -33,7 +39,19 @@
     #input:first-child {
         margin-top: 20px;
     }
-    .informationContent button {
+    .btnSave {
         width: 58vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .btnSave {
+        width: 44vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .btnSave {
+        width: 30vw;
     }
 }

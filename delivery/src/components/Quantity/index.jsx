@@ -16,8 +16,13 @@ function Quantity({ handleChangeValue, update = false, item }) {
 
     const handleClick = (type) => {
         if (type === "-") {
-            setQuantity(quantity - 1);
-            handleChangeValue(quantity - 1);
+            if (quantity > 1 && !update) {
+                setQuantity(quantity - 1);
+                handleChangeValue(quantity - 1);
+            } else if (quantity > 0 && update) {
+                setQuantity(quantity - 1);
+                handleChangeValue(quantity - 1);
+            }
         } else if (type === "+" && quantity < 10) {
             setQuantity(quantity + 1);
             handleChangeValue(quantity + 1);
@@ -28,7 +33,7 @@ function Quantity({ handleChangeValue, update = false, item }) {
         <div className="quantityContainer">
             <FontAwesomeIcon
                 icon={faMinus}
-                color={(quantity === 1 || update) && quantity === 0 ? "#b2b2b2" : "#00BBAE"}
+                color={(quantity === 1 && !update) || quantity === 0 ? "#b2b2b2" : "#00BBAE"}
                 size="1x"
                 onClick={() => handleClick("-")}
                 className="quantityClick"

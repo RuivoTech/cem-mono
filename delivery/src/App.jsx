@@ -1,8 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-
-import { Context } from "./services/Context";
-import api from "./services/api";
 
 import Landing from "./pages/Landing";
 import Store from "./pages/Store";
@@ -12,19 +9,17 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 
 import "./assets/styles/global.css";
+import { getInformation, saveInformation } from "./services/auth";
 
 function App() {
-    const context = useContext(Context);
     useEffect(() => {
-        const request = async () => {
-            const store = await api.get("/store");
+        const informations = getInformation();
 
-            context.setStore(store.data);
+        if (!informations) {
+            saveInformation({});
         }
 
-        request();
-    }, [context]);
-
+    }, []);
     return (
         <>
             <HashRouter>

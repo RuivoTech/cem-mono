@@ -1,31 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import "./styles.css";
 
-function Button({ className, label, onClick, showLoading = false, ...rest }) {
-    const [isLoading, setIsLoading] = useState(false);
+function Button({ className, label, onClick, showLoading = false, status = "none", ...rest }) {
 
     const handleOnClick = (event) => {
-        if (isLoading) return;
-
-        setIsLoading(!isLoading);
-        if (showLoading) {
-            setTimeout(() => {
-                onClick(event);
-                setIsLoading(false);
-            }, 2000);
-        } else {
-            onClick(event);
-        }
+        onClick(event);
     };
 
     return (
         <button
-            className={`${isLoading ? "loading " : className}`}
+            className={`${status !== "none" ? status : className}`}
             onClick={handleOnClick}
             {...rest}
         >
             {showLoading ? <div className="spinner" /> : null}
+            <div className="check">
+                <FontAwesomeIcon icon={faCheck} color="#FFFFFF" size="lg" />
+            </div>
             <p className="text">{label}</p>
         </button>
     );

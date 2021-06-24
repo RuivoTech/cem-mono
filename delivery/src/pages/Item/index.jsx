@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import Menu from '../../components/Menu';
 import Quantity from '../../components/Quantity';
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 
 import { Context } from "../../services/Context";
 import { baseURL } from "../../services/api";
@@ -27,6 +28,7 @@ function Item({ location }) {
         observation: ""
     });
     const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
     const [observation, setObservation] = useState("");
     const { setCartItem, getStore } = useContext(Context);
     const history = useHistory();
@@ -39,6 +41,7 @@ function Item({ location }) {
         });
 
         setItemSelected(storeSelected[0]);
+        setLoading(false);
     }, [getStore, location]);
 
     const buttonLabel = () => {
@@ -67,7 +70,6 @@ function Item({ location }) {
         }
 
         setCartItem(itemCart);
-
         history.push("/carrinho");
     }
 
@@ -75,45 +77,51 @@ function Item({ location }) {
         <>
             <Menu showBack showCart />
             <div className="itemContainer">
-                <div className="itemImageCard">
-                    <img
-                        src={baseURL + "/" + itemSelected.image}
-                        alt={itemSelected.title}
-                        className="itemLogo"
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = errorImage
-                        }}
-                    />
-                </div>
-                <div className="itemInformation">
-                    <h2 className="itemTitle">{itemSelected.title}</h2>
-                    <p className="itemDescription">
-                        {itemSelected.description}
-                    </p>
-                    <p className="itemMoney">
-                        {utils.toLocale(itemSelected.cost)}
-                    </p>
-                </div>
-                <div className="itemObservation">
-                    <label htmlFor="description" className="labelDescription">
-                        <FontAwesomeIcon icon={faCommentAlt} color="#00BBAE" size="1x" />{" "}
-                        Alguma observação?
-                    </label>
-                    <textarea
-                        name="observation"
-                        id="description"
-                        className="textDescription"
-                        cols="5"
-                        rows="5"
-                        placeholder="Ex: Ponto da carne, tirar a salada, etc."
-                        onChange={event => setObservation(event.target.value)}
-                    ></textarea>
-                </div>
-                <div className="itemCount">
-                    <Quantity handleChangeValue={(value) => handleChangeValue(value)} item={itemSelected} />
-                    <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} showLoading />
-                </div>
+                {loading ?
+                    <Loading />
+                    :
+                    <>
+                        <div className="itemImageCard">
+                            <img
+                                src={baseURL + "/" + itemSelected.image}
+                                alt={itemSelected.title}
+                                className="itemLogo"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = errorImage
+                                }}
+                            />
+                        </div>
+                        <div className="itemInformation">
+                            <h2 className="itemTitle">{itemSelected.title}</h2>
+                            <p className="itemDescription">
+                                {itemSelected.description}
+                            </p>
+                            <p className="itemMoney">
+                                {utils.toLocale(itemSelected.cost)}
+                            </p>
+                        </div>
+                        <div className="itemObservation">
+                            <label htmlFor="description" className="labelDescription">
+                                <FontAwesomeIcon icon={faCommentAlt} color="#00BBAE" size="1x" />{" "}
+                                Alguma observação?
+                            </label>
+                            <textarea
+                                name="observation"
+                                id="description"
+                                className="textDescription"
+                                cols="5"
+                                rows="5"
+                                placeholder="Ex: Ponto da carne, tirar a salada, etc."
+                                onChange={event => setObservation(event.target.value)}
+                            ></textarea>
+                        </div>
+                        <div className="itemCount">
+                            <Quantity handleChangeValue={(value) => handleChangeValue(value)} item={itemSelected} />
+                            <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} showLoading />
+                        </div>
+                    </>
+                }
             </div>
         </>
     );

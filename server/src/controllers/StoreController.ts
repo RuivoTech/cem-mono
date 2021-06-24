@@ -11,13 +11,10 @@ class StoreController {
         return response.json(store);
     }
     async create(request: Request, response: Response) {
-        console.log(request);
-
-        /* const store = request.body;
+        const store = request.body;
         const createdStore = await storeModel.create(store);
 
-        return response.json(createdStore); */
-        return response.send("Tudo Certo");
+        return response.json(createdStore);
     }
 }
 

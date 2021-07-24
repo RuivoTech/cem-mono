@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
+import { getInformation, saveInformation } from "./services/auth";
+
 import Landing from "./pages/Landing";
 import Store from "./pages/Store";
 import Information from "./pages/Information";
@@ -9,7 +11,6 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 
 import "./assets/styles/global.css";
-import { getInformation, saveInformation } from "./services/auth";
 
 function App() {
     useEffect(() => {

@@ -12,6 +12,24 @@
     border-bottom: 1px solid var(--color-border);
 }
 
+.timeToDeliver {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.timeToDeliver label {
+    width: calc(70vw - 30px);
+}
+
+.timeToDeliver select {
+    width: 45vw;
+    box-shadow: none;
+}
+
 .cartContent {
     height: calc(100vh - 250px);
 }

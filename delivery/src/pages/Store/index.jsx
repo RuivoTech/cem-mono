@@ -13,15 +13,15 @@ import "./styles.css";
 function Store() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const context = useContext(Context);
+    const { setCampaign } = useContext(Context);
 
     useEffect(() => {
         const request = async () => {
             try {
                 const store = await api.get("/store");
 
-                context.setStore(store.data);
-                setItems(store.data);
+                setCampaign(store.data);
+                setItems(store.data.items);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -29,7 +29,7 @@ function Store() {
         }
 
         request();
-    }, [context]);
+    }, [setCampaign]);
 
     return (
         <>
@@ -38,7 +38,7 @@ function Store() {
                 {loading ?
                     <Loading />
                     :
-                    items.length > 0 ?
+                    items ?
                         items.map(item => {
                             return <Card item={item} key={item.id} />
                         }) :

@@ -15,8 +15,9 @@ import Quantity from '../../components/Quantity';
 function Cart() {
     const utils = new Utils();
     const history = useHistory();
-    const { getCartItems, removeCartItem, clearCart, setOrder } = useContext(Context);
+    const { getCartItems, removeCartItem, clearCart, setOrder, getCampaign } = useContext(Context);
     const [cartItems, setCartItems] = useState([]);
+    const [times, setTimes] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
     const [buttonStatus, setButtonStatus] = useState("none");
     const [showItemEdit, setShowItemEdit] = useState(false);
@@ -33,12 +34,32 @@ function Cart() {
 
     useEffect(() => {
         const sessionCartItems = getCartItems();
+
         setCartItems(sessionCartItems);
         let total = 0;
         sessionCartItems.map(cartItem => total += (cartItem.cost * cartItem.quantity))
         setSubTotal(total);
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        const campaign = getCampaign();
+        let time = new Date(campaign.date.split("T")[0] + "T" + campaign.timeStart),
+            timeEnd = new Date(campaign.date.split("T")[0] + "T" + campaign.timeEnd),
+            intervalos = [];
+
+        intervalos.push(
+            `${("0" + time.getHours()).slice(-2)}:${("0" + time.getMinutes()).slice(-2)}`
+        );
+
+        while (time < timeEnd) {
+            time.setHours(time.getHours() + 1);
+            intervalos.push(`${("0" + time.getHours()).slice(-2)}:${("0" + time.getMinutes()).slice(-2)}`);
+        }
+
+        setTimes(intervalos);
+        // eslint-disable-next-line
+    }, [])
 
     const updateCartItems = () => {
         let total = 0;
@@ -81,8 +102,9 @@ function Cart() {
         }
 
         setButtonStatus("loading");
+        const campaign = getCampaign();
         const informations = getInformation();
-        const order = {
+        let order = {
             name: informations.name,
             contact: informations.contact,
             zipCode: informations.postalCode,
@@ -96,7 +118,9 @@ function Cart() {
 
         api.post("/order", order)
             .then(response => {
-                setOrder(response.data);
+                order = response.data;
+                order.date = campaign.date;
+                setOrder(order);
                 setButtonStatus("success");
                 setTimeout(() => {
                     clearCart();
@@ -184,6 +208,7 @@ function Cart() {
                                 value="1"
                                 checked={parseInt(typeDelivery) === 1 ? true : false}
                                 onChange={(event) => { handleChangeType(event) }}
+                                disabled
                             />
                             <label htmlFor="typeDeliver">Entregar</label>
                         </div>
@@ -212,6 +237,17 @@ function Cart() {
                             })
                         }
                     </div>
+                </div>
+                <div className="timeToDeliver">
+                    <label htmlFor="timeToDeliver">
+                        Horário para {parseInt(typeDelivery) === 0 ? "retirar" : "entregar"}:
+                    </label>
+                    <select name="timeToDeliver" id="timeToDeliver">
+                        {times.map((time, index) => {
+                            return times[index + 1] !== undefined &&
+                                <option key={index} value={time}>{`${time} até ${times[index + 1]}`}</option>
+                        })}
+                    </select>
                 </div>
                 <div className="cartTotal">
                     <div className="cartSubTotal">

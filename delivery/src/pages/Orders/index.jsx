@@ -47,7 +47,7 @@ function Orders() {
                         </div>
                         :
                         orders.map(order => {
-                            const date = new Date(`${order.date}T00:00:00`);
+                            const date = new Date(order.date);
 
                             const totalcost = calcTotalCost(order.items);
                             return (

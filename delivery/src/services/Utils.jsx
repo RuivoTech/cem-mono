@@ -1,6 +1,6 @@
 class Utils {
     toLocale(value) {
-        return parseFloat(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        return parseFloat(value / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     }
 }
 

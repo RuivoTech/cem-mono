@@ -2,21 +2,21 @@ import {
     clearSessionCart,
     getSessionCart,
     getSessionOrders,
-    getSessionStore,
+    getSessionCampaign,
     saveSessionCart,
     saveSessionOrder,
-    saveSessionStore
+    saveSessionCampaign
 } from "./auth";
 
 export const provider = {
-    getStore: () => {
-        return getSessionStore();
+    getCampaign: () => {
+        return getSessionCampaign();
+    },
+    setCampaign: (campaign) => {
+        saveSessionCampaign(campaign);
     },
     setCartItem: (item) => {
         saveSessionCart(item);
-    },
-    setStore: (storeItems) => {
-        saveSessionStore(storeItems);
     },
     getCartItems: () => {
         const cartItems = getSessionCart();

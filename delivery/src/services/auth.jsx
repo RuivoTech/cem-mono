@@ -1,6 +1,6 @@
 export const TOKEN_KEY = "@DeliveryCEM:Information";
 const CART_TOKEN = "@DeliveryCEM:Cart";
-const STORE_TOKEN = "@DeliveryCEM:Store";
+const CAMPAIGN_TOKEN = "@DeliveryCEM:Campaign";
 const ORDER_TOKEN = "@DeliveryCEM:Order";
 
 export const saveInformation = (usuario) => {
@@ -13,13 +13,13 @@ export const getInformation = () => {
     return JSON.parse(session);
 }
 
-export const saveSessionStore = (store) => {
-    sessionStorage.setItem(STORE_TOKEN, JSON.stringify(store));
+export const saveSessionCampaign = (campaign) => {
+    sessionStorage.setItem(CAMPAIGN_TOKEN, JSON.stringify(campaign));
 };
 
-export const getSessionStore = () => {
-    const sessionStore = sessionStorage.getItem(STORE_TOKEN);
-    return JSON.parse(sessionStore);
+export const getSessionCampaign = () => {
+    const sessionCampaign = sessionStorage.getItem(CAMPAIGN_TOKEN);
+    return JSON.parse(sessionCampaign);
 }
 
 export const clearSessionCart = () => {

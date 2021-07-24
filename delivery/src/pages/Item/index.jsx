@@ -30,26 +30,26 @@ function Item({ location }) {
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [observation, setObservation] = useState("");
-    const { setCartItem, getStore } = useContext(Context);
+    const { setCartItem, getCampaign } = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
         const id = location.search.slice(1);
-        const store = getStore();
-        const storeSelected = store.filter(storeItem => {
+        const campaign = getCampaign();
+        const storeSelected = campaign.items.filter(storeItem => {
             return storeItem.id === parseInt(id);
         });
 
         setItemSelected(storeSelected[0]);
         setLoading(false);
-    }, [getStore, location]);
+    }, [getCampaign, location]);
 
     const buttonLabel = () => {
         return (
             <>
                 <span className="buttonLabel">Adicionar</span>
                 <span className="buttonValue">
-                    {utils.toLocale(itemSelected.cost * quantity)}
+                    {utils.toLocale((itemSelected.cost) * quantity)}
                 </span>
             </>
         )

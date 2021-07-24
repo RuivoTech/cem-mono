@@ -33,20 +33,41 @@ const Utils = {
     separarString: (string, quantidadeRetorno) => {
         let stringSplit = string.split(" ");
         let retorno = "";
-        for (let i = 0; i < quantidadeRetorno; i++) {
-            retorno = retorno + " " + stringSplit[i];
+        if (stringSplit.length >= quantidadeRetorno) {
+            for (let i = 0; i < quantidadeRetorno; i++) {
+                retorno = retorno + " " + stringSplit[i];
+            }
+        } else {
+            retorno = string;
         }
 
         return retorno;
     },
-    converteMoeda: (value = 0, fromInput = false) => {
-        console.log(value);
-        const valueDisplay = (fromInput ? value / 100 : value).toLocaleString('pt-BR', {
+    converteMoeda: (value = 0) => {
+        const valueDisplay = (value / 100).toLocaleString(
+            'pt-BR', {
             style: 'currency',
             currency: 'BRL',
         });
 
         return valueDisplay;
+    },
+    mascaraTelefone(telefone) {
+        let r = "";
+        if (telefone) {
+            r = telefone.replace(/\D/g, "");
+            r = r.replace(/^0/, "");
+            if (r.length > 10) {
+                r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+            } else if (r.length > 5) {
+                r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+            } else if (r.length > 2) {
+                r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+            } else {
+                r = r.replace(/^(\d*)/, "($1");
+            }
+        }
+        return r;
     }
 }
 

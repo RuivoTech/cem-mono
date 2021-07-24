@@ -480,8 +480,14 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
                                         <div className="col-sm-6 col-md-6 col-lg-6">
                                             <div className="form-group">
                                                 <label htmlFor="telefone">Telefone:</label>
-                                                <input className="form-control" id="telefone" name="contato.telefone" type="text"
-                                                    value={membro?.contato?.telefone} onChange={handleChange} />
+                                                <input
+                                                    className="form-control"
+                                                    id="telefone"
+                                                    name="contato.telefone"
+                                                    type="text"
+                                                    value={membro?.contato?.telefone}
+                                                    onChange={handleChange}
+                                                />
                                             </div>
                                         </div>
                                         <div className="col-sm-6 col-md-6 col-lg-6">

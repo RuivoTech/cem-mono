@@ -9,6 +9,7 @@ import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import FormModal from './FormModal';
 import RelatorioModal from './RelatorioModal';
+import Utils from '../../../componentes/Utils';
 
 const Membros = () => {
     const [membros, setMembros] = useState([]);
@@ -194,8 +195,18 @@ const Membros = () => {
                         >
                             <Coluna campo="nome" titulo="Nome" tamanho="20" />
                             <Coluna campo="contato.email" titulo="E-mail" tamanho="20" />
-                            <Coluna campo="contato.telefone" titulo="Telefone" tamanho="12" />
-                            <Coluna campo="contato.celular" titulo="Celular" tamanho="12" />
+                            <Coluna
+                                campo="contato.telefone"
+                                titulo="Telefone"
+                                tamanho="12"
+                                corpo={item => Utils.mascaraTelefone(item.contato.telefone)}
+                            />
+                            <Coluna
+                                campo="contato.celular"
+                                titulo="Celular"
+                                tamanho="12"
+                                corpo={item => Utils.mascaraTelefone(item.contato.celular)}
+                            />
                             <Coluna titulo="Opções" corpo={(item) => opcoes(item)} tamanho="5" />
                         </Tabela>
                     </div>

@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@types/react-notification-system": "^0.2.39",
+    "@types/reactstrap": "^8.7.2",
     "gh-pages": "^2.2.0"
   }
 }

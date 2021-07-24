@@ -20,6 +20,9 @@ import CadastroVisitante from "./View/Cadastro/Visitante";
 import CadastroMinisterio from "./View/Cadastro/Ministerio";
 import CadastroEvento from "./View/Cadastro/Evento";
 
+import DeliveryCampanha from "./View/Delivery/Campanha";
+import DeliveryPedido from "./View/Delivery/Pedido";
+
 import FinanceiroDizimos from "./View/Financeiro/Dizimo";
 import FinanceiroOfertas from "./View/Financeiro/Oferta";
 import FinanceiroInscricao from "./View/Financeiro/Inscricao";
@@ -64,6 +67,8 @@ const App = () => {
                             <PrivateRoute exact path="/visitante" component={CadastroVisitante} name="Visitantes" />
                             <PrivateRoute exact path="/ministerio" component={CadastroMinisterio} name="Ministérios" />
                             <PrivateRoute exact path="/evento" component={CadastroEvento} name="Eventos" />
+                            <PrivateRoute exact path="/campanha" component={DeliveryCampanha} name="Campanha" />
+                            <PrivateRoute exact path="/pedidos" component={DeliveryPedido} name="Pedido" />
                             <PrivateRoute exact path="/inscricoes" component={FinanceiroInscricao} name="Inscrições" />
                             <PrivateRoute exact path="/dizimo" component={FinanceiroDizimos} name="Dizimos" />
                             <PrivateRoute exact path="/oferta" component={FinanceiroOfertas} name="Ofertas" />

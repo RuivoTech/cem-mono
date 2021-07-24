@@ -8,13 +8,23 @@ const orderItem = new OrderItemModel();
 
 class OrderModel {
     async index() {
-        const orders = await knex("order");
+        const orders = await knex<Order>("order");
 
-        return orders;
+        const ordersFiltered = await Promise.all(orders.map(async (order) => {
+            const items = await orderItem.index(Number(order.id));
+
+            return (
+                {
+                    ...order,
+                    items
+                }
+            )
+        }));
+
+        return ordersFiltered;
     }
 
     async create(order: Order) {
-        const date = new Date();
         try {
             const insertedId = await knex("order").insert({
                 name: order.name,
@@ -34,7 +44,6 @@ class OrderModel {
 
             order.id = orderId;
             order.items = orderItems;
-            order.date = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`
 
             return order;
         } catch (error) {

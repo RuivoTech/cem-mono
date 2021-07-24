@@ -22,6 +22,16 @@ class StoreModel {
             return { error };
         }
     }
+
+    async update(store: Store) {
+        try {
+            await knex("store").update(store);
+
+            return store;
+        } catch (error) {
+            return { error };
+        }
+    }
 }
 
 export default StoreModel;

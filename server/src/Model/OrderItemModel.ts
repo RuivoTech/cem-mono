@@ -3,8 +3,8 @@ import knex from "../database/connection";
 import { OrderItems } from "../interfaces/OrderItemsInterface";
 
 class OrderItemModel {
-    async index() {
-        const orders = await knex("order");
+    async index(id: number) {
+        const orders = await knex("orderItems").where("fkOrder", id);
 
         return orders;
     }

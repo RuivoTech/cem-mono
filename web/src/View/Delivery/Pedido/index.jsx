@@ -11,7 +11,7 @@ import InfoBox from '../../../componentes/InfoBox';
 const Pedido = () => {
     const [pedidos, setPedidos] = useState([]);
     const [pedidoSelecionado, setPedidoSelecionado] = useState({});
-    const [quantidadeTotal, setQuantidadeTotal] = useState(0);
+    const [quantidade, setQuantidade] = useState(0);
     const [show, setShow] = useState(false);
     const [pedidosPesquisa, setPedidosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
@@ -29,13 +29,29 @@ const Pedido = () => {
 
             setPedidos(request.data);
             setPedidosPesquisa(request.data);
-            setQuantidadeTotal(request.data.length);
         }
 
         if (!show) {
             fetchPedidos();
         }
-    }, [setQuantidadeTotal, show]);
+    }, [show]);
+
+    useEffect(() => {
+        const total = pedidos.length;
+        let pagos = 0;
+        let aPagar = 0;
+
+        pedidos.forEach(pedido => {
+            pagos += pedido.status;
+            aPagar += !pedido.status;
+        });
+
+        setQuantidade({
+            total,
+            pagos,
+            aPagar
+        })
+    }, [pedidos]);
 
     const remover = async (id) => {
         const respose = await api.delete("/order/" + id, {
@@ -77,6 +93,17 @@ const Pedido = () => {
         return (
             <>
                 <button
+                    key={pedido.id + "payment"}
+                    className="btn btn-success btn-xs"
+                    onClick={() => {
+                        handlePay(pedido.id)
+                    }}
+                    title="Realizar pagamento"
+                >
+                    <FontAwesomeIcon icon={["fas", "dollar-sign"]} />
+                </button>
+                {' '}
+                <button
                     key={pedido.id + "editar"}
                     className="btn btn-primary btn-xs"
                     onClick={() => {
@@ -102,6 +129,37 @@ const Pedido = () => {
         )
     }
 
+    const handlePay = async (id) => {
+        const response = await api.put("/orderPayment", {
+            id,
+            status: true
+        },
+            {
+                headers: {
+                    Authorization: `Bearer ${session.token}`
+                }
+            });
+
+        if (response.status === 200) {
+            const ordersFiltered = pedidos.map(pedido => {
+                return parseInt(pedido.id) === parseInt(response.data.id) ?
+                    {
+                        ...pedido,
+                        status: response.data.status
+                    }
+                    : pedido
+            });
+
+            setPedidos(ordersFiltered);
+            setPedidosPesquisa(ordersFiltered);
+            addToast("Pedido salvo com sucesso!", { appearance: "success" });
+        } else {
+            console.error(response.data.error);
+            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+        }
+
+    }
+
     const handleShow = () => {
         setPedidoSelecionado({
             items: []
@@ -122,14 +180,13 @@ const Pedido = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="utensils" quantidade={quantidadeTotal} titulo="Total" />
-                <InfoBox corFundo="success" icone="dollar-sign" quantidade={quantidadeTotal} titulo="Pagos" />
-                <InfoBox corFundo="danger" icone="dollar-sign" quantidade={quantidadeTotal} titulo="Não pagos" />
-                <InfoBox corFundo="warning" icone="user-circle" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="utensils" quantidade={quantidade.total} titulo="Total" />
+                <InfoBox corFundo="success" icone="dollar-sign" quantidade={quantidade.pagos} titulo="Pagos" />
+                <InfoBox corFundo="danger" icone="dollar-sign" quantidade={quantidade.aPagar} titulo="A pagar" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
-                    <div className="row">
-                        <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <div className="form-group">
+                    <div className="row bg-gray align-items-center">
+                        <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6 align-items-center">
+                            <div className="form-group mt-2">
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
@@ -178,9 +235,9 @@ const Pedido = () => {
                                         <div className="card-body">
                                             <p className="card-text row justify-content-between mx-0">
                                                 <span
-                                                    className={`${pedido.status ? "text-danger" : "text-success"}`}
+                                                    className={`${pedido.status ? "text-success" : "text-danger"}`}
                                                 >
-                                                    {!pedido.status ? "Pago" : "Não pago"}
+                                                    {pedido.status ? "Pago" : "Não pago"}
                                                 </span>
                                                 <span>{pedido.type ? "Entregar" : "Retirar"}</span>
                                             </p>
@@ -201,7 +258,13 @@ const Pedido = () => {
                                                 )
                                             })}
                                             <hr />
-                                            <p className={`card-text ${pedido.status ? "text-danger" : "text-success"} h3`}>
+                                            <p
+                                                className={
+                                                    `card-text ${pedido.status ?
+                                                        "text-success"
+                                                        : "text-danger"} 
+                                                        h3`}
+                                            >
                                                 {calcularValor(pedido.items)}
                                             </p>
                                         </div>

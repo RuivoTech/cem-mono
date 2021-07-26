@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useToasts } from "react-toast-notifications";
 import Axios from "axios";
@@ -164,7 +165,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                     className="btn btn-primary btn-xs"
                     title="Editar Item"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 {" "}
                 <button
@@ -175,7 +176,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                     className="btn btn-danger btn-xs"
                     title="Remover Item"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )

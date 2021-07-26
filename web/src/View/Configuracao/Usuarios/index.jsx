@@ -166,7 +166,7 @@ const Usuarios = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="users" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -174,7 +174,7 @@ const Usuarios = () => {
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                            <i className="fa fa-search color-gray"></i>
+                                            <FontAwesomeIcon icon={["fas", "search"]} />
                                         </span>
                                     </div>
                                     <input

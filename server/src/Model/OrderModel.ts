@@ -50,6 +50,42 @@ class OrderModel {
             return { error };
         }
     }
+
+    async update(order: Order) {
+        try {
+            await knex("order").update({
+                name: order.name,
+                contact: order.contact,
+                zipCode: order.zipCode,
+                address: order.address,
+                number: order.number,
+                complement: order.complement,
+                city: order.city,
+                type: order.type,
+                status: 1
+            });
+
+            const orderItems = await orderItem.create(order.items, Number(order.id));
+
+            order.items = orderItems;
+
+            return order;
+        } catch (error) {
+            return { error };
+        }
+    }
+
+    async updatePayment(order: Order) {
+        try {
+            await knex("order").update({
+                status: order.status
+            }).where("id", Number(order.id));
+
+            return order;
+        } catch (error) {
+            return { error };
+        }
+    }
 }
 
 export default OrderModel;

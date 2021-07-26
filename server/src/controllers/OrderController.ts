@@ -18,6 +18,19 @@ class OrderController {
             return response.json(createdorder);
         }, 5000);
     }
+    async update(request: Request, response: Response) {
+        const order = request.body;
+        const createdorder = await orderModel.update(order);
+
+        return response.json(createdorder);
+    }
+
+    async updatePayment(request: Request, response: Response) {
+        const order = request.body;
+        const createdorder = await orderModel.updatePayment(order);
+
+        return response.json(createdorder);
+    }
 }
 
 export default OrderController;

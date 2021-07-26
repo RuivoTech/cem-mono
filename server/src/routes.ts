@@ -119,7 +119,10 @@ routes.route("/itemCampaign/:id?")
 routes.route("/order/:id?")
     .get(orderController.index)
     .post(orderController.create)
-    .put(orderController.create)
-    .delete(orderController.create)
+    .put(orderController.update)
+    .delete(orderController.create);
+
+routes.route("/orderPayment/:id?")
+    .put(orderController.updatePayment);
 
 export default routes;

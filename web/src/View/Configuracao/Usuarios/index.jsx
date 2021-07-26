@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from 'react-toast-notifications';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import Tabela from '../../../componentes/Tabela';
@@ -136,7 +137,7 @@ const Usuarios = () => {
                     }}
                     title="Editar usuário"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 &nbsp;
                 <button
@@ -147,7 +148,7 @@ const Usuarios = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover usuário"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )

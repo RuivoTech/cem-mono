@@ -15,7 +15,10 @@ import Coluna from "../../../componentes/Coluna";
 const FormModal = ({ data, show, handleShow, className }) => {
     const [pedido, setPedido] = useState({});
     const [campaign, setCampaign] = useState([]);
-    const [itemSelecionado, setItemSelecionado] = useState({});
+    const [items, setItems] = useState([]);
+    const [itemSelecionado, setItemSelecionado] = useState({
+        quantity: 1
+    });
     const [carregando, setCarregando] = useState(false);
     const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
@@ -30,6 +33,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                 })
         }
         setPedido(data);
+        setItems(data.items);
         removeAllToasts();
         request();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,9 +50,16 @@ const FormModal = ({ data, show, handleShow, className }) => {
         const novoPedido = new Pedido();
 
         novoPedido.id = pedido.id ? pedido.id : 0;
-        novoPedido.name = pedido.titulo;
-        novoPedido.tipo = pedido.tipo;
+        novoPedido.name = pedido.name;
+        novoPedido.contact = pedido.contact;
+        novoPedido.type = pedido.type;
         novoPedido.status = pedido.status;
+        novoPedido.zipCode = pedido.zipCode;
+        novoPedido.address = pedido.address;
+        novoPedido.number = pedido.number;
+        novoPedido.complement = pedido.complement;
+        novoPedido.city = pedido.city;
+        novoPedido.items = items;
 
         if (Number(novoPedido.id) !== 0) {
             response = await api.put("/order", novoPedido, {
@@ -93,13 +104,6 @@ const FormModal = ({ data, show, handleShow, className }) => {
         }
     }
 
-    const handleChangeBox = (event) => {
-        setPedido({
-            ...pedido,
-            [event.target.name]: event.target.checked
-        });
-    }
-
     const handleBlur = async evento => {
         let data = await Axios.get("https://viacep.com.br/ws/" + evento.target.value + "/json/");
 
@@ -123,6 +127,18 @@ const FormModal = ({ data, show, handleShow, className }) => {
         setItemSelecionado({
             ...itemSelecionado,
             [event.target.name]: event.target.value
+        });
+    }
+
+    const handleAddItem = () => {
+        setItems([
+            ...items,
+            itemSelecionado
+        ]);
+        setItemSelecionado({
+            quantity: 1,
+            title: "",
+            observation: ""
         });
     }
 
@@ -163,6 +179,18 @@ const FormModal = ({ data, show, handleShow, className }) => {
                 </button>
             </>
         )
+    }
+
+    const calcularValor = () => {
+        let cost = 0;
+
+        if (items) {
+            items.map(item => {
+                cost += (item.cost * item.quantity);
+            })
+        }
+
+        return Utils.converteMoeda(cost);
     }
 
     return (
@@ -320,12 +348,12 @@ const FormModal = ({ data, show, handleShow, className }) => {
                         </div>
                         <div className="col-md-10"></div>
                         <div className="form-group col-md-2">
-                            <button className="btn btn-success w-75">
+                            <button className="btn btn-success w-75" onClick={handleAddItem}>
                                 Adicionar
                             </button>
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-12">
-                            <Tabela data={pedido.items}>
+                            <Tabela data={items}>
                                 <Coluna campo="quantity" titulo="Quant" tamanho="1" />
                                 <Coluna campo="title" titulo="Item" tamanho="4" />
                                 <Coluna campo="observation" titulo="Observação" tamanho="6" />
@@ -337,6 +365,12 @@ const FormModal = ({ data, show, handleShow, className }) => {
                                     tamanho="2"
                                 />
                             </Tabela>
+                        </div>
+                        <div className="col-md-8"></div>
+                        <div className="col-sm-4 col-md-4 col-lg-4">
+                            <div className="row justify-content-end mr-4 h3">
+                                Total: {calcularValor()}
+                            </div>
                         </div>
                     </div>
                 </ModalBody>

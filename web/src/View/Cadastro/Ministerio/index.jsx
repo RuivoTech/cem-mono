@@ -7,6 +7,7 @@ import api from "../../../services/api";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import { getSession } from '../../../services/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Ministerios = () => {
     const [ministerios, setMinisterios] = useState([]);
@@ -84,9 +85,9 @@ const Ministerios = () => {
                     }}
                     title="Editar ministerio"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
-                &nbsp;
+                {" "}
                 <button
                     key={ministerio.id + "remover"}
                     type="button"
@@ -95,7 +96,7 @@ const Ministerios = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover ministerio"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )

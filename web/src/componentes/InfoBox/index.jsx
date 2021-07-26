@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "./styles.css";
 
 const InfoBox = ({ icone, titulo, quantidade, corFundo }) => {
@@ -35,7 +37,7 @@ const InfoBox = ({ icone, titulo, quantidade, corFundo }) => {
                     }}
                 >
                     <div className="icon h-100">
-                        <i className={"fa fa-" + icone + " fa-2x"}></i>
+                        <FontAwesomeIcon icon={['fas', icone]} size="lg" />
                     </div>
                     <div className="content">
                         <div className="text">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from 'react-toast-notifications';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import Utils from '../../../componentes/Utils';
@@ -84,7 +85,7 @@ const Pedido = () => {
                     }}
                     title="Editar pedido"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 {' '}
                 <button
@@ -95,14 +96,16 @@ const Pedido = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover pedido"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )
     }
 
     const handleShow = () => {
-        setPedidoSelecionado({});
+        setPedidoSelecionado({
+            items: []
+        });
         setShow(!show);
     }
 
@@ -119,7 +122,10 @@ const Pedido = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="utensils" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="success" icone="dollar-sign" quantidade={quantidadeTotal} titulo="Pagos" />
+                <InfoBox corFundo="danger" icone="dollar-sign" quantidade={quantidadeTotal} titulo="Não pagos" />
+                <InfoBox corFundo="warning" icone="user-circle" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -140,7 +146,7 @@ const Pedido = () => {
                             </div>
                         </div>
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <div className="row justify-content-end mr-4">
+                            <div className="row justify-content-end mr-0">
                                 <div className="button-group">
                                     <button
                                         className="btn btn-primary ml-2"
@@ -157,37 +163,51 @@ const Pedido = () => {
                 </div>
 
                 <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div className="card-deck mx-2">
-                        {pedidosPesquisa.map(pedido => {
+                    <div className="row ml-0 overflow-auto" style={{ height: "70vh" }}>
+                        {pedidosPesquisa.map((pedido) => {
                             return (
-                                <div key={pedido.id} className="card" style={{ width: "200px", minHeight: "250px", marginLeft: "5px" }}>
-                                    <div className="card-header">
-                                        <h3 className="card-title">{Utils.separarString(pedido.name, 2)}</h3>
-                                        <h4 className="card-text">{Utils.mascaraTelefone(pedido.contact)}</h4>
-                                    </div>
-                                    <div className="card-body">
-                                        <p className={`card-text ${pedido.status ? "text-danger" : "text-success"}`}>{!pedido.status ? "Pago" : "Não pago"}</p>
-                                        <p className="card-text">{pedido.type ? "Entregar" : "Retirar"}</p>
-                                        {pedido.address ?
-                                            <p className="card-text">{`${pedido.address}, ${pedido.number}`}</p>
-                                            :
-                                            null
-                                        }
-                                        <hr />
-                                        {pedido.items.map((item, index) => {
-                                            return (
-                                                <p key={index} className="card-text">
-                                                    {`${item.quantity} - ${item.title} - ${Utils.converteMoeda((item.cost * item.quantity))}`}
+                                <div key={pedido.id} className="col-md-2 my-2 mx-0 px-2">
+                                    <div
+                                        className="card m-0"
+                                        style={{ minHeight: "345px" }}
+                                    >
+                                        <div className="card-header">
+                                            <h4 className="card-title">{Utils.separarString(pedido.name, 2)}</h4>
+                                            <h5 className="card-text">{Utils.mascaraTelefone(pedido.contact)}</h5>
+                                        </div>
+                                        <div className="card-body">
+                                            <p className="card-text row justify-content-between mx-0">
+                                                <span
+                                                    className={`${pedido.status ? "text-danger" : "text-success"}`}
+                                                >
+                                                    {!pedido.status ? "Pago" : "Não pago"}
+                                                </span>
+                                                <span>{pedido.type ? "Entregar" : "Retirar"}</span>
+                                            </p>
+                                            {pedido.address &&
+                                                <p className="card-text truncate-text">
+                                                    {`${pedido.address}, ${pedido.number}`}
                                                 </p>
-                                            )
-                                        })}
-                                        <hr />
-                                        <p className={`card-text ${pedido.status ? "text-danger" : "text-success"} h3`}>
-                                            {calcularValor(pedido.items)}
-                                        </p>
-                                    </div>
-                                    <div className="card-footer text-right">
-                                        {opcoes(pedido)}
+                                            }
+                                            <hr />
+                                            {pedido.items.map((item, index) => {
+                                                return (
+                                                    <p key={index} className="card-text">
+                                                        {`
+                                                        ${item.quantity} - ${item.title} - 
+                                                        ${Utils.converteMoeda((item.cost * item.quantity))}
+                                                        `}
+                                                    </p>
+                                                )
+                                            })}
+                                            <hr />
+                                            <p className={`card-text ${pedido.status ? "text-danger" : "text-success"} h3`}>
+                                                {calcularValor(pedido.items)}
+                                            </p>
+                                        </div>
+                                        <div className="card-footer text-right">
+                                            {opcoes(pedido)}
+                                        </div>
                                     </div>
                                 </div>
                             )

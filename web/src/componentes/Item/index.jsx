@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Utils from '../Utils';
 
@@ -19,10 +20,10 @@ function Item({ index, item, onClickEdit, onClickRemove }) {
                         {item.description}
                     </CardText>
                     <button onClick={() => onClickEdit(index)} className="btn btn-primary btn-xs mx-2">
-                        <i className="fa fa-gear"></i>
+                        <FontAwesomeIcon icon={["fas", "cog"]} />
                     </button>
                     <button onClick={() => onClickRemove(index)} className="btn btn-danger btn-xs mx-2">
-                        <i className="fa fa-trash"></i>
+                        <FontAwesomeIcon icon={["fas", "trash"]} />
                     </button>
                 </CardBody>
             </Card>

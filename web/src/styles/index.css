@@ -69,3 +69,15 @@ textarea {
 .wrapper-content {
   margin: 2px;
 }
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncate-text:hover {
+  white-space: initial;
+  overflow: auto;
+  text-overflow: initial;
+}

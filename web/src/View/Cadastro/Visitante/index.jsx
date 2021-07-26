@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from "react-toast-notifications";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import FormModal from "./FormModal";
@@ -99,7 +100,7 @@ const Visitantes = () => {
                     }}
                     title="Editar membro"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 {' '}
                 <button
@@ -110,7 +111,7 @@ const Visitantes = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover membro"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )
@@ -128,7 +129,7 @@ const Visitantes = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">

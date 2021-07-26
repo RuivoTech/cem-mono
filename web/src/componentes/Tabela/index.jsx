@@ -48,7 +48,7 @@ const Tabela = ({
                                     className="btn btn-outline-secondary mr-2"
                                 >
                                     Gerar PDF
-                                    </button>}
+                                </button>}
                             {mostrarBotaoNovo &&
                                 <div className="button-group">
                                     <button
@@ -95,7 +95,10 @@ const Tabela = ({
                                     </tbody>
                                 </table>
                             </div>
-                            <Paginacao data={data} renderItems={response => renderItems(response)} limiteItems={limiteItems} />
+                            <Paginacao
+                                data={data}
+                                renderItems={response => renderItems(response)} limiteItems={limiteItems}
+                            />
                         </div>
                     </div>
                 </div>

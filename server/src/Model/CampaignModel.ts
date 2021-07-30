@@ -7,7 +7,24 @@ const itemCampaignModel = new ItemCampaignModel();
 
 class CampaignModel {
     async index() {
-        const campaign = await knex<Campaign>("campaign");
+        const campaigns = await knex<Campaign>("campaign");
+
+        const camapignsFiltered = await Promise.all(campaigns.map(async (campaign) => {
+            const items = await itemCampaignModel.index(Number(campaign.id));
+
+            return (
+                {
+                    ...campaign,
+                    items
+                }
+            )
+        }));
+
+        return camapignsFiltered;
+    }
+
+    async showActive() {
+        const campaign = await knex<Campaign>("campaign").where("status", "=", true).first();
 
         return campaign;
     }

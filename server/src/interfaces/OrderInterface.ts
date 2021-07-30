@@ -12,5 +12,6 @@ export interface Order {
     type: boolean,
     status: number,
     date: string,
+    fkCampaign: number,
     items: [OrderItems]
 }

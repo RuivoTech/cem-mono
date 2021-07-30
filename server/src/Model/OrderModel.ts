@@ -8,7 +8,26 @@ const orderItem = new OrderItemModel();
 
 class OrderModel {
     async index() {
-        const orders = await knex<Order>("order");
+        const orders = await knex<Order>("order AS o")
+            .join("campaign AS c", "c.id", "o.fkCampaign")
+            .where("c.status", "=", true);
+
+        const ordersFiltered = await Promise.all(orders.map(async (order) => {
+            const items = await orderItem.index(Number(order.id));
+
+            return (
+                {
+                    ...order,
+                    items
+                }
+            )
+        }));
+
+        return ordersFiltered;
+    }
+
+    async show(id: Number) {
+        const orders = await knex<Order>("order").where("fkCampaign", "=", id.toString());
 
         const ordersFiltered = await Promise.all(orders.map(async (order) => {
             const items = await orderItem.index(Number(order.id));
@@ -35,7 +54,8 @@ class OrderModel {
                 complement: order.complement,
                 city: order.city,
                 type: order.type,
-                status: 1
+                status: order.status,
+                fkCampaign: order.fkCampaign
             });
 
             const orderId = insertedId[0];
@@ -62,7 +82,8 @@ class OrderModel {
                 complement: order.complement,
                 city: order.city,
                 type: order.type,
-                status: 1
+                status: 1,
+                fkCampaign: order.fkCampaign
             });
 
             const orderItems = await orderItem.create(order.items, Number(order.id));
@@ -82,6 +103,18 @@ class OrderModel {
             }).where("id", Number(order.id));
 
             return order;
+        } catch (error) {
+            return { error };
+        }
+    }
+
+    async delete(id: Number) {
+        try {
+            await knex("order")
+                .delete()
+                .where("id", id);
+
+            return { mensagem: "Pedido removido com sucesso." };
         } catch (error) {
             return { error };
         }

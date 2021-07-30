@@ -117,10 +117,11 @@ routes.route("/itemCampaign/:id?")
     .put(upload.single('file'), itemCampaignController.update);
 
 routes.route("/order/:id?")
+    .get(orderController.show)
     .get(orderController.index)
     .post(orderController.create)
     .put(orderController.update)
-    .delete(orderController.create);
+    .delete(orderController.delete);
 
 routes.route("/orderPayment/:id?")
     .put(orderController.updatePayment);

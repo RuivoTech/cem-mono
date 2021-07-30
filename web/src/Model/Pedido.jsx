@@ -13,6 +13,7 @@ class Pedido {
         this.complement = "";
         this.city = "";
         this.type = "";
+        this.fkCampaign = "";
         this.items = [Item];
     }
 }

@@ -11,17 +11,41 @@ import InfoBox from '../../../componentes/InfoBox';
 const Pedido = () => {
     const [pedidos, setPedidos] = useState([]);
     const [pedidoSelecionado, setPedidoSelecionado] = useState({});
-    const [quantidade, setQuantidade] = useState(0);
-    const [show, setShow] = useState(false);
     const [pedidosPesquisa, setPedidosPesquisa] = useState([]);
+    const [quantidade, setQuantidade] = useState(0);
+    const [campaigns, setCampaigns] = useState([]);
+    const [campaignSelected, setCampaignSelected] = useState(0);
+    const [show, setShow] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
     const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
+        document.title = "Pedidos - Cadastro de membros CEM";
+        const fetchCampaign = async () => {
+            let request = await api.get("/campaign", {
+                headers: {
+                    Authorization: `Bearer ${session.token}`
+                }
+            });
+
+            setCampaigns(request.data);
+        }
+
+        if (!show) {
+            fetchCampaign();
+        }
+    }, [show]);
+
+    useEffect(() => {
+        campaigns.map(campaign => {
+            campaign.status && setCampaignSelected(campaign);
+        });
+    }, [campaigns])
+
+    useEffect(() => {
         const fetchPedidos = async () => {
-            document.title = "Pedidos - Cadastro de membros CEM";
-            let request = await api.get("/order", {
+            let request = await api.get(`/order${campaignSelected !== 0 ? `/${campaignSelected.id}` : ""}`, {
                 headers: {
                     Authorization: `Bearer ${session.token}`
                 }
@@ -31,10 +55,8 @@ const Pedido = () => {
             setPedidosPesquisa(request.data);
         }
 
-        if (!show) {
-            fetchPedidos();
-        }
-    }, [show]);
+        fetchPedidos();
+    }, [campaignSelected])
 
     useEffect(() => {
         const total = pedidos.length;
@@ -64,6 +86,7 @@ const Pedido = () => {
             const items = pedidos.filter(item => item.id !== id);
 
             setPedidos(items);
+            setPedidosPesquisa(items);
 
             addToast("Pedido removido com sucesso!", { appearance: "success" });
         } else {
@@ -167,6 +190,14 @@ const Pedido = () => {
         setShow(!show);
     }
 
+    const handleChangeCampaign = (event) => {
+        const selectedCampaign = campaigns.filter(
+            campaign => parseInt(campaign.id) === parseInt(event.target.value) && campaign
+        )
+
+        setCampaignSelected(selectedCampaign[0]);
+    }
+
     const calcularValor = (items) => {
         let cost = 0;
 
@@ -180,9 +211,9 @@ const Pedido = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="utensils" quantidade={quantidade.total} titulo="Total" />
-                <InfoBox corFundo="success" icone="dollar-sign" quantidade={quantidade.pagos} titulo="Pagos" />
-                <InfoBox corFundo="danger" icone="dollar-sign" quantidade={quantidade.aPagar} titulo="A pagar" />
+                <InfoBox corFundo="info" icone="shopping-cart" quantidade={quantidade.total} titulo="Total" />
+                <InfoBox corFundo="success" icone="dollar-sign" quantidade={quantidade.pagos} titulo="Pagou" />
+                <InfoBox corFundo="danger" icone="cash-register" quantidade={quantidade.aPagar} titulo="Receber" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row bg-gray align-items-center">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6 align-items-center">
@@ -204,6 +235,25 @@ const Pedido = () => {
                         </div>
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="row justify-content-end mr-0">
+                                <div className="col-md-4"></div>
+                                <div className="col-md-4">
+                                    <select
+                                        name="campaign"
+                                        id="campaign"
+                                        className="custom-select"
+                                        onChange={handleChangeCampaign}
+                                        value={campaignSelected.id}
+                                    >
+                                        {campaigns.map(campaign => {
+                                            return <option
+                                                key={campaign.id}
+                                                value={campaign.id}
+                                            >
+                                                {campaign.title}
+                                            </option>
+                                        })}
+                                    </select>
+                                </div>
                                 <div className="button-group">
                                     <button
                                         className="btn btn-primary ml-2"
@@ -233,40 +283,33 @@ const Pedido = () => {
                                             <h5 className="card-text">{Utils.mascaraTelefone(pedido.contact)}</h5>
                                         </div>
                                         <div className="card-body">
-                                            <p className="card-text row justify-content-between mx-0">
-                                                <span
-                                                    className={`${pedido.status ? "text-success" : "text-danger"}`}
-                                                >
-                                                    {pedido.status ? "Pago" : "Não pago"}
-                                                </span>
-                                                <span>{pedido.type ? "Entregar" : "Retirar"}</span>
-                                            </p>
-                                            {pedido.address &&
-                                                <p className="card-text truncate-text">
-                                                    {`${pedido.address}, ${pedido.number}`}
-                                                </p>
-                                            }
-                                            <hr />
                                             {pedido.items.map((item, index) => {
                                                 return (
-                                                    <p key={index} className="card-text">
-                                                        {`
-                                                        ${item.quantity} - ${item.title} - 
-                                                        ${Utils.converteMoeda((item.cost * item.quantity))}
-                                                        `}
+                                                    <p key={index} className="card-text mb-0">
+                                                        {`${item.quantity} - ${item.title}`}
                                                     </p>
                                                 )
                                             })}
                                             <hr />
                                             <p
                                                 className={
-                                                    `card-text ${pedido.status ?
+                                                    `card-text m-0 h3 text-right ${pedido.status ?
                                                         "text-success"
-                                                        : "text-danger"} 
-                                                        h3`}
+                                                        : "text-danger"}`}
                                             >
                                                 {calcularValor(pedido.items)}
                                             </p>
+                                            {pedido.address &&
+                                                <>
+                                                    <hr />
+                                                    <p className="card-text mb-0">
+                                                        {`${pedido.address}, ${pedido.number}`}
+                                                    </p>
+                                                    <p className="card-text">
+                                                        {`${pedido.city} - ${pedido.zipCode}`}
+                                                    </p>
+                                                </>
+                                            }
                                         </div>
                                         <div className="card-footer text-right">
                                             {opcoes(pedido)}
@@ -278,7 +321,13 @@ const Pedido = () => {
                     </div>
                 </div>
             </div>
-            <FormModal className="modal-lg" data={pedidoSelecionado} show={show} handleShow={handleShow} />
+            <FormModal
+                className="modal-lg"
+                data={pedidoSelecionado}
+                show={show}
+                handleShow={handleShow}
+                campaign={campaignSelected}
+            />
         </>
     )
 }

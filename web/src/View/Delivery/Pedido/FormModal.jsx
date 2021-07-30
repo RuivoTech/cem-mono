@@ -13,9 +13,8 @@ import Utils from "../../../componentes/Utils";
 import { getSession } from "../../../services/auth";
 import Coluna from "../../../componentes/Coluna";
 
-const FormModal = ({ data, show, handleShow, className }) => {
+const FormModal = ({ data, show, handleShow, className, campaign }) => {
     const [pedido, setPedido] = useState({});
-    const [campaign, setCampaign] = useState([]);
     const [items, setItems] = useState([]);
     const [itemSelecionado, setItemSelecionado] = useState({
         quantity: 1
@@ -23,22 +22,6 @@ const FormModal = ({ data, show, handleShow, className }) => {
     const [carregando, setCarregando] = useState(false);
     const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
-
-    useEffect(() => {
-        const request = async () => {
-            api.get("/delivery/store")
-                .then(response => {
-                    setCampaign(response.data);
-                }).catch(error => {
-                    console.error(error);
-                })
-        }
-        setPedido(data);
-        setItems(data.items);
-        removeAllToasts();
-        request();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data]);
 
     useEffect(() => {
         setCarregando(false);
@@ -60,6 +43,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
         novoPedido.number = pedido.number;
         novoPedido.complement = pedido.complement;
         novoPedido.city = pedido.city;
+        novoPedido.fkCampaign = campaign.id;
         novoPedido.items = items;
 
         if (Number(novoPedido.id) !== 0) {
@@ -78,6 +62,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
         if (!response.data.error) {
             addToast("Pedido salvo com sucesso!", { appearance: "success" });
+            handleLimpar();
         } else {
             console.error(response.data.error);
             addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
@@ -106,6 +91,9 @@ const FormModal = ({ data, show, handleShow, className }) => {
     }
 
     const handleBlur = async evento => {
+        if (!evento.target.value) {
+            return;
+        }
         let data = await Axios.get("https://viacep.com.br/ws/" + evento.target.value + "/json/");
 
         data = data.data;
@@ -115,6 +103,23 @@ const FormModal = ({ data, show, handleShow, className }) => {
             address: data.logradouro,
             city: data.localidade
         });
+    }
+
+    const handleLimpar = () => {
+        setPedido({
+            name: "",
+            contact: "",
+            type: "",
+            status: "",
+            zipCode: "",
+            address: "",
+            number: "",
+            complement: "",
+            city: "",
+            items: []
+        });
+
+        setItems([]);
     }
 
     const selecionarItem = (item) => {
@@ -248,8 +253,8 @@ const FormModal = ({ data, show, handleShow, className }) => {
                                 onChange={handleChange}
                             >
                                 <option>Escolha...</option>
-                                <option value="0">Pago</option>
-                                <option value="1">Não Pago</option>
+                                <option value="0">Não Pago</option>
+                                <option value="1">Pago</option>
                             </select>
                         </div>
                         <div className="form-group col-md-3">

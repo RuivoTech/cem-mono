@@ -219,29 +219,29 @@ const FormModal = ({ data, show, handleShow, className, membros, listaMenu }) =>
                                             <div className="row">
                                                 <div className="col-4">
                                                     Descrição
-                                            </div>
+                                                </div>
                                                 <div className="col-2">
                                                     Visualizar
-                                            </div>
+                                                </div>
                                                 <div className="col-2">
                                                     Editar
-                                            </div>
+                                                </div>
                                                 <div className="col-2">
                                                     Inserir
-                                            </div>
+                                                </div>
                                                 <div className="col-2">
                                                     Remover
-                                            </div>
+                                                </div>
                                             </div>
 
                                         </div>
                                         <div className="form-group col-md-12 float-left overflow-auto" style={{ maxHeight: '40vh' }}>
-                                            <ul className="list-group bg-transparent">
+                                            <ul className="list-group bg-transparent mx-0">
                                                 {listaMenu.map((item, index) => {
                                                     return (
                                                         <li
                                                             key={item.id}
-                                                            className="list-group-item bg-transparent border-white pl-5"
+                                                            className="list-group-item bg-transparent border-white"
                                                         >
                                                             <div className="row">
                                                                 <div className="col-4">

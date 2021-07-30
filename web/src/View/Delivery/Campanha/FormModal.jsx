@@ -93,13 +93,13 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
         setCarregando(true);
 
-        if (campanha.id !== 0) {
+        if (campaign.id !== 0) {
             api.put("/campaign", campaign, {
                 headers: {
                     Authorization: `Bearer ${session.token}`
                 }
             }).then(response => {
-                submitItems(campanha.id);
+                submitItems(response.data.id);
             }).catch(error => {
                 console.error(error);
                 addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
@@ -129,7 +129,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
             formData.set("image", item.image.replace(URL_BASE, ""));
             formData.set("file", item.file);
 
-            if (item.id) {
+            if (item.fkCampaign) {
                 api.put("/itemCampaign", formData, {
                     headers: {
                         Authorization: `Bearer ${session.token}`
@@ -305,7 +305,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                                     <input
                                         className="form-control"
                                         id="campaignTitle"
-                                        name="campaignTitle"
+                                        name="title"
                                         type="text"
                                         value={campanha.title}
                                         onChange={handleChange}

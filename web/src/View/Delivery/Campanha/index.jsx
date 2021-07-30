@@ -115,7 +115,7 @@ const Campanha = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="store" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">

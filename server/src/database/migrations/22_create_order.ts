@@ -10,7 +10,10 @@ export async function up(knex: Knex) {
         table.string("number").nullable();
         table.string("complement").nullable();
         table.string("city").nullable();
-        table.integer("status", 2);
+        table.integer("status", 2).notNullable();
+        table.boolean("type").notNullable();
+        table.string("timeDelivery").notNullable();
+        table.integer("fkCampaign").notNullable().unsigned().references("id").inTable("campaign").onDelete("CASCADE");
     })
 }
 

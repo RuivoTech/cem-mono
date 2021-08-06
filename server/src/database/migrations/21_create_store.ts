@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
         table.text("description").notNullable();
         table.decimal("cost", 10.2).notNullable();
         table.string("image");
-        table.boolean("active");
+        table.integer("fkCampaign").notNullable().unsigned().references("id").inTable("campaign").onDelete("CASCADE");;
     })
 }
 

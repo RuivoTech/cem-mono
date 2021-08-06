@@ -6,7 +6,6 @@ export async function up(knex: Knex) {
         table.integer("quantity");
         table.text("observation");
         table.decimal("cost", 10.2);
-        table.boolean("type");
         table.integer("fkOrder").notNullable().unsigned().references('id').inTable("order").onDelete("CASCADE");
         table.integer("fkStore").notNullable().unsigned().references("id").inTable("store").onDelete("CASCADE");
     })

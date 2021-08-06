@@ -14,6 +14,7 @@ class Pedido {
         this.city = "";
         this.type = "";
         this.fkCampaign = "";
+        this.timeDelivery = "";
         this.items = [Item];
     }
 }

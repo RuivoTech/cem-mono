@@ -775,29 +775,27 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
                                             <ul className="list-group bg-transparent">
                                                 {ministerios.map((ministerio) => {
                                                     return (
-                                                        <>
-                                                            <li
-                                                                key={ministerio.id}
-                                                                className="list-group-item bg-transparent border-white pl-2"
-                                                            >
-                                                                <div className="row">
-                                                                    <div className="col-4">
-                                                                        {ministerio.nome}
-                                                                    </div>
-                                                                    <div className="col-2 text-center">
-                                                                        <input
-                                                                            type="checkbox"
-                                                                            className="form-check-input"
-                                                                            value={ministerio.id}
-                                                                            id={ministerio.id}
-                                                                            onChange={() => handleChangeMinisterio(ministerio)}
-                                                                            name="permissoes.visualizar"
-                                                                            checked={isChecked(ministerio)}
-                                                                        />
-                                                                    </div>
+                                                        <li
+                                                            key={ministerio.id}
+                                                            className="list-group-item bg-transparent border-white pl-2"
+                                                        >
+                                                            <div className="row">
+                                                                <div className="col-4">
+                                                                    {ministerio.nome}
                                                                 </div>
-                                                            </li>
-                                                        </>
+                                                                <div className="col-2 text-center">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="form-check-input"
+                                                                        value={ministerio.id}
+                                                                        id={ministerio.id}
+                                                                        onChange={() => handleChangeMinisterio(ministerio)}
+                                                                        name="permissoes.visualizar"
+                                                                        checked={isChecked(ministerio)}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </li>
                                                     )
                                                 })}
                                             </ul>

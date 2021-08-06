@@ -1,12 +1,17 @@
 import express from "express";
 
-import StoreController from "../controllers/StoreController";
+import CampaignController from "../controllers/CampaignController";
+import OrderController from "../controllers/OrderController";
 
-const storeController = new StoreController();
+const campaignController = new CampaignController();
+const orderController = new OrderController();
 
 const Delivery = express.Router();
 
 Delivery.route("/store")
-    .get(storeController.index)
+    .get(campaignController.store);
+
+Delivery.route("/order")
+    .post(orderController.create);
 
 export default Delivery;

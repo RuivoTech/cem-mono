@@ -1,17 +1,103 @@
-.btn {
-    background-color: var(--color-primary);
-    width: 90vw;
-    height: 40px;
+button {
+    background: var(--color-primary);
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     color: var(--color-text-primary);
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    margin: 10px;
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.1em;
     cursor: pointer;
+    margin: 16px;
+    position: relative;
+    width: 250px;
+    height: 40px;
+    padding: 0 16px;
+    transition: .5s;
+}
+
+button:active {
+    background: var(--color-primary-white);
+}
+
+.text {
+    font-weight: bold;
+    transition: opacity 250ms;
+    transition-delay: 250ms;
+    width: 100%;
+    color: var(--color-text-primary)
+}
+
+button.loading {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    transition: .5s;
+    margin-left: 66px;
+    margin-right: 66px;
+    margin-top: 5px;
+}
+
+button.success {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    transition: .5s;
+    margin-left: 66px;
+    margin-right: 66px;
+    margin-top: 5px;
+}
+
+button.loading .text {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+button.success .text {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    border-top-color: white;
+    opacity: 0;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    transition: opacity 250ms;
+    animation: rotate-spinner 1s linear;
+    animation-iteration-count: infinite;
+}
+
+.check {
+    opacity: 0;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    transition: opacity 250ms;
+}
+
+button.success .spinner {
+    opacity: 0;
+    transition-delay: 250ms;
+}
+
+button.loading .spinner {
+    opacity: 1;
+    transition-delay: 250ms;
+}
+
+button.success .check {
+    opacity: 1;
+    transition-delay: 250ms;
 }

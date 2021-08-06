@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from 'react-toast-notifications';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import { getSession } from "../../../services/auth";
@@ -109,7 +110,7 @@ const Evento = () => {
                     }}
                     title="Editar evento"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 {' '}
                 <button
@@ -120,7 +121,7 @@ const Evento = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover evento"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )
@@ -138,7 +139,7 @@ const Evento = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="calendar-week" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">

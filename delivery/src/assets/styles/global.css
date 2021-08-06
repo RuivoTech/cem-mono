@@ -2,12 +2,14 @@
     font-size: 60%;
     --color-background: #FFFFFF;
     --color-primary: #00BBAE;
+    --color-primary-white: #59c5be;
     --color-secundary: #454545;
     --color-border: #b2b2b2;
     --color-text-base: #474747;
     --color-text-primary: #FFFFFF;
     --color-text-secundary: #b2b2b2;
     --color-purple: #441C55;
+    --color-text-error: #ff0000;
 }
 
 * {
@@ -126,4 +128,10 @@ input:focus, textarea:focus, select:focus {
 ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #B2B2B2;
+}
+
+@keyframes rotate-spinner {
+    100% {
+        transform: rotate(360deg);
+    }
 }

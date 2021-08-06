@@ -85,7 +85,7 @@ const Perfil = () => {
     return (
         <>
             <div className="wrapper-content d-flex justify-content-center mt-2">
-                <div className="card overflow-auto" style={{ height: "80vh" }}>
+                <div className="card" style={{ minHeight: "20vh" }}>
                     <div className="row m-2">
                         <div className="col-sm-6 col-lg-6">
                             <div className="form-group">

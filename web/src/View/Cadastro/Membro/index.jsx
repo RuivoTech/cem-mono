@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from "react-toast-notifications";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import { getSession } from "../../../services/auth";
@@ -9,6 +10,7 @@ import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import FormModal from './FormModal';
 import RelatorioModal from './RelatorioModal';
+import Utils from '../../../componentes/Utils';
 
 const Membros = () => {
     const [membros, setMembros] = useState([]);
@@ -122,7 +124,7 @@ const Membros = () => {
                     }}
                     title="Editar membro"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 &nbsp;
                 <button
@@ -133,7 +135,7 @@ const Membros = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover membro"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )
@@ -155,7 +157,7 @@ const Membros = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeAtivos} titulo="Ativos" />
+                <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidadeAtivos} titulo="Ativos" />
                 <InfoBox corFundo="success" icone="check-circle" quantidade={quantidadeNovos} titulo="Novos" />
                 <InfoBox corFundo="danger" icone="heart" quantidade={quantidadeBatizados} titulo="Batizados" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
@@ -194,8 +196,18 @@ const Membros = () => {
                         >
                             <Coluna campo="nome" titulo="Nome" tamanho="20" />
                             <Coluna campo="contato.email" titulo="E-mail" tamanho="20" />
-                            <Coluna campo="contato.telefone" titulo="Telefone" tamanho="12" />
-                            <Coluna campo="contato.celular" titulo="Celular" tamanho="12" />
+                            <Coluna
+                                campo="contato.telefone"
+                                titulo="Telefone"
+                                tamanho="12"
+                                corpo={item => Utils.mascaraTelefone(item.contato.telefone)}
+                            />
+                            <Coluna
+                                campo="contato.celular"
+                                titulo="Celular"
+                                tamanho="12"
+                                corpo={item => Utils.mascaraTelefone(item.contato.celular)}
+                            />
                             <Coluna titulo="Opções" corpo={(item) => opcoes(item)} tamanho="5" />
                         </Tabela>
                     </div>

@@ -36,7 +36,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
         novoEvento.repete = evento.repete;
         novoEvento.diaSemana = evento.diaSemana;
         novoEvento.frequencia = evento.frequencia;
-        novoEvento.valor = (evento.valor / 100).toFixed(2);
+        novoEvento.valor = evento.valor;
         novoEvento.ehPago = evento.ehPago;
         novoEvento.dataInicio = evento.dataInicio;
         novoEvento.dataFim = evento.dataFim;

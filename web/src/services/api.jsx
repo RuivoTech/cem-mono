@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const URL = "https://localhost:3333";
-export const URL_RELATORIO = "https://" + window.location.hostname;
+export const URL_BASE = "http://localhost:3333";
+export const URL_RELATORIO = "http://" + window.location.hostname;
 
 const api = axios.create({
-    baseURL: URL
+    baseURL: URL_BASE
 });
 
 export default api;

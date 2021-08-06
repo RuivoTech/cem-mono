@@ -86,6 +86,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
+    width: 250px;
     height: 50px;
     margin: 0px 0px 0px 10px;
     font-family: Ubuntu;
@@ -94,6 +95,11 @@
     font-size: 16px;
     line-height: 18px;
     transition: border-radius linear 0.05s, width linear 0.05s;
+}
+
+.buttonAdd .text {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (min-width: 700px) {
@@ -106,5 +112,8 @@
     .itemCount {
         width: 60vw;
         left: auto;
+    }
+    .buttonAdd {
+        width: 50vw;
     }
 }

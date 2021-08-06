@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 
 import MembrosController from "./controllers/MembrosController";
 import VisitantesController from "./controllers/VisitantesController";
@@ -12,10 +13,16 @@ import InscricoesController from "./controllers/InscricoesController";
 import DizimosController from "./controllers/DizimosController";
 import OfertasController from "./controllers/OfertasController";
 import RelatoriosController from "./controllers/RelatoriosController";
+import CampaignController from "./controllers/CampaignController";
+import ItemCampaignController from "./controllers/ItemCampaignController";
+import OrderController from "./controllers/OrderController";
 
 import Delivery from "./router/Delivery";
 
+import multerConfig from "./config/multer";
+
 const routes = express.Router();
+const upload = multer(multerConfig);
 
 const homeController = new HomeController();
 const membrosController = new MembrosController();
@@ -29,6 +36,9 @@ const inscricoesController = new InscricoesController();
 const dizimosController = new DizimosController();
 const ofertasController = new OfertasController();
 const relatoriosController = new RelatoriosController();
+const campaignController = new CampaignController();
+const itemCampaignController = new ItemCampaignController();
+const orderController = new OrderController();
 
 routes.use("/delivery", Delivery);
 
@@ -95,5 +105,25 @@ routes.route("/ofertas/:id?")
     .post(ofertasController.create)
     .put(ofertasController.update)
     .delete(ofertasController.delete);
+
+routes.route("/campaign/:id?")
+    .get(campaignController.show)
+    .get(campaignController.index)
+    .post(campaignController.create)
+    .put(campaignController.update);
+
+routes.route("/itemCampaign/:id?")
+    .post(upload.single('file'), itemCampaignController.create)
+    .put(upload.single('file'), itemCampaignController.update);
+
+routes.route("/order/:id?")
+    .get(orderController.show)
+    .get(orderController.index)
+    .post(orderController.create)
+    .put(orderController.update)
+    .delete(orderController.delete);
+
+routes.route("/orderPayment/:id?")
+    .put(orderController.updatePayment);
 
 export default routes;

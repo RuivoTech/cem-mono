@@ -7,3 +7,6 @@ web/build
 
 server/node_modules
 delivery/node_modules
+id_rsa
+backup_cem_oficial_2021-06-24.sql
+server/src/images

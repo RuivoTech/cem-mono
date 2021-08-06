@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useToasts } from "react-toast-notifications";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import FormModal from "./FormModal";
@@ -101,7 +102,7 @@ const Dizimos = () => {
                     }}
                     title="Editar dizimo"
                 >
-                    <i className="fa fa-gear"></i>
+                    <FontAwesomeIcon icon={["fas", "cog"]} />
                 </button>
                 {" "}
                 <button
@@ -112,7 +113,7 @@ const Dizimos = () => {
                     className="btn btn-danger btn-xs"
                     title="Remover dizimo"
                 >
-                    <i className="fa fa-trash"></i>
+                    <FontAwesomeIcon icon={["fas", "trash"]} />
                 </button>
             </>
         )

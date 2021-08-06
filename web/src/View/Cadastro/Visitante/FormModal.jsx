@@ -119,7 +119,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                         <Nav tabs>
                             <NavItem>
                                 <NavLink
-                                    className={{ active: tabAtivo === 'perfil' }}
+                                    className={tabAtivo === 'perfil' ? "active" : ""}
                                     onClick={() => { toggle('perfil'); }}
                                     style={{
                                         cursor: "pointer"
@@ -130,7 +130,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                             </NavItem>
                             <NavItem>
                                 <NavLink
-                                    className={{ active: tabAtivo === 'contato' }}
+                                    className={tabAtivo === 'contato' ? "active" : ""}
                                     onClick={() => { toggle('contato'); }}
                                     style={{
                                         cursor: "pointer"
@@ -141,7 +141,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                             </NavItem>
                             <NavItem>
                                 <NavLink
-                                    className={{ active: tabAtivo === 'endereco' }}
+                                    className={tabAtivo === 'endereco' ? "active" : ""}
                                     onClick={() => { toggle('endereco'); }}
                                     style={{
                                         cursor: "pointer"

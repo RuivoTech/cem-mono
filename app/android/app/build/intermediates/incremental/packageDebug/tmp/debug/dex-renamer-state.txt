@@ -1,4 +1,0 @@
-#Sat Jan 02 16:12:13 BRT 2021
-base.0=/dados/git/cem/app/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

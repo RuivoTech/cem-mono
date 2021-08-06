@@ -3,6 +3,7 @@ import { Collapse } from 'reactstrap';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useToasts } from "react-toast-notifications";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import NovoAluno from "./form";
@@ -53,12 +54,12 @@ const Alunos = () => {
 
         let aluno = new Aluno();
 
-        aluno.id = this.state.AlunoSelecionado.id;
-        aluno.nome = this.state.AlunoSelecionado.nome;
-        aluno.email = this.state.AlunoSelecionado.email;
-        aluno.rg = this.state.AlunoSelecionado.rg;
-        aluno.telefone = this.state.AlunoSelecionado.telefone;
-        aluno.endereco = this.state.AlunoSelecionado.endereco;
+        aluno.id = alunoSelecionado.id;
+        aluno.nome = alunoSelecionado.nome;
+        aluno.email = alunoSelecionado.email;
+        aluno.rg = alunoSelecionado.rg;
+        aluno.telefone = alunoSelecionado.telefone;
+        aluno.endereco = alunoSelecionado.endereco;
 
         await api.post("/alunos", aluno);
 
@@ -102,7 +103,16 @@ const Alunos = () => {
 
     const opcoes = (rowData, column) => {
         return (
-            <button key={rowData.id} type="button" onClick={() => remover(rowData.id)} value={rowData.id} className="btn btn-danger btn-sm" title="Remover"><i className="fa fa-trash"></i></button>
+            <button
+                key={rowData.id}
+                type="button"
+                onClick={() => remover(rowData.id)}
+                value={rowData.id}
+                className="btn btn-danger btn-sm"
+                title="Remover"
+            >
+                <FontAwesomeIcon icon={["fas", "trash"]} />
+            </button>
         )
     }
 

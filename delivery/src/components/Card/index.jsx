@@ -1,12 +1,13 @@
 import React from 'react';
-
 import { useHistory } from 'react-router';
 
 import { baseURL } from "../../services/api";
+import Utils from "../../services/Utils";
 
 import './styles.css';
 
 function Card({ item }) {
+    const { toLocale } = new Utils();
     const history = useHistory();
 
     const handleClick = (id) => {
@@ -24,7 +25,7 @@ function Card({ item }) {
                     <p className="cardDescription">
                         {item.description}
                     </p>
-                    <p className="cardMoney">{item.cost.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+                    <p className="cardMoney">{toLocale(item.cost)}</p>
                 </div>
             </div>
         </div>

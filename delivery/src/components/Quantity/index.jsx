@@ -1,22 +1,31 @@
+import React, { useEffect, useState } from 'react';
+
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
 
 import './styles.css';
 
-function Quantity({ handleChangeValue }) {
-    const [value, setValue] = useState(1);
+function Quantity({ handleChangeValue, update = false, item }) {
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        handleChangeValue(value);
-        // eslint-disable-next-line
-    }, [value]);
+        if (item.quantity) {
+            setQuantity(item.quantity);
+        }
+    }, [item]);
 
     const handleClick = (type) => {
-        if (type === "-" && value > 1) {
-            setValue(value - 1);
-        } else if (type === "+" && value < 10) {
-            setValue(value + 1);
+        if (type === "-") {
+            if (quantity > 1 && !update) {
+                setQuantity(quantity - 1);
+                handleChangeValue(quantity - 1);
+            } else if (quantity > 0 && update) {
+                setQuantity(quantity - 1);
+                handleChangeValue(quantity - 1);
+            }
+        } else if (type === "+" && quantity < 10) {
+            setQuantity(quantity + 1);
+            handleChangeValue(quantity + 1);
         }
     }
 
@@ -24,15 +33,15 @@ function Quantity({ handleChangeValue }) {
         <div className="quantityContainer">
             <FontAwesomeIcon
                 icon={faMinus}
-                color={value === 1 ? "#b2b2b2" : "#00BBAE"}
+                color={(quantity === 1 && !update) || quantity === 0 ? "#b2b2b2" : "#00BBAE"}
                 size="1x"
                 onClick={() => handleClick("-")}
                 className="quantityClick"
             />
-            <span className="quantityNumber">{value}</span>
+            <span className="quantityNumber">{quantity}</span>
             <FontAwesomeIcon
                 icon={faPlus}
-                color={value < 10 ? "#00BBAE" : "#b2b2b2"}
+                color={quantity < 10 ? "#00BBAE" : "#b2b2b2"}
                 size="1x"
                 onClick={() => handleClick("+")}
                 className="quantityClick"

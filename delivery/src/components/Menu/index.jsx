@@ -10,14 +10,16 @@ import logo from "../../assets/images/logo_cem_branca.png";
 
 import './styles.css';
 
-function Menu({ showBack, showCart, description }) {
+function Menu({ showBack, showCart, description, toHome = false }) {
     const [showSidebar, setShowSidebar] = useState(false);
     const [quantityCart, setQuantityCart] = useState(0);
     const history = useHistory();
     const { getQuantityCartItems } = useContext(Context);
 
     useEffect(() => {
-        setQuantityCart(getQuantityCartItems());
+        const quantityCart = getQuantityCartItems();
+
+        setQuantityCart(quantityCart);
     }, [getQuantityCartItems]);
 
     const handleClickSidebar = () => {
@@ -34,7 +36,12 @@ function Menu({ showBack, showCart, description }) {
             <div className="menuContainer">
                 {
                     showBack ?
-                        <FontAwesomeIcon className="goBack" onClick={() => history.goBack()} icon={faArrowLeft} color="#00BBAE" size="2x" />
+                        <FontAwesomeIcon
+                            className="goBack"
+                            onClick={() => toHome ? history.push("/loja") : history.goBack()}
+                            icon={faArrowLeft}
+                            color="#00BBAE" size="2x"
+                        />
                         :
                         <div className="user" onClick={() => handleClickSidebar()}>
                             <FontAwesomeIcon className="menuBars" tabIndex="0" icon={faBars} color="var(--color-primary)" size="2x" />

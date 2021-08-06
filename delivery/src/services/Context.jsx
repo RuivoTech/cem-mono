@@ -1,3 +1,15 @@
-import React from "react";
+import React, { createContext } from "react";
 
-export const Context = React.createContext();
+import { provider } from "./Provider";
+
+export const Context = createContext({});
+
+function Provider({ children }) {
+    return (
+        <Context.Provider value={provider}>
+            {children}
+        </Context.Provider>
+    )
+}
+
+export default Provider

@@ -6,13 +6,17 @@ import { useHistory } from 'react-router';
 import Menu from '../../components/Menu';
 import Quantity from '../../components/Quantity';
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 
 import { Context } from "../../services/Context";
 import { baseURL } from "../../services/api";
+import Utils from "../../services/Utils";
 
 import errorImage from "../../assets/images/sem_imagem.png";
 
 import './styles.css';
+
+const utils = new Utils();
 
 function Item({ location }) {
     const [itemSelected, setItemSelected] = useState({
@@ -24,26 +28,28 @@ function Item({ location }) {
         observation: ""
     });
     const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
     const [observation, setObservation] = useState("");
-    const { setItemCart, getStore } = useContext(Context);
+    const { setCartItem, getCampaign } = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
         const id = location.search.slice(1);
-        const store = getStore();
-        const storeSelected = store.filter(storeItem => {
+        const campaign = getCampaign();
+        const storeSelected = campaign.items.filter(storeItem => {
             return storeItem.id === parseInt(id);
         });
 
         setItemSelected(storeSelected[0]);
-    }, [getStore, location]);
+        setLoading(false);
+    }, [getCampaign, location]);
 
     const buttonLabel = () => {
         return (
             <>
                 <span className="buttonLabel">Adicionar</span>
                 <span className="buttonValue">
-                    {(itemSelected.cost * quantity).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                    {utils.toLocale((itemSelected.cost) * quantity)}
                 </span>
             </>
         )
@@ -58,60 +64,64 @@ function Item({ location }) {
             id: itemSelected.id,
             title: itemSelected.title,
             description: itemSelected.description,
-            cost: itemSelected.cost * quantity,
+            cost: itemSelected.cost,
             quantity,
             observation
         }
 
-        setItemCart(itemCart);
-        setTimeout(() => {
-            history.push("/carrinho");
-        }, 500);
+        setCartItem(itemCart);
+        history.push("/carrinho");
     }
 
     return (
         <>
             <Menu showBack showCart />
             <div className="itemContainer">
-                <div className="itemImageCard">
-                    <img
-                        src={baseURL + "/" + itemSelected.image}
-                        alt={itemSelected.title}
-                        className="itemLogo"
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = errorImage
-                        }}
-                    />
-                </div>
-                <div className="itemInformation">
-                    <h2 className="itemTitle">{itemSelected.title}</h2>
-                    <p className="itemDescription">
-                        {itemSelected.description}
-                    </p>
-                    <p className="itemMoney">
-                        {itemSelected.cost.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-                    </p>
-                </div>
-                <div className="itemObservation">
-                    <label htmlFor="description" className="labelDescription">
-                        <FontAwesomeIcon icon={faCommentAlt} color="#00BBAE" size="1x" />{" "}
-                        Alguma observação?
-                    </label>
-                    <textarea
-                        name="observation"
-                        id="description"
-                        className="textDescription"
-                        cols="5"
-                        rows="5"
-                        placeholder="Ex: Ponto da carne, tirar a salada, etc."
-                        onChange={event => setObservation(event.target.value)}
-                    ></textarea>
-                </div>
-                <div className="itemCount">
-                    <Quantity handleChangeValue={(value) => handleChangeValue(value)} />
-                    <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} />
-                </div>
+                {loading ?
+                    <Loading />
+                    :
+                    <>
+                        <div className="itemImageCard">
+                            <img
+                                src={baseURL + "/" + itemSelected.image}
+                                alt={itemSelected.title}
+                                className="itemLogo"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = errorImage
+                                }}
+                            />
+                        </div>
+                        <div className="itemInformation">
+                            <h2 className="itemTitle">{itemSelected.title}</h2>
+                            <p className="itemDescription">
+                                {itemSelected.description}
+                            </p>
+                            <p className="itemMoney">
+                                {utils.toLocale(itemSelected.cost)}
+                            </p>
+                        </div>
+                        <div className="itemObservation">
+                            <label htmlFor="description" className="labelDescription">
+                                <FontAwesomeIcon icon={faCommentAlt} color="#00BBAE" size="1x" />{" "}
+                                Alguma observação?
+                            </label>
+                            <textarea
+                                name="observation"
+                                id="description"
+                                className="textDescription"
+                                cols="5"
+                                rows="5"
+                                placeholder="Ex: Ponto da carne, tirar a salada, etc."
+                                onChange={event => setObservation(event.target.value)}
+                            ></textarea>
+                        </div>
+                        <div className="itemCount">
+                            <Quantity handleChangeValue={(value) => handleChangeValue(value)} item={itemSelected} />
+                            <Button className="buttonAdd" label={buttonLabel()} onClick={() => handleClick()} showLoading />
+                        </div>
+                    </>
+                }
             </div>
         </>
     );

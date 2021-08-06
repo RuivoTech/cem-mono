@@ -13,9 +13,10 @@ import Utils from '../../../componentes/Utils';
 const Campanha = () => {
     const [campanhas, setCampanhas] = useState([]);
     const [campanhaSelecionada, setCampanhaSelecionada] = useState({});
+    const [campanhasPesquisa, setCampanhasPesquisa] = useState([]);
+    const [campaignActive, setCampaignActive] = useState({});
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
     const [show, setShow] = useState(false);
-    const [campanhasPesquisa, setCampanhasPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
     const { addToast } = useToasts();
     const session = getSession();
@@ -37,6 +38,12 @@ const Campanha = () => {
             fetchCampanha();
         }
     }, [setQuantidadeTotal, show]);
+
+    useEffect(() => {
+        campanhas.map(campaign => {
+            campaign.status && setCampaignActive(campaign);
+        });
+    }, [campanhas])
 
     const campanhaAtiva = (item) => {
         return item.status ? "Ativa" : "Inativa";
@@ -157,7 +164,13 @@ const Campanha = () => {
                     </div>
                 </div>
             </div>
-            <FormModal className="modal-lg" data={campanhaSelecionada} show={show} handleShow={handleShow} />
+            <FormModal
+                className="modal-lg"
+                data={campanhaSelecionada}
+                show={show}
+                handleShow={handleShow}
+                campanhaAtiva={campaignActive}
+            />
         </>
     )
 }

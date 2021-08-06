@@ -283,13 +283,15 @@ const Pedido = () => {
                                             <h5 className="card-text">{Utils.mascaraTelefone(pedido.contact)}</h5>
                                         </div>
                                         <div className="card-body">
-                                            {pedido.items.map((item, index) => {
-                                                return (
-                                                    <p key={index} className="card-text mb-0">
-                                                        {`${item.quantity} - ${item.title}`}
-                                                    </p>
-                                                )
-                                            })}
+                                            <div className="m-0" style={{ minHeight: "60px" }}>
+                                                {pedido.items.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className="m-0">
+                                                            {`${item.quantity} - ${item.title}`}
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
                                             <hr />
                                             <p
                                                 className={
@@ -299,14 +301,14 @@ const Pedido = () => {
                                             >
                                                 {calcularValor(pedido.items)}
                                             </p>
+                                            <p className="card-text">
+                                                {pedido.timeDelivery && `${pedido.type ? "Entregar" : "Retirar"}: ${pedido.timeDelivery}`}
+                                            </p>
                                             {pedido.address &&
                                                 <>
                                                     <hr />
-                                                    <p className="card-text mb-0">
+                                                    <p className="card-text mb-0 truncate-text">
                                                         {`${pedido.address}, ${pedido.number}`}
-                                                    </p>
-                                                    <p className="card-text">
-                                                        {`${pedido.city} - ${pedido.zipCode}`}
                                                     </p>
                                                 </>
                                             }

@@ -16,6 +16,8 @@ import Coluna from "../../../componentes/Coluna";
 const FormModal = ({ data, show, handleShow, className, campaign }) => {
     const [pedido, setPedido] = useState({});
     const [items, setItems] = useState([]);
+    const [timeDeliver, setTimeDeliver] = useState("");
+    const [times, setTimes] = useState([]);
     const [itemSelecionado, setItemSelecionado] = useState({
         quantity: 1
     });
@@ -25,7 +27,35 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
 
     useEffect(() => {
         setCarregando(false);
+
+        if (data) {
+            setPedido(data);
+            setItems(data.items);
+        }
+
+        if (campaign) {
+            generateTimes();
+        }
     }, [show]);
+
+    const generateTimes = () => {
+        let time = new Date(campaign.date.split("T")[0] + "T" + campaign.timeStart),
+            timeEnd = new Date(campaign.date.split("T")[0] + "T" + campaign.timeEnd),
+            intervalos = [];
+
+        intervalos.push(
+            `${("0" + time.getHours()).slice(-2)}:${("0" + time.getMinutes()).slice(-2)}`
+        );
+
+        while (time < timeEnd) {
+            time.setHours(time.getHours() + 1);
+            intervalos.push(`${("0" + time.getHours()).slice(-2)}:${("0" + time.getMinutes()).slice(-2)}`);
+        }
+
+        setTimes(intervalos);
+
+        setTimeDeliver(`${intervalos[0]} até ${intervalos[1]}`)
+    }
 
     const handleSubmit = async () => {
         let response = "";
@@ -44,6 +74,7 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
         novoPedido.complement = pedido.complement;
         novoPedido.city = pedido.city;
         novoPedido.fkCampaign = campaign.id;
+        novoPedido.timeDelivery = timeDeliver;
         novoPedido.items = items;
 
         if (Number(novoPedido.id) !== 0) {
@@ -269,7 +300,27 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
                                 onBlur={handleBlur}
                             />
                         </div>
-                        <div className="col-md-9"></div>
+                        <div className="col-md-6"></div>
+                        <div className="form-group col-md-3">
+                            <label htmlFor="timeDeliver">Horário para entregar:</label>
+                            <select
+                                className="custom-select"
+                                name="timeDeliver"
+                                id="timeDeliver"
+                                onChange={event => setTimeDeliver(event.target.value)}
+                                value={timeDeliver}
+                            >
+                                {times.map((time, index) => {
+                                    return times[index + 1] !== undefined &&
+                                        <option
+                                            key={index}
+                                            value={`${time} até ${times[index + 1]}`}
+                                        >
+                                            {`${time} até ${times[index + 1]}`}
+                                        </option>
+                                })}
+                            </select>
+                        </div>
                         <div className="form-group col-md-5">
                             <label htmlFor="address">Endereço:</label>
                             <input
@@ -363,7 +414,12 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
                                 <Coluna campo="quantity" titulo="Quant" tamanho="1" />
                                 <Coluna campo="title" titulo="Item" tamanho="4" />
                                 <Coluna campo="observation" titulo="Observação" tamanho="6" />
-                                <Coluna campo="cost" titulo="Valor" tamanho="2" corpo={item => Utils.converteMoeda(item.cost)} />
+                                <Coluna
+                                    campo="cost"
+                                    titulo="Valor"
+                                    tamanho="2"
+                                    corpo={item => Utils.converteMoeda(item.cost)}
+                                />
                                 <Coluna
                                     titulo="Opções"
                                     campo="id"

@@ -20,7 +20,7 @@ import imageBackground from "../../../images/no-image.png";
 import Utils from "../../../componentes/Utils";
 import Item from "../../../componentes/Item";
 
-const FormModal = ({ data, show, handleShow, className }) => {
+const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
     const [campanha, setCampanha] = useState({});
     const [item, setItem] = useState({});
     const [carregando, setCarregando] = useState(false);
@@ -82,6 +82,22 @@ const FormModal = ({ data, show, handleShow, className }) => {
     }
 
     const handleSubmit = async () => {
+        if (campanha.status && campanhaAtiva.id !== campanha.id) {
+            const confirmCampaign = window.confirm("Existe uma campanha ativa, deseja alterar?");
+            if (confirmCampaign) {
+                await api.put("/campaign", {
+                    ...campanhaAtiva,
+                    date: campanhaAtiva.date.split("T")[0],
+                    status: false
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${session.token}`
+                    }
+                })
+            } else {
+                return;
+            }
+        }
         let campaign = {
             id: campanha.id ? campanha.id : 0,
             title: campanha.title,
@@ -99,7 +115,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
                     Authorization: `Bearer ${session.token}`
                 }
             }).then(response => {
-                submitItems(response.data.id);
+                submitItems(campaign.id);
             }).catch(error => {
                 console.error(error);
                 addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
@@ -119,39 +135,28 @@ const FormModal = ({ data, show, handleShow, className }) => {
         }
     }
 
-    const submitItems = (campanhaId) => {
+    const submitItems = (campaignId) => {
         campanha.items.forEach(item => {
             let formData = new FormData();
             formData.set("title", item.title);
             formData.set("cost", item.cost);
             formData.set("description", item.description);
-            formData.set("fkCampaign", campanhaId);
-            formData.set("image", item.image.replace(URL_BASE, ""));
+            formData.set("fkCampaign", campaignId > 0 ? campaignId : item.fkCampaign);
+            formData.set("image", item.image.replace(`${URL_BASE}/`, ""));
             formData.set("file", item.file);
 
-            if (item.fkCampaign) {
-                api.put("/itemCampaign", formData, {
-                    headers: {
-                        Authorization: `Bearer ${session.token}`
-                    }
-                }).then(response => {
-
-                }).catch(error => {
-                    console.error(error);
-                    addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
-                })
-            } else {
-                api.post("/itemCampaign", formData, {
-                    headers: {
-                        Authorization: `Bearer ${session.token}`
-                    }
-                }).then(response => {
-
-                }).catch(error => {
-                    console.error(error);
-                    addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
-                })
-            }
+            api.post("/itemCampaign", formData, {
+                headers: {
+                    Authorization: `Bearer ${session.token}`
+                }
+            }).then(response => {
+                if (!response.data.error) {
+                    addToast("Campanha salva com sucesso!", { appearance: "success" });
+                }
+            }).catch(error => {
+                console.error(error);
+                addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            })
         })
     }
 

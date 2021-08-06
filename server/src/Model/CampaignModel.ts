@@ -49,7 +49,14 @@ class CampaignModel {
 
     async create(campaign: Campaign) {
         try {
-            const insertedId = await knex("campaign").insert(campaign);
+            const campaignInsert = {
+                title: campaign.title,
+                status: campaign.status,
+                date: campaign.date,
+                timeStart: campaign.timeStart,
+                timeEnd: campaign.timeEnd
+            }
+            const insertedId = await knex("campaign").insert(campaignInsert);
 
             const campaignId = insertedId[0];
 
@@ -57,13 +64,22 @@ class CampaignModel {
 
             return campaign;
         } catch (error) {
-            return { error };
+            console.log(error);
+            return campaign;
         }
     }
 
     async update(campaign: Campaign) {
         try {
-            await knex("store").update(campaign);
+            const campaignUpdate = {
+                title: campaign.title,
+                status: campaign.status,
+                date: campaign.date,
+                timeStart: campaign.timeStart,
+                timeEnd: campaign.timeEnd
+            }
+
+            await knex("campaign").update(campaignUpdate).where("id", Number(campaign.id));
 
             return campaign;
         } catch (error) {

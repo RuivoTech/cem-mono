@@ -11,7 +11,15 @@ class ItemCampaignModel {
 
     async create(item: ItemCampaign) {
         try {
-            const insertedId = await knex("store").insert(item);
+            const itemInsert = {
+                title: item.title,
+                cost: item.cost,
+                description: item.description,
+                image: item.image,
+                fkCampaign: item.fkCampaign
+            }
+
+            const insertedId = await knex("store").insert(itemInsert);
 
             const itemId = insertedId[0];
 
@@ -30,6 +38,18 @@ class ItemCampaignModel {
             return item;
         } catch (error) {
             return { error };
+        }
+    }
+
+    async deleteFromCampaign(id: Number) {
+        try {
+            const deleted = await knex("store").delete().where("fkCampaign", id);
+            console.log(id, deleted);
+
+            return deleted;
+        } catch (error) {
+            console.log(error);
+            return error;
         }
     }
 }

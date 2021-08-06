@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import CampaignModel from "../Model/CampaignModel";
 import ItemCampaignModel from "../Model/ItemCampaignModel";
+import { Campaign } from "../interfaces/CampaignInterface";
 
 const campaignModel = new CampaignModel();
 const itemCampaignModel = new ItemCampaignModel();
@@ -43,9 +44,12 @@ class CampaignController {
         return response.json(createdCampaign);
     }
     async update(request: Request, response: Response) {
-        let campaign = request.body;
+        let campaign: Campaign = request.body;
 
         const updatedCampaign = await campaignModel.update(campaign);
+        if (!campaign.items) {
+            itemCampaignModel.deleteFromCampaign(Number(campaign.id));
+        }
 
         return response.json(updatedCampaign);
     }

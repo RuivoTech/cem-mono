@@ -55,7 +55,8 @@ class OrderModel {
                 city: order.city,
                 type: order.type,
                 status: order.status,
-                fkCampaign: order.fkCampaign
+                fkCampaign: order.fkCampaign,
+                timeDelivery: order.timeDelivery
             });
 
             const orderId = insertedId[0];
@@ -83,8 +84,9 @@ class OrderModel {
                 city: order.city,
                 type: order.type,
                 status: 1,
-                fkCampaign: order.fkCampaign
-            });
+                fkCampaign: order.fkCampaign,
+                timeDelivery: order.timeDelivery
+            }).where("id", Number(order.id));
 
             const orderItems = await orderItem.create(order.items, Number(order.id));
 

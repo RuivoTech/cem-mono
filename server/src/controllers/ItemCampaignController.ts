@@ -13,7 +13,7 @@ class ItemCampaignController {
     async create(request: Request, response: Response) {
         const image = request.file?.filename;
         let item = request.body;
-        item.image = "images/" + image;
+        item.image = image ? "images/" + image : request.body.image;
 
         const createdItem = await itemCampaignModel.create(item);
 
@@ -22,7 +22,7 @@ class ItemCampaignController {
     async update(request: Request, response: Response) {
         const image = request.file?.filename;
         let item = request.body;
-        item.image = image ? "images/" + image : item.image;
+        item.image = image ? `images/${image}` : request.body.image;
 
         const updatedItem = await itemCampaignModel.update(item);
 

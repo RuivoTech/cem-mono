@@ -13,5 +13,6 @@ export interface Order {
     status: number,
     date: string,
     fkCampaign: number,
+    timeDelivery: string,
     items: [OrderItems]
 }

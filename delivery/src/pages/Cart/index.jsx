@@ -18,6 +18,7 @@ function Cart() {
     const { getCartItems, removeCartItem, clearCart, setOrder, getCampaign } = useContext(Context);
     const [cartItems, setCartItems] = useState([]);
     const [times, setTimes] = useState([]);
+    const [timeDeliver, setTimeDeliver] = useState("");
     const [subTotal, setSubTotal] = useState(0);
     const [buttonStatus, setButtonStatus] = useState("none");
     const [showItemEdit, setShowItemEdit] = useState(false);
@@ -58,6 +59,8 @@ function Cart() {
         }
 
         setTimes(intervalos);
+
+        setTimeDeliver(`${intervalos[0]} até ${intervalos[1]}`)
         // eslint-disable-next-line
     }, [])
 
@@ -113,6 +116,9 @@ function Cart() {
             complement: informations.complement,
             city: informations.city,
             type: typeDelivery,
+            status: false,
+            fkCampaign: campaign.id,
+            timeDelivery: timeDeliver,
             items: getCartItems()
         }
 
@@ -242,10 +248,15 @@ function Cart() {
                     <label htmlFor="timeToDeliver">
                         Horário para {parseInt(typeDelivery) === 0 ? "retirar" : "entregar"}:
                     </label>
-                    <select name="timeToDeliver" id="timeToDeliver">
+                    <select
+                        name="timeToDeliver"
+                        id="timeToDeliver"
+                        onChange={event => setTimeDeliver(event.target.value)}
+                        value={timeDeliver}
+                    >
                         {times.map((time, index) => {
                             return times[index + 1] !== undefined &&
-                                <option key={index} value={time}>{`${time} até ${times[index + 1]}`}</option>
+                                <option key={index} value={`${time} até ${times[index + 1]}`}>{`${time} até ${times[index + 1]}`}</option>
                         })}
                     </select>
                 </div>

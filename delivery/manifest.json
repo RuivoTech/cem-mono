@@ -1,6 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Delivery CEM",
+  "name": "Delivery Centro Evangélico de Maringá",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +12,19 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo_cem192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo_cem512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "logo_cem1024.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
     }
-  ],
-  "start_url": ".",
-  "display": "fullscreen",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

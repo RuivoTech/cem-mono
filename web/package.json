@@ -1,7 +1,7 @@
 {
   "homepage": "https://ruivotech.github.io/cem-mono/",
   "name": "cem",
-  "version": "2.2.4",
+  "version": "3.2.4",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",

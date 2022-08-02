@@ -1,5 +1,5 @@
 {
-  "homepage": "https://ruivotech.github.io/cem-mono/",
+  "homepage": "https://ruivotech.github.io/",
   "name": "cem",
   "version": "2.2.4",
   "private": true,
@@ -8,7 +8,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@material-ui/core": "^4.9.0",
-    "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.42",
     "@react-pdf/renderer": "^1.6.10",
     "@testing-library/jest-dom": "^4.2.4",

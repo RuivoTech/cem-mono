@@ -3,159 +3,134 @@ import packageJson from '../../../package.json';
 import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../context";
-import logo3 from "../../images/Logo3.jpg";
-import logo1 from "../../images/Logo1.jpg";
+import agenda from "../../images/agenda.jpeg";
 import api from "../../services/api";
+import { Avatar, Box, Button, CssBaseline, Grid, Link, Paper, TextField, Typography } from "@material-ui/core";
+import { LockOutlined } from "@material-ui/icons";
 
 const Login = () => {
     const history = useHistory();
     const { signIn } = useContext(AuthContext);
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [error, setError] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
-    const handleLogin = async e => {
-        e.preventDefault();
+    const handleLogin = async event => {
+        event.preventDefault();
 
-        setCarregando(true);
+        setLoading(true);
 
-        if (!email || !senha) {
-            setError("Preencha e-mail e senha para continuar!");
-        } else {
-            try {
-                let response = await api.post("/login", { email, senha });
-                if (response.data.error) {
-                    setCarregando(false);
-                    setError(response.data.error);
-                } else {
-                    signIn(response.data);
-
-                    setCarregando(false);
-                    history.push("/dashboard");
-                }
-
-            } catch (err) {
-                console.log(err);
-            }
+        if (!email) {
+            setEmailError(!emailError);
+            return;
         }
+
+        if (!password) {
+            setPasswordError(!passwordError);
+            return;
+        }
+
+        try {
+            let response = await api.post("/login", { email, senha: password });
+            if (response.data.error) {
+                setLoading(false);
+                return;
+            }
+
+            signIn(response.data);
+
+            setLoading(false);
+            history.push("/dashboard");
+        } catch (error) {
+            console.log(error);
+        }
+
+        return;
     };
 
     return (
-        <>
-            <main style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100vh"
-            }}
-            >
-                <img src={logo3} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.2,
+        <Grid container component="main" style={{ height: '100vh' }}>
+            <CssBaseline />
+            <Grid
+                item
+                xs={false}
+                sm={4}
+                md={7}
+                style={{
+                    backgroundImage: `url(${agenda})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: "#cccccc",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                 }}
-                />
-                <img src={logo1} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.4,
-                }}
-                />
-
-                <div className="card" style={{
-                    width: "24vw",
-                    borderRadius: "10px",
-                    boxShadow: "15px 15px 12px 2px rgba(61, 61, 61, 0.8)"
-                }}>
-                    <div className="card-header">
-                        <h3 style={{
-                            textAlign: "center",
-                            marginTop: "2vh",
-                            lineHeight: 1,
-                        }}
-                        >
-                            Login
-                        </h3>
-                    </div>
-                    <div className="card-body">
-                        <form onSubmit={handleLogin}>
-                            <div className="form-group">
-                                <label htmlFor="email">E-mail</label>
-                                <input
-                                    type="text"
-                                    id="email"
-                                    className="form-control"
-                                    placeholder="Digite seu email..."
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    readOnly={carregando}
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="senha">Senha</label>
-                                <input
-                                    type="password"
-                                    id="senha"
-                                    className="form-control"
-                                    placeholder="Digite sua senha..."
-                                    value={senha}
-                                    onChange={e => setSenha(e.target.value)}
-                                    readOnly={carregando}
-                                />
-                            </div>
-
-                            <button className="btn btn-success btn-block" style={{
-                                fontSize: 18,
-                                fontWeight: 700,
-                                lineHeight: 1.2
+            />
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Box
+                    style={{
+                        margin: "4em 2em",
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: "center"
+                    }}
+                >
+                    <Avatar style={{ margin: "1em", bgcolor: 'purple' }}>
+                        <LockOutlined />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign In
+                    </Typography>
+                    <Box marginTop={1} component="form" onSubmit={handleLogin}>
+                        <TextField
+                            margin="normal"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                            onChange={event => setEmail(event.currentTarget.value)}
+                            error={emailError}
+                        />
+                        <TextField
+                            margin="normal"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-passord"
+                            onChange={event => setPassword(event.currentTarget.value)}
+                            error={passwordError}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={{
+                                marginTop: "1em",
+                                marginBottom: "0.7em"
                             }}
-                                disabled={carregando}
-                            >
-                                Entrar
-                            </button>
-                        </form>
-                    </div>
-                    <div className="card-footer" style={{
-                        minHeight: "5vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between"
-                    }}>
-                        <div>
-                            {error && <p className="text-danger">{error}</p>}
-                        </div>
-                        <div>
-                            <p className="h5">
-                                <a
-                                    href="https://github.com/RuivoTech"
-                                    title="Todos os direitos reservados."
-                                    target="_blank"
-                                >
-                                    &copy; RuivoTech
-                                </a>
-                            </p>
-                            <span className="h6 font-weight-bold">
-                                Versão <a
-                                    href={`https://github.com/RuivoTech/cem-react/tree/${packageJson.version}`}
-                                    target="_blank"
-                                >
-                                    {packageJson.version}
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </>
+                        >
+                            Entrar
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Link href="#" variant="body2">
+                                    Esqueceu a senha?
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            </Grid>
+        </Grid>
     );
 }
 

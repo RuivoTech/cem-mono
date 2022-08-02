@@ -1,13 +1,9 @@
 html {
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 body {
-  background-color: #707070;
-  font-family: "Source Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  color: #676a6c;
-  overflow: hidden;
+  font-size: 1rem;
 }
 
 table {

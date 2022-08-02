@@ -28,8 +28,10 @@ import FinanceiroOfertas from "./View/Financeiro/Oferta";
 import FinanceiroInscricao from "./View/Financeiro/Inscricao";
 
 import Relatorios from "./View/Relatorios";
+import { useState } from "react";
 
 const App = () => {
+    const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
     const authContext = useMemo(() => {
         return {
             signIn: (login) => {
@@ -37,8 +39,12 @@ const App = () => {
             },
             signOut: () => {
                 onSignOut();
+            },
+            switchSidebar: () => {
+                setSidebarIsOpen(!sidebarIsOpen);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getFaviconEl = () => {

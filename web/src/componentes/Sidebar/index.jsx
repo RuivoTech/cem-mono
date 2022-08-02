@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Drawer } from "@material-ui/core";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
@@ -13,6 +14,7 @@ import "./styles.css";
 
 const Sidebar = ({ onClick }) => {
     const history = useHistory();
+    const [isSidebarOpened, setIsSidebarOpened] = useState(false);
     const { signOut } = useContext(AuthContext);
     const [usuario, setUsuario] = useState({
         id: "",
@@ -51,7 +53,10 @@ const Sidebar = ({ onClick }) => {
     }
 
     return (
-        <div className="sidebar">
+        <Drawer anchor="left" open={isSidebarOpened} onClose={() => setIsSidebarOpened(!isSidebarOpened)}>
+
+        </Drawer>
+        /*<div className="sidebar">
             <div className="col">
                 <div className="user-info">
                     <span className="user-name">
@@ -114,7 +119,7 @@ const Sidebar = ({ onClick }) => {
                     </span>
                 </div>
             </div>
-        </div>
+        </div>*/
     )
 }
 

@@ -5,9 +5,6 @@ import packageJson from "../../../package.json"
 import api from "../../services/api";
 import { useToasts } from "react-toast-notifications";
 
-import logo2 from "../../images/Logo2.jpg";
-import logo1 from "../../images/Logo1.jpg";
-
 import "./styles.css";
 
 const Inscricoes = () => {
@@ -71,25 +68,6 @@ const Inscricoes = () => {
                 height: "100vh"
             }}
             >
-                <img src={logo2} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.2,
-                }}
-                />
-                <img src={logo1} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.4,
-                }}
-                />
-
                 <div className="card inscricaoCard">
                     <div className="card-header">
                         <h3 style={{

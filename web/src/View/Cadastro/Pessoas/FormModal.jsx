@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 
 import Membro from "../../../Model/Membro";
 import api from "../../../services/api";
@@ -18,12 +17,10 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
     const [carregando, setCarregando] = useState(false);
     const [filhos, setFilhos] = useState([]);
     const [value, setValue] = useState("");
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         setIdMembro(data);
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -44,7 +41,7 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
             handleLimpar();
         }
 
-    }, [idMembro]);
+    }, [idMembro, session.token]);
 
     const toggle = tab => {
         if (tabAtivo !== tab) setTabAtivo(tab);
@@ -113,12 +110,12 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
         }
 
         if (!response.data.error) {
-            addToast("Membro salvo com sucesso!", { appearance: "success" });
+            alert("Membro salvo com sucesso!", { appearance: "success" });
             handleLimpar();
             setFilhos([]);
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);

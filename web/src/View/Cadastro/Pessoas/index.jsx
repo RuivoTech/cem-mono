@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -12,7 +11,7 @@ import FormModal from './FormModal';
 import RelatorioModal from './RelatorioModal';
 import Utils from '../../../componentes/Utils';
 
-const Membros = () => {
+const Pessoas = () => {
     const [membros, setMembros] = useState([]);
     const [membroSelecionado, setMembroSelecionado] = useState(0);
     const [membrosPesquisa, setMembrosPesquisa] = useState([]);
@@ -23,10 +22,19 @@ const Membros = () => {
     const [show, setShow] = useState(false);
     const [showRelatorio, setShowRelatorio] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
+        const fetchMinisterios = async () => {
+            const response = await api.get("/ministerios", {
+                headers: {
+                    Authorization: `Bearer ${session.token}`
+                }
+            });
+    
+            setMinisterios(response.data);
+        }
+        
         const fetchMembros = async () => {
             const response = await api.get("/membros", {
                 headers: {
@@ -45,7 +53,7 @@ const Membros = () => {
         document.title = "Membros - Cadastro de membros CEM";
 
         fetchMembros();
-    }, []);
+    }, [session.token]);
 
     useEffect(() => {
         const fetchMembros = async () => {
@@ -64,17 +72,7 @@ const Membros = () => {
         if (!show) {
             fetchMembros();
         }
-    }, [show]);
-
-    const fetchMinisterios = async () => {
-        const response = await api.get("/ministerios", {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
-
-        setMinisterios(response.data);
-    }
+    }, [session.token, show]);
 
     const pesquisar = e => {
         let filteredSuggestions = membros.filter((suggestion) => {
@@ -105,10 +103,9 @@ const Membros = () => {
             const items = membros.filter(item => item.id !== id);
 
             setMembros(items);
-
-            addToast("Membro removido com sucesso!", { appearance: 'success' });
+            alert("Success");
         } else {
-            addToast("Não foi possível remover o membro!", { appearance: 'error' });
+            alert("Error")
         }
     }
 
@@ -227,4 +224,4 @@ const Membros = () => {
     )
 }
 
-export default Membros;
+export default Pessoas;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -37,7 +36,6 @@ const Evento = () => {
     const [show, setShow] = useState(false);
     const [eventosPesquisa, setEventosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -56,7 +54,7 @@ const Evento = () => {
         if (!show) {
             fetchEventos();
         }
-    }, [setQuantidadeTotal, show]);
+    }, [session.token, setQuantidadeTotal, show]);
 
     const eventoAtivo = (evento) => {
         return evento.status ? "Ativo" : "Inativo";
@@ -74,9 +72,9 @@ const Evento = () => {
 
             setEventos(items);
 
-            addToast("Evento removido com sucesso!", { appearance: "success" });
+            alert("Evento removido com sucesso!", { appearance: "success" });
         } else {
-            addToast("Não foi possível remover o evento!", { appearance: "error" });
+            alert("Não foi possível remover o evento!", { appearance: "error" });
         }
     }
 

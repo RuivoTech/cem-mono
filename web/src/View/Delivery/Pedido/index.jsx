@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -17,7 +16,6 @@ const Pedido = () => {
     const [campaignSelected, setCampaignSelected] = useState(0);
     const [show, setShow] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -35,7 +33,7 @@ const Pedido = () => {
         if (!show) {
             fetchCampaign();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     useEffect(() => {
         campaigns.map(campaign => {
@@ -56,7 +54,7 @@ const Pedido = () => {
         }
 
         fetchPedidos();
-    }, [campaignSelected])
+    }, [campaignSelected, session.token])
 
     useEffect(() => {
         const total = pedidos.length;
@@ -88,9 +86,9 @@ const Pedido = () => {
             setPedidos(items);
             setPedidosPesquisa(items);
 
-            addToast("Pedido removido com sucesso!", { appearance: "success" });
+            alert("Pedido removido com sucesso!", { appearance: "success" });
         } else {
-            addToast("Não foi possível remover o Pedido!", { appearance: "error" });
+            alert("Não foi possível remover o Pedido!", { appearance: "error" });
         }
     }
 
@@ -175,10 +173,10 @@ const Pedido = () => {
 
             setPedidos(ordersFiltered);
             setPedidosPesquisa(ordersFiltered);
-            addToast("Pedido salvo com sucesso!", { appearance: "success" });
+            alert("Pedido salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
     }

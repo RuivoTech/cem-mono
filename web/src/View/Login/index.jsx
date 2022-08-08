@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import packageJson from '../../../package.json';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Avatar, Box, Button, CssBaseline, Grid, Link, Paper, TextField, Typography } from "@mui/material";
+import { LockOutlined } from "@mui/icons-material";
 
 import { AuthContext } from "../../context";
 import agenda from "../../images/agenda.jpeg";
 import api from "../../services/api";
-import { Avatar, Box, Button, CssBaseline, Grid, Link, Paper, TextField, Typography } from "@material-ui/core";
-import { LockOutlined } from "@material-ui/icons";
 
 const Login = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const { signIn } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
-    const handleLogin = async event => {
+    const handleLogin = async (event) => {
         event.preventDefault();
 
         setLoading(true);
@@ -38,11 +38,12 @@ const Login = () => {
                 setLoading(false);
                 return;
             }
-
+            console.log(response.data)
             signIn(response.data);
 
             setLoading(false);
-            history.push("/dashboard");
+
+            navigate("/dashboard");
         } catch (error) {
             console.log(error);
         }
@@ -128,6 +129,18 @@ const Login = () => {
                             </Grid>
                         </Grid>
                     </Box>
+                </Box>
+                <Box
+                    style={{
+                        margin: "4em 2em",
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: "center"
+                    }}
+                >
+                    <Link href="https://github.com/RuivoTech" variant="body2">
+                        &copy; RuivoTech
+                    </Link>
                 </Box>
             </Grid>
         </Grid>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
@@ -16,7 +15,6 @@ const Ministerios = () => {
     const [show, setShow] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
     const [ministeriosPesquisa, setMinisteriosPesquisa] = useState([]);
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -35,7 +33,7 @@ const Ministerios = () => {
         if (!show) {
             fetchMinisterio();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     const pesquisar = e => {
         let filteredSuggestions = ministerios.filter((suggestion) => {
@@ -66,10 +64,10 @@ const Ministerios = () => {
             const items = ministerios.filter(item => item.id !== id);
             setMinisterios(items);
 
-            addToast("Ministerio removido com sucesso!", { appearance: 'success' });
+            alert("Ministerio removido com sucesso!", { appearance: 'success' });
         } else {
 
-            addToast("Não foi possível remover o ministerio!", { appearance: 'error' });
+            alert("Não foi possível remover o ministerio!", { appearance: 'error' });
         }
     }
 

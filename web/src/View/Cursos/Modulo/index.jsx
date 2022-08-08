@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Collapse } from 'reactstrap';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import { NotificationManager } from "react-notifications";
 
 import api from "../../../services/api";
 import NovoModulo from "./form";
@@ -98,13 +97,13 @@ class Modulos extends Component {
                 data: items,
             });
 
-            NotificationManager.success("Módulo removido com sucesso!", 'Sucesso');
+            alert("Módulo removido com sucesso!", 'Sucesso');
         } else {
 
             this.setState({
                 tabelaEstaAberta: true,
             });
-            NotificationManager.error("Não foi possível remover o módulo!", 'Erro');
+            alert("Não foi possível remover o módulo!", 'Erro');
         }
     }
 

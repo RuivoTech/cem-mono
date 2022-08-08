@@ -1,4 +1,4 @@
-export const TOKEN_KEY = "@BibliotecaDD:token";
+export const TOKEN_KEY = "@SystemCEM:token";
 
 export const onSignIn = (usuario) => {
   sessionStorage.setItem(TOKEN_KEY, JSON.stringify(usuario));

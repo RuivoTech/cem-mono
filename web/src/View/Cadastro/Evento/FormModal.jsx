@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 
 import Evento from "../../../Model/Evento";
 import api from "../../../services/api";
@@ -10,12 +9,10 @@ import { getSession } from "../../../services/auth";
 const FormModal = ({ data, show, handleShow, className }) => {
     const [evento, setEvento] = useState({});
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         setEvento(data);
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -58,10 +55,10 @@ const FormModal = ({ data, show, handleShow, className }) => {
         }
 
         if (!response.data.error) {
-            addToast("Evento salvo com sucesso!", { appearance: "success" });
+            alert("Evento salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);

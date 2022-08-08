@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -18,7 +17,6 @@ const Inscricoes = () => {
     const [inscricoesPesquisa, setInscricoesPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
     const [show, setShow] = useState(false);
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -85,9 +83,9 @@ const Inscricoes = () => {
 
             setInscricoes(items);
 
-            addToast("Inscrição removida com sucesso!", { appearance: 'success' });
+            alert("Inscrição removida com sucesso!", { appearance: 'success' });
         } else {
-            addToast("Não foi possível remover o inscrição!", { appearance: 'error' });
+            alert("Não foi possível remover o inscrição!", { appearance: 'error' });
         }
     }
 

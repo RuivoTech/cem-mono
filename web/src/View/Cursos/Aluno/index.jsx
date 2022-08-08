@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Collapse } from 'reactstrap';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -17,7 +16,6 @@ const Alunos = () => {
     const [sugestoes, setSugestoes] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [tabelaEstaAberta, setTabelaEstaAberta] = useState(true);
-    const { addToast } = useToasts();
 
     useEffect(() => {
         const fetchMembros = async () => {
@@ -63,7 +61,7 @@ const Alunos = () => {
 
         await api.post("/alunos", aluno);
 
-        addToast("Aluno salvo com sucesso!", { appearance: "sucess" });
+        alert("Aluno salvo com sucesso!", { appearance: "sucess" });
 
         setAlunoSelecionado({});
         setCarregando(false);
@@ -95,9 +93,9 @@ const Alunos = () => {
 
             setAlunos(items);
 
-            addToast("Aluno removida com sucesso!", { appearance: 'sucess' });
+            alert("Aluno removida com sucesso!", { appearance: 'sucess' });
         } else {
-            addToast("Não foi possível remover o aluno!", { appearance: 'error' });
+            alert("Não foi possível remover o aluno!", { appearance: 'error' });
         }
     }
 

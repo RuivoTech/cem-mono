@@ -1,6 +1,5 @@
 import React, { useMemo, useEffect } from "react";
-import { Route, Switch, HashRouter } from "react-router-dom";
-import { ToastProvider } from 'react-toast-notifications';
+import { Route, HashRouter, Routes } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRoute";
 import { AuthContext } from "./context";
@@ -15,23 +14,16 @@ import Inscricoes from "./View/Inscricoes";
 import ConfiguracaoPerfil from "./View/Configuracao/Perfil";
 import ConfiguracaoUsuario from "./View/Configuracao/Usuarios";
 
-import CadastroMembro from "./View/Cadastro/Membro";
-import CadastroVisitante from "./View/Cadastro/Visitante";
+import CadastroPessoas from "./View/Cadastro/Pessoas";
 import CadastroMinisterio from "./View/Cadastro/Ministerio";
 import CadastroEvento from "./View/Cadastro/Evento";
 
 import DeliveryCampanha from "./View/Delivery/Campanha";
 import DeliveryPedido from "./View/Delivery/Pedido";
 
-import FinanceiroDizimos from "./View/Financeiro/Dizimo";
-import FinanceiroOfertas from "./View/Financeiro/Oferta";
-import FinanceiroInscricao from "./View/Financeiro/Inscricao";
-
 import Relatorios from "./View/Relatorios";
-import { useState } from "react";
 
 const App = () => {
-    const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
     const authContext = useMemo(() => {
         return {
             signIn: (login) => {
@@ -39,9 +31,6 @@ const App = () => {
             },
             signOut: () => {
                 onSignOut();
-            },
-            switchSidebar: () => {
-                setSidebarIsOpen(!sidebarIsOpen);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,30 +54,79 @@ const App = () => {
     return (
         <>
             <AuthContext.Provider value={authContext}>
-                <ToastProvider autoDismiss>
-                    <HashRouter>
-                        <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Home} name="Dashboard" />
-                            <PrivateRoute exact path="/membro" component={CadastroMembro} name="Membros" />
-                            <PrivateRoute exact path="/visitante" component={CadastroVisitante} name="Visitantes" />
-                            <PrivateRoute exact path="/ministerio" component={CadastroMinisterio} name="Ministérios" />
-                            <PrivateRoute exact path="/evento" component={CadastroEvento} name="Eventos" />
-                            <PrivateRoute exact path="/campanha" component={DeliveryCampanha} name="Campanha" />
-                            <PrivateRoute exact path="/pedidos" component={DeliveryPedido} name="Pedido" />
-                            <PrivateRoute exact path="/inscricoes" component={FinanceiroInscricao} name="Inscrições" />
-                            <PrivateRoute exact path="/dizimo" component={FinanceiroDizimos} name="Dizimos" />
-                            <PrivateRoute exact path="/oferta" component={FinanceiroOfertas} name="Ofertas" />
-                            <PrivateRoute exact path="/perfil" component={ConfiguracaoPerfil} name="Perfil" />
-                            <PrivateRoute exact path="/usuarios" component={ConfiguracaoUsuario} name="Usuários" />
-                            <Route path="/relatorios/*" component={Relatorios} />
-                            <Route exact path="/recuperar" component={Recuperar} />
-                            <Route exact path="/inscricao" component={Inscricoes} />
-                            <Route exact path="/"
-                                render={(props) => <Login {...props} />} />
-                            <Route path="*" component={NotFound} />
-                        </Switch>
-                    </HashRouter>
-                </ToastProvider>
+                <HashRouter>
+                    <Routes>
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <PrivateRoute name="Dashboard">
+                                    <Home />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/pessoas"
+                            element={
+                                <PrivateRoute name="Pessoas">
+                                    <CadastroPessoas />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/ministerios"
+                            element={
+                                <PrivateRoute name="Ministérios">
+                                    <CadastroMinisterio />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/eventos"
+                            element={
+                                <PrivateRoute name="Eventos">
+                                    <CadastroEvento />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/campanhas"
+                            element={
+                                <PrivateRoute name="Campanhas">
+                                    <DeliveryCampanha />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/pedidos"
+                            element={
+                                <PrivateRoute name="Pedidos">
+                                    <DeliveryPedido />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/perfil"
+                            element={
+                                <PrivateRoute name="Perfil">
+                                    <ConfiguracaoPerfil />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/usuarios"
+                            element={
+                                <PrivateRoute name="Usuários">
+                                    <ConfiguracaoUsuario />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route path="/relatorios/*" element={Relatorios} />
+                        <Route path="/recuperar" element={Recuperar} />
+                        <Route path="/inscricao" element={Inscricoes} />
+                        <Route index path="/" element={<Login />} />
+                        <Route path="*" element={NotFound} />
+                    </Routes>
+                </HashRouter>
             </AuthContext.Provider>
         </>
     )

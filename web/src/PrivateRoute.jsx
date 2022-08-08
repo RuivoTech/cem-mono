@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
-import Menu from "./componentes/Menu";
+import CustomMenu from "./componentes/CustomMenu";
 import Sidebar from "./componentes/Sidebar";
 import { isSignedIn, getSession } from "./services/auth";
 import { AuthContext } from "./context";
 import api from "./services/api";
+import NotFound from "./View/NotFound";
 
-const PrivateRoute = ({ component: Component, path, location, name, ...resto }) => {
+const PrivateRoute = ({ path, children, name }) => {
     const { signOut } = useContext(AuthContext);
-    const history = useHistory();
+    const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
+    const navigate = useNavigate();
     const [estaLogado, setEstaLogado] = useState(false);
     const [usuario, setUsuario] = useState({
         id: "",
@@ -41,7 +43,7 @@ const PrivateRoute = ({ component: Component, path, location, name, ...resto }) 
                 setUsuario(retorno.data);
             } else {
                 signOut();
-                history.push("/");
+                navigate("/", {replace: true});
             }
         }
 
@@ -60,18 +62,23 @@ const PrivateRoute = ({ component: Component, path, location, name, ...resto }) 
         const existePermissao = usuario.permissoes.findIndex(permissao => `/${permissao.menuPermissao}` === path);
 
         if (existePermissao < 0) {
-            history.push("/dashboard");
+            navigate("/dashboard", {replace: true});
         }
     }
 
+    const handleSwitchSidebar = (event) => {
+        setSidebarIsOpened(!sidebarIsOpened);
+    }
+
+    if(!estaLogado) {
+        return <NotFound />;
+    }
+
     return (
-        estaLogado &&
         <>
-            <Sidebar />
-            <Menu nome={name} />
-            <Route path={path}
-                render={(props) => <Component {...props} {...resto} />}
-            />
+            <CustomMenu switchSidebar={handleSwitchSidebar} name={name} />
+            <Sidebar sidebarIsOpened={sidebarIsOpened} switchSidebar={event => handleSwitchSidebar(event)} />
+            {children}
         </>
     )
 }

@@ -11,7 +11,6 @@ import {
     NavItem,
     NavLink
 } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 
 import api, { URL_BASE } from "../../../services/api";
 import { getSession } from "../../../services/auth";
@@ -25,7 +24,6 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
     const [item, setItem] = useState({});
     const [carregando, setCarregando] = useState(false);
     const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const [tabAtivo, setTabAtivo] = useState("campaign");
     const session = getSession();
 
@@ -53,7 +51,6 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
             }
         }
         request();
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -118,7 +115,7 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
                 submitItems(campaign.id);
             }).catch(error => {
                 console.error(error);
-                addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+                alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
             });
         } else {
             api.post("/campaign", campaign, {
@@ -130,7 +127,7 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
                 submitItems(response.data.id);
             }).catch(error => {
                 console.error(error);
-                addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+                alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
             });
         }
     }
@@ -151,11 +148,11 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
                 }
             }).then(response => {
                 if (!response.data.error) {
-                    addToast("Campanha salva com sucesso!", { appearance: "success" });
+                    alert("Campanha salva com sucesso!", { appearance: "success" });
                 }
             }).catch(error => {
                 console.error(error);
-                addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+                alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
             })
         })
     }
@@ -425,7 +422,7 @@ const FormModal = ({ data, show, handleShow, className, campanhaAtiva }) => {
                                 </div>
                                 <div className="col-md-3"></div>
                                 <div className="col-md-3">
-                                    <img src={item.image ? item.image : imageBackground} height="130px" width="130px" />
+                                    <img src={item.image ? item.image : imageBackground} alt={item.description} height="130px" width="130px" />
                                 </div>
                                 <div className="col-md-12 d-flex justify-content-end ">
                                     <button

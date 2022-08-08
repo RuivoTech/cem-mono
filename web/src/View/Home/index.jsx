@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 
 import api from "../../services/api";
 import { getSession } from "../../services/auth";
@@ -68,4 +67,4 @@ const Home = () => {
     )
 }
 
-export default withRouter(Home);
+export default Home;

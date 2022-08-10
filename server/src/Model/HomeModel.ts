@@ -14,12 +14,12 @@ class HomeModel {
 
         const aniversariantes = await knex("membros")
             .whereRaw("MONTH(dataNascimento) = MONTH(now())")
-            .select("id", "nome", "dataNascimento", knex.raw("TIMESTAMPDIFF(YEAR, dataNascimento, NOW()) AS idade"));
+            .select("id", "nome", "dataNascimento", knex.raw("TIMESTAMPDIFF(YEAR, dataNascimento, CURDATE()) AS idade"));
 
         const casados = await knex("membros")
             .whereRaw("MONTH(dataCasamento) = MONTH(now())")
             .orderByRaw("DAY(dataCasamento) ASC")
-            .select("id", "nome", "dataCasamento", knex.raw("TIMESTAMPDIFF(YEAR, dataCasamento, NOW()) AS idade"));
+            .select("id", "nome", "dataCasamento", knex.raw("TIMESTAMPDIFF(YEAR, dataCasamento, CURDATE()) AS idade"));
 
         return {
             quantidadeMembros: membros[0].quantidade,

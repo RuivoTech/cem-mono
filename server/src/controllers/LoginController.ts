@@ -19,7 +19,6 @@ interface Usuario {
 class LoginController {
     async login(request: Request, response: Response) {
         const { email, senha } = request.body;
-        console.log(email, senha);
         const token = await loginModel.login(email, senha);
 
         return response.json(token);

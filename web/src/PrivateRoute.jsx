@@ -43,7 +43,7 @@ const PrivateRoute = ({ path, children, name }) => {
                 setUsuario(retorno.data);
             } else {
                 signOut();
-                navigate("/", {replace: true});
+                navigate("/", { replace: true });
             }
         }
 
@@ -62,7 +62,7 @@ const PrivateRoute = ({ path, children, name }) => {
         const existePermissao = usuario.permissoes.findIndex(permissao => `/${permissao.menuPermissao}` === path);
 
         if (existePermissao < 0) {
-            navigate("/dashboard", {replace: true});
+            navigate("/dashboard", { replace: true });
         }
     }
 
@@ -70,7 +70,7 @@ const PrivateRoute = ({ path, children, name }) => {
         setSidebarIsOpened(!sidebarIsOpened);
     }
 
-    if(!estaLogado) {
+    if (!estaLogado) {
         return <NotFound />;
     }
 
@@ -78,7 +78,9 @@ const PrivateRoute = ({ path, children, name }) => {
         <>
             <CustomMenu switchSidebar={handleSwitchSidebar} name={name} />
             <Sidebar sidebarIsOpened={sidebarIsOpened} switchSidebar={event => handleSwitchSidebar(event)} />
-            {children}
+            <div className="container-fluid">
+                {children}
+            </div>
         </>
     )
 }

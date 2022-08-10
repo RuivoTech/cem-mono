@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import packageJSON from "../../../package.json";
 import { Collapse, Divider, Drawer, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { AppRegistration, ArrowForward, AttachMoney, Copyright, ExpandLess, ExpandMore, PieChart, School } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import jwt from "jsonwebtoken";
-
-import api from "../../services/api";
-import { getSession } from "../../services/auth";
-
-import "./styles.css";
 
 const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
     const navigate = useNavigate();
@@ -20,35 +14,6 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
         teaching: false,
         settings: false
     })
-    const [usuario, setUsuario] = useState({
-        id: "",
-        nome: "",
-        email: "",
-        permissoes: [{
-            id: "",
-            menuPermissao: "",
-            grupoMenuPermissao: "",
-            chEsUsuario: "",
-            chEsMenuPermissao: "",
-        }]
-    });
-
-    useEffect(() => {
-        const fetchUsuario = async () => {
-            const session = getSession();
-            const token = jwt.decode(session.token);
-
-            let retorno = await api.get("/usuarios/" + token.id, {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-
-            setUsuario(retorno.data);
-        };
-
-        fetchUsuario();
-    }, []);
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);

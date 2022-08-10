@@ -7,10 +7,11 @@ import Utils from '../../componentes/Utils';
 import InfoBox from "../../componentes/InfoBox";
 import Tabela from "../../componentes/Tabela";
 import Coluna from "../../componentes/Coluna";
+import { Box, CircularProgress } from "@mui/material";
 
 const Home = () => {
     const [data, setData] = useState({});
-    const [carregando, setCarregando] = useState(true);
+    const [loading, setLoading] = useState(true);
     const mes = new Date().toLocaleString('pt-BR', { month: "long" })
 
     useEffect(() => {
@@ -23,11 +24,19 @@ const Home = () => {
             });
 
             setData(response.data);
-            setCarregando(false);
+            setLoading(false);
         };
         document.title = "Dashboard - Cadastro de Membros CEM";
         fetchHome();
     }, []);
+
+    if (loading) {
+        return (
+            <Box sx={{ display: 'flex', width: "100%", height: "calc(100vh - 65px)", justifyContent: "center", alignItems: "center" }}>
+                <CircularProgress />
+            </Box>
+        )
+    }
 
     return (
         <>
@@ -61,7 +70,6 @@ const Home = () => {
                         <Coluna titulo="Idade" campo="idade" tamanho={4} />
                     </Tabela>
                 </div>
-                {carregando && <Carregando />}
             </div>
         </>
     )

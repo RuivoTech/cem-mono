@@ -52,83 +52,81 @@ const App = () => {
 
 
     return (
-        <>
-            <AuthContext.Provider value={authContext}>
-                <HashRouter>
-                    <Routes>
-                        <Route
-                            path="/dashboard"
-                            element={
-                                <PrivateRoute name="Dashboard">
-                                    <Home />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/pessoas"
-                            element={
-                                <PrivateRoute name="Pessoas">
-                                    <CadastroPessoas />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/ministerios"
-                            element={
-                                <PrivateRoute name="Ministérios">
-                                    <CadastroMinisterio />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/eventos"
-                            element={
-                                <PrivateRoute name="Eventos">
-                                    <CadastroEvento />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/campanhas"
-                            element={
-                                <PrivateRoute name="Campanhas">
-                                    <DeliveryCampanha />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/pedidos"
-                            element={
-                                <PrivateRoute name="Pedidos">
-                                    <DeliveryPedido />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/perfil"
-                            element={
-                                <PrivateRoute name="Perfil">
-                                    <ConfiguracaoPerfil />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/usuarios"
-                            element={
-                                <PrivateRoute name="Usuários">
-                                    <ConfiguracaoUsuario />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route path="/relatorios/*" element={Relatorios} />
-                        <Route path="/recuperar" element={Recuperar} />
-                        <Route path="/inscricao" element={Inscricoes} />
-                        <Route index path="/" element={<Login />} />
-                        <Route path="*" element={NotFound} />
-                    </Routes>
-                </HashRouter>
-            </AuthContext.Provider>
-        </>
+        <AuthContext.Provider value={authContext}>
+            <HashRouter>
+                <Routes>
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <PrivateRoute name="Dashboard">
+                                <Home />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/pessoas"
+                        element={
+                            <PrivateRoute name="Pessoas">
+                                <CadastroPessoas />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/ministerios"
+                        element={
+                            <PrivateRoute name="Ministérios">
+                                <CadastroMinisterio />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/eventos"
+                        element={
+                            <PrivateRoute name="Eventos">
+                                <CadastroEvento />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/campanhas"
+                        element={
+                            <PrivateRoute name="Campanhas">
+                                <DeliveryCampanha />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/pedidos"
+                        element={
+                            <PrivateRoute name="Pedidos">
+                                <DeliveryPedido />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/perfil"
+                        element={
+                            <PrivateRoute name="Perfil">
+                                <ConfiguracaoPerfil />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/usuarios"
+                        element={
+                            <PrivateRoute name="Usuários">
+                                <ConfiguracaoUsuario />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="/relatorios/*" element={Relatorios} />
+                    <Route path="/recuperar" element={Recuperar} />
+                    <Route path="/inscricao" element={Inscricoes} />
+                    <Route index path="/" element={<Login />} />
+                    <Route path="*" element={NotFound} />
+                </Routes>
+            </HashRouter>
+        </AuthContext.Provider>
     )
 }
 

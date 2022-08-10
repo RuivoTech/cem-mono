@@ -7,7 +7,7 @@ import { getSession } from "../../../services/auth";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
-import FormModal from './FormModal';
+import FormModal from './FormModal/';
 import RelatorioModal from './RelatorioModal';
 import Utils from '../../../componentes/Utils';
 
@@ -183,10 +183,10 @@ const Pessoas = () => {
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? membrosPesquisa : membros}
-                            titulo="Membros"
+                            titulo="Pessoas"
                             mostrarBotaoNovo={true}
                             mostrarBotaoRelatorio={true}
-                            tituloBotao="Novo Membro"
+                            tituloBotao="Nova Pessoa"
                             handleShow={handleShow}
                             handleShowRelatorio={handleShowRelatorio}
                             limiteItems={20}
@@ -210,14 +210,7 @@ const Pessoas = () => {
                     </div>
                 </div>
             </div>
-            <FormModal
-                className="modal-lg"
-                data={membroSelecionado}
-                show={show}
-                handleShow={handleShow}
-                membros={membros}
-                ministerios={ministerios}
-            />
+            <FormModal show={show} handleShow={handleShow} membros={membros} ministerios={ministerios} />
 
             <RelatorioModal show={showRelatorio} handleShow={handleShowRelatorio} ministerios={ministerios} />
         </>

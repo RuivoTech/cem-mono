@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
 import packageJson from '../../../package.json';
 import { useNavigate } from "react-router-dom";
-import { Avatar, Box, Button, CssBaseline, Grid, Link, Paper, TextField, Typography } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import { Avatar, Box, Button, CircularProgress, Container, Link, TextField, Typography } from "@mui/material";
+import { Copyright, LockOutlined } from "@mui/icons-material";
 
 import { AuthContext } from "../../context";
-import agenda from "../../images/agenda.jpeg";
 import api from "../../services/api";
 
 const Login = () => {
+    const date = new Date();
+    const year = date.getFullYear();
     const navigate = useNavigate();
     const { signIn } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
@@ -38,7 +39,6 @@ const Login = () => {
                 setLoading(false);
                 return;
             }
-            console.log(response.data)
             signIn(response.data);
 
             setLoading(false);
@@ -52,98 +52,82 @@ const Login = () => {
     };
 
     return (
-        <Grid container component="main" style={{ height: '100vh' }}>
-            <CssBaseline />
-            <Grid
-                item
-                xs={false}
-                sm={4}
-                md={7}
-                style={{
-                    backgroundImage: `url(${agenda})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundColor: "#cccccc",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+        <Container maxWidth="xs">
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
                 }}
-            />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                <Box
-                    style={{
-                        margin: "4em 2em",
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: "center"
-                    }}
-                >
-                    <Avatar style={{ margin: "1em", bgcolor: 'purple' }}>
-                        <LockOutlined />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign In
-                    </Typography>
-                    <Box marginTop={1} component="form" onSubmit={handleLogin}>
-                        <TextField
-                            margin="normal"
-                            variant="outlined"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            onChange={event => setEmail(event.currentTarget.value)}
-                            error={emailError}
-                        />
-                        <TextField
-                            margin="normal"
-                            variant="outlined"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-passord"
-                            onChange={event => setPassword(event.currentTarget.value)}
-                            error={passwordError}
-                        />
+            >
+                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                    <LockOutlined />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
+                <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        onChange={event => setEmail(event.currentTarget.value)}
+                        value={email}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange={event => setPassword(event.currentTarget.value)}
+                        value={password}
+                    />
+                    {loading ?
+                        <CircularProgress />
+                        :
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
-                            style={{
-                                marginTop: "1em",
-                                marginBottom: "0.7em"
-                            }}
+                            sx={{ mt: 3, mb: 2 }}
                         >
                             Entrar
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Esqueceu a senha?
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
+                    }
                 </Box>
-                <Box
-                    style={{
-                        margin: "4em 2em",
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: "center"
-                    }}
-                >
-                    <Link href="https://github.com/RuivoTech" variant="body2">
-                        &copy; RuivoTech
-                    </Link>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "10em"
+                }}
+            >
+                <Box>
+                    Copyright <Copyright fontSize="small" /> {" "}
+                    <Link href="https://github.com/RuivoTech" color="inherit">
+                        RuivoTech
+                    </Link>{" "}
+                    {year}
                 </Box>
-            </Grid>
-        </Grid>
+
+                <Link href={`https://github.com/RuivoTech/tree/${packageJson.version}`} color="inherit">
+                    {packageJson.version}
+                </Link>
+            </Box>
+        </Container>
     );
 }
 

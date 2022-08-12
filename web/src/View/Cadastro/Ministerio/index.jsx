@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
@@ -6,7 +8,6 @@ import api from "../../../services/api";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import { getSession } from '../../../services/auth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Ministerios = () => {
     const [ministerios, setMinisterios] = useState([]);
@@ -108,7 +109,7 @@ const Ministerios = () => {
     return (
         <>
             <div className="wrapper-content row">
-                <InfoBox corFundo="primary" icone="user-circle-o" quantidade={quantidadeTotal} titulo="Total" />
+                <InfoBox corFundo="primary" icone="landmark" quantidade={quantidadeTotal} titulo="Total" />
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -116,14 +117,14 @@ const Ministerios = () => {
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                            <i className="fa fa-search color-gray"></i>
+                                            <FontAwesomeIcon icon={faSearch} />
                                         </span>
                                     </div>
                                     <input
                                         className="form-control"
                                         onChange={pesquisar}
                                         value={pesquisa}
-                                        placeholder="Pesquise por ministério"
+                                        placeholder="Pesquise por nome"
                                     />
                                 </div>
                             </div>

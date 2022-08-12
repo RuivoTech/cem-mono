@@ -128,6 +128,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 5}
                             onClick={(event) => handleListItemClick(event, 5)}
                             sx={{ pl: 6 }}
+                            id="receitas"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -138,6 +139,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 6}
                             onClick={(event) => handleListItemClick(event, 6)}
                             sx={{ pl: 6 }}
+                            id="despesas"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -163,6 +165,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 7}
                             onClick={(event) => handleListItemClick(event, 7)}
                             sx={{ pl: 6 }}
+                            id="cursos"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -173,6 +176,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 8}
                             onClick={(event) => handleListItemClick(event, 8)}
                             sx={{ pl: 6 }}
+                            id="classes"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -183,6 +187,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 9}
                             onClick={(event) => handleListItemClick(event, 9)}
                             sx={{ pl: 6 }}
+                            id="professores"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -193,6 +198,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 10}
                             onClick={(event) => handleListItemClick(event, 10)}
                             sx={{ pl: 6 }}
+                            id="alunos"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -203,6 +209,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 11}
                             onClick={(event) => handleListItemClick(event, 11)}
                             sx={{ pl: 6 }}
+                            id="aulas"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -227,6 +234,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 12}
                             onClick={(event) => handleListItemClick(event, 12)}
                             sx={{ pl: 6 }}
+                            id="usuarios"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
@@ -237,6 +245,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 13}
                             onClick={(event) => handleListItemClick(event, 13)}
                             sx={{ pl: 6 }}
+                            id="sistema"
                         >
                             <ListItemIcon>
                                 <ArrowForward />

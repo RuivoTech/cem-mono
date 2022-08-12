@@ -10,11 +10,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../../context';
+import { getThemeInUse } from '../../services/auth';
+import { Brightness4Rounded, Brightness7Rounded } from '@mui/icons-material';
+import { Tooltip } from '@mui/material';
 
 export default function CustomMenu({ switchSidebar, name }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
-  const { signOut } = React.useContext(AuthContext);
+  const { signOut, changeTheme } = React.useContext(AuthContext);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -25,6 +28,10 @@ export default function CustomMenu({ switchSidebar, name }) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleChangeTheme = () => {
+    changeTheme();
+  }
 
   const handleNavigateToPerfil = () => {
     navigate("/perfil");
@@ -82,6 +89,27 @@ export default function CustomMenu({ switchSidebar, name }) {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+            <Tooltip title={`Mudar o tema para ${getThemeInUse() === "dark" ? '"CLARO"' : '"ESCURO"'}`}>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleChangeTheme}
+                color="inherit"
+                sx={{
+                  mr: "3px"
+                }}
+              >
+                {
+                  getThemeInUse() === "dark" ?
+                    <Brightness7Rounded />
+                    :
+                    <Brightness4Rounded />
+                }
+              </IconButton>
+            </Tooltip>
             <IconButton
               size="large"
               edge="end"

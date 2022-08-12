@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import api from "../../../services/api";
 import { getSession } from "../../../services/auth";
@@ -145,14 +146,14 @@ const Evento = () => {
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                            <i className="fa fa-search color-gray"></i>
+                                            <FontAwesomeIcon icon={faSearch} />
                                         </span>
                                     </div>
                                     <input
                                         className="form-control"
                                         onChange={pesquisar}
                                         value={pesquisa}
-                                        placeholder="Pesquise por evento"
+                                        placeholder="Pesquise por nome"
                                     />
                                 </div>
                             </div>

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Button, Divider, Modal, Tab } from '@mui/material';
 import Perfil from './Perfil';
+import api from '../../../../services/api';
+import { getSession } from '../../../../services/auth';
 
 const style = {
 	position: 'absolute',
@@ -15,12 +17,38 @@ const style = {
 	p: 2
 };
 
-const FormModal = ({ membros, ministerios = [], show, handleShow }) => {
+const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) => {
 	const [tabStatus, setTabStatus] = useState('1');
+	const [membro, setMembro] = useState({});
+	const [filhos, setFilhos] = useState([]);
+	const session = getSession();
+
+	useEffect(() => {
+		const fetchMembro = async () => {
+			const response = idMembro > 0 ? await api.get("/membros/" + idMembro, {
+				headers: {
+					Authorization: `Bearer ${session.token}`
+				}
+			}) : { ministerios: [] };
+
+			setMembro(response.data);
+			setFilhos(response.data?.parentes.filhos);
+		}
+
+		fetchMembro();
+
+	}, [idMembro, session.token]);
 
 	const handleTabStatus = (newStatus) => {
 		setTabStatus(newStatus);
 	};
+
+	const handleChange = (field, value) => {
+		setMembro({
+			...membro,
+			[field]: value
+		})
+	}
 
 	return (
 		<Modal
@@ -38,15 +66,16 @@ const FormModal = ({ membros, ministerios = [], show, handleShow }) => {
 						</TabList>
 					</Box>
 					<TabPanel value='1'>
-						<Perfil membros={membros} />
+						<Perfil membros={membros} membro={membro} handleChange={(field, value) => handleChange(field, value)} />
 					</TabPanel>
 					<TabPanel value='2'>Contato</TabPanel>
 					<TabPanel value='3'>Endereço</TabPanel>
 					<TabPanel value='4'>Dados Igreja</TabPanel>
 				</TabContext>
 				<Divider />
-				<Box sx={{}} alignItems="flex-end" justifyContent="flex-end">
-					<Button variant='contained' color='success'>Salvar</Button>
+				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+					<Button variant='outlined' color="error" sx={{ m: "1em" }}>Cancelar</Button>
+					<Button variant='contained' color='success' sx={{ m: "1em" }}>Salvar</Button>
 				</Box>
 			</Box>
 		</Modal>

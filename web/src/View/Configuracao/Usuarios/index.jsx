@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import api from "../../../services/api";
 import Tabela from '../../../componentes/Tabela';
@@ -20,7 +20,6 @@ const Usuarios = () => {
     const [show, setShow] = useState(false);
     const [usuariosPesquisa, setUsuariosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -119,9 +118,9 @@ const Usuarios = () => {
 
             setUsuarios(items);
 
-            addToast("Usuário removido com sucesso!", { appearance: 'success' });
+            alert("Usuário removido com sucesso!", { appearance: 'success' });
         } else {
-            addToast("Não foi possível remover o usuário!", { appearance: 'error' });
+            alert("Não foi possível remover o usuário!", { appearance: 'error' });
         }
     }
 
@@ -174,7 +173,7 @@ const Usuarios = () => {
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                            <FontAwesomeIcon icon={["fas", "search"]} />
+                                            <FontAwesomeIcon icon={faSearch} />
                                         </span>
                                     </div>
                                     <input

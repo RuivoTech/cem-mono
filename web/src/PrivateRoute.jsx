@@ -14,6 +14,7 @@ const PrivateRoute = ({ path, children, name }) => {
     const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
     const navigate = useNavigate();
     const [estaLogado, setEstaLogado] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [usuario, setUsuario] = useState({
         id: "",
         nome: "",
@@ -41,6 +42,7 @@ const PrivateRoute = ({ path, children, name }) => {
                 });
 
                 setUsuario(retorno.data);
+                setLoading(!loading);
             } else {
                 signOut();
                 navigate("/", { replace: true });
@@ -48,13 +50,17 @@ const PrivateRoute = ({ path, children, name }) => {
         }
 
         fetchUser().then(_ => {
-            permissonExists();
+            if (!loading) {
+                permissonExists();
+            }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        permissonExists();
+        if (!loading) {
+            permissonExists();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [path])
 

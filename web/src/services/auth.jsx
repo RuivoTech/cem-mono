@@ -19,3 +19,21 @@ export const getSession = () => {
 
   return JSON.parse(session);
 }
+
+export const onChangeTheme = () => {
+  const themeInUse = getThemeInUse();
+  console.log("onChangeTheme", themeInUse);
+  themeInUse === "light" ? setThemeInUse("dark") : setThemeInUse("light");
+  return themeInUse === "light" ? "dark" : "light";
+}
+
+export const setThemeInUse = (theme) => {
+  console.log("setThemeInUse", theme)
+  localStorage.setItem("@SystemCEM:theme", theme);
+}
+
+export const getThemeInUse = () => {
+  const theme = localStorage.getItem("@SystemCEM:theme");
+
+  return theme;
+}

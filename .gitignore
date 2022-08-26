@@ -10,4 +10,3 @@ delivery/node_modules
 id_rsa
 backup_cem_oficial_2021-06-24.sql
 server/src/images
-web/yarn.lock

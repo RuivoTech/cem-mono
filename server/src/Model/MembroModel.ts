@@ -42,11 +42,13 @@ class MembroModel {
 
         const membrosFiltrados = await Promise.all(membros.map(async (membro) => {
             const contato = await contatoModel.findMembro(Number(membro.id));
+            const endereco = await enderecoModel.findMembro(Number(membro.id));
 
             return (
                 {
                     ...membro,
-                    contato
+                    contato,
+                    endereco
                 }
             )
         }));

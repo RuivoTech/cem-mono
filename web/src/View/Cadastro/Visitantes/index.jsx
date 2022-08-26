@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -18,7 +17,6 @@ const Visitantes = () => {
     const [pesquisa, setPesquisa] = useState("");
     const [show, setShow] = useState(false);
     const [showRelatorio, setShowRelatorio] = useState(false);
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -34,7 +32,7 @@ const Visitantes = () => {
         };
 
         fetchVisitante();
-    }, []);
+    }, [session.token]);
 
     useEffect(() => {
         const fetchVisitante = async () => {
@@ -50,7 +48,7 @@ const Visitantes = () => {
         if (!show) {
             fetchVisitante();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     const pesquisar = e => {
         let filteredSuggestions = visitantes.filter((suggestion) => {
@@ -82,9 +80,9 @@ const Visitantes = () => {
 
             setVisitantes(items);
 
-            addToast("Visitante removido com sucesso!", { appearance: 'success' });
+            alert("Visitante removido com sucesso!", { appearance: 'success' });
         } else {
-            addToast("Não foi possível remover o visitante!", { appearance: 'error' });
+            alert("Não foi possível remover o visitante!", { appearance: 'error' });
         }
     }
 

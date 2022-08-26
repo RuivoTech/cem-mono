@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
-import { useToasts } from 'react-toast-notifications';
 import Axios from "axios";
 
 import Visitante from "../../../Model/Visitante";
@@ -12,12 +11,10 @@ const FormModal = ({ data, show, handleShow, className }) => {
     const [visitante, setVisitante] = useState({});
     const [tabAtivo, setTabAtivo] = useState("perfil");
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         setVisitante(data);
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -66,10 +63,10 @@ const FormModal = ({ data, show, handleShow, className }) => {
         }
 
         if (!response.data.error) {
-            addToast("Visitante salvo com sucesso!", { appearance: "success" });
+            alert("Visitante salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);

@@ -1,19 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Box, Container } from '@mui/material';
 
 import api from "../../../services/api";
 import { getSession } from "../../../services/auth";
+import Utils from "../../../componentes/Utils";
 
 import InfoBox from '../../../componentes/InfoBox';
-import Tabela from '../../../componentes/Tabela';
-import Coluna from '../../../componentes/Coluna';
 import FormModal from './FormModal/';
 import RelatorioModal from './RelatorioModal';
-import Utils from '../../../componentes/Utils';
+import CustomTable from '../../../componentes/Table';
 
-const Pessoas = () => {
+const colums = {
+    title: "Membros",
+    fields: [
+        {
+            id: "options",
+            label: "Ações",
+            minWidth: 4,
+            align: "center"
+        },
+        {
+            id: "nome",
+            label: "Nome",
+            minWidth: 180
+        },
+        {
+            id: "contato.email",
+            label: "E-mail",
+            minWidth: 120
+        },
+        {
+            id: "endereco",
+            label: "Endereço",
+            minWidth: 180,
+            format: (row) => (
+                `${row.logradouro}, ${row.numero} - ${row.cidade}`
+            )
+        },
+        {
+            id: "contato.telefone",
+            label: "Telefone",
+            minWidth: 104,
+            format: (row) => Utils.mascaraTelefone(row)
+        },
+        {
+            id: "contato.celular",
+            label: "Celular",
+            minWidth: 104,
+            format: (row) => Utils.mascaraTelefone(row)
+        }
+    ]
+}
+
+const Membros = () => {
     const [membros, setMembros] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [membroSelecionado, setMembroSelecionado] = useState(0);
     const [membrosPesquisa, setMembrosPesquisa] = useState([]);
     const [ministerios, setMinisterios] = useState([]);
@@ -34,6 +75,7 @@ const Pessoas = () => {
             });
 
             setMinisterios(response.data);
+            setLoading(false);
         }
 
         const fetchMembros = async () => {
@@ -69,9 +111,11 @@ const Pessoas = () => {
             setQuantidadeNovos(response.data.quantidadeNovos);
             setMembros(response.data.membros);
             setMembrosPesquisa(response.data.membros);
+            setLoading(false);
         }
         if (!show) {
             fetchMembros();
+            setLoading(true);
         }
     }, [session.token, show]);
 
@@ -110,35 +154,6 @@ const Pessoas = () => {
         }
     }
 
-    const opcoes = (membro) => {
-        return (
-            <>
-                <button
-                    key={membro.id + "editar"}
-                    className="btn btn-primary btn-xs"
-                    onClick={() => {
-                        setMembroSelecionado(membro.id);
-                        setShow(true);
-                    }}
-                    title="Editar membro"
-                >
-                    <FontAwesomeIcon icon={["fas", "cog"]} />
-                </button>
-                {" "}
-                <button
-                    key={membro.id + "remover"}
-                    type="button"
-                    onClick={() => remover(membro.id)}
-                    value={membro.id}
-                    className="btn btn-danger btn-xs"
-                    title="Remover membro"
-                >
-                    <FontAwesomeIcon icon={["fas", "trash"]} />
-                </button>
-            </>
-        )
-    }
-
     const handleShow = event => {
         if (event?.key === "Escape") {
             return;
@@ -153,64 +168,44 @@ const Pessoas = () => {
     }
 
     return (
-        <>
-            <div className="wrapper-content row">
+        <Container
+            sx={{
+                width: "100vw",
+                minWidth: "98vw",
+                padding: 0,
+                margin: 0
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: {
+                        xs: "column",
+                        sm: "row",
+                        md: "row",
+                        lg: "row",
+                        xl: "row"
+                    },
+                    justifyContent: "flex-start"
+                }}
+            >
                 <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidadeAtivos} titulo="Ativos" />
                 <InfoBox corFundo="success" icone="check-circle" quantidade={quantidadeNovos} titulo="Novos" />
                 <InfoBox corFundo="danger" icone="heart" quantidade={quantidadeBatizados} titulo="Batizados" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
-                    <div className="row">
-                        <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <div className="form-group">
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon={faSearch} />
-                                        </span>
-                                    </div>
-                                    <input
-                                        className="form-control"
-                                        onChange={pesquisar}
-                                        value={pesquisa}
-                                        placeholder="Pesquise por nome"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div className="overflow-hidden align-items-center">
-                        <Tabela
-                            data={pesquisa ? membrosPesquisa : membros}
-                            titulo="Pessoas"
-                            mostrarBotaoNovo={true}
-                            mostrarBotaoRelatorio={true}
-                            tituloBotao="Nova Pessoa"
-                            handleShow={handleShow}
-                            handleShowRelatorio={handleShowRelatorio}
-                            limiteItems={20}
-                        >
-                            <Coluna campo="nome" titulo="Nome" tamanho="20" />
-                            <Coluna campo="contato.email" titulo="E-mail" tamanho="20" />
-                            <Coluna
-                                campo="contato.telefone"
-                                titulo="Telefone"
-                                tamanho="12"
-                                corpo={item => Utils.mascaraTelefone(item.contato.telefone)}
-                            />
-                            <Coluna
-                                campo="contato.celular"
-                                titulo="Celular"
-                                tamanho="12"
-                                corpo={item => Utils.mascaraTelefone(item.contato.celular)}
-                            />
-                            <Coluna titulo="Opções" corpo={(item) => opcoes(item)} tamanho="5" />
-                        </Tabela>
-                    </div>
-                </div>
-            </div>
+            </Box>
+            <CustomTable
+                data={membros}
+                colums={colums}
+                loading={loading}
+                showOptions
+                showHeaderButtons
+                deleteMember={(memberId) => remover(memberId)}
+                editMember={(memberId) => {
+                    setMembroSelecionado(memberId)
+                    setShow(true)
+                }}
+                openFormModal={(event) => handleShow(event)}
+            />
             <FormModal
                 show={show}
                 handleShow={handleShow}
@@ -220,8 +215,8 @@ const Pessoas = () => {
             />
 
             <RelatorioModal show={showRelatorio} handleShow={handleShowRelatorio} ministerios={ministerios} />
-        </>
+        </Container>
     )
 }
 
-export default Pessoas;
+export default Membros;

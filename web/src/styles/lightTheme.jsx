@@ -4,8 +4,11 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#CECECE",
-      paper: "#DADADA"
+      default: "#e6e6e6",
+      paper: "#FFFFFF"
+    },
+    secondary: {
+      main: "#2f4050"
     }
   }
 });

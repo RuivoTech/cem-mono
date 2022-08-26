@@ -2,38 +2,38 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./styles.css";
+import { Box } from "@mui/material";
 
 const InfoBox = ({ icone, titulo, quantidade, corFundo }) => {
-    const cor = {
+    const color = {
         success: {
-            color: "rgb(0, 255, 0)",
-            shadow: `rgba(0, 255, 0, 0.8)`
+            color: "rgb(40, 167, 69)",
+            shadow: `rgba(40, 167, 69, 0.8)`
         },
         danger: {
-            color: "rgb(255, 0, 0)",
-            shadow: `rgba(255, 0, 0, 0.8)`
+            color: "rgb(220, 53, 69)",
+            shadow: `rgba(220, 53, 69, 0.8)`
         },
         warning: {
-            color: "rgb(255, 255, 0)",
-            shadow: `rgba(255, 255, 0, 0.8)`
+            color: "rgb(255, 193, 7)",
+            shadow: `rgba(255, 193, 7, 0.8)`
         },
         primary: {
-            color: "rgb(0, 0, 255)",
-            shadow: `rgba(0, 0, 255, 0.8)`
+            color: "rgb(0, 123, 255)",
+            shadow: `rgba(0, 123, 255, 0.8)`
         },
         info: {
-            color: "rgb(0, 255, 255)",
-            shadow: `rgba(0, 255, 255, 0.8)`
+            color: "rgb(23, 162, 184)",
+            shadow: `rgba(23, 162, 184, 0.8)`
         }
     }
     return (
         <>
-            <div className="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+            <Box width="calc(100% - 22px)" margin="10px">
                 <div
-                    className={"info-box bg-" + corFundo + " hover-expand-effect"}
+                    className={"info-box hover-expand-effect"}
                     style={{
-                        border: `1px solid ${cor[corFundo].color}`,
-                        boxShadow: "2px 2px 5px 2px rgba(61, 61, 61, 0.8)"
+                        backgroundColor: color[corFundo].color
                     }}
                 >
                     <div className="icon h-100">
@@ -48,7 +48,7 @@ const InfoBox = ({ icone, titulo, quantidade, corFundo }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Box>
         </>
     )
 }

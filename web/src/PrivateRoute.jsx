@@ -9,7 +9,7 @@ import { AuthContext } from "./context";
 import api from "./services/api";
 import NotFound from "./View/NotFound";
 
-const PrivateRoute = ({ path, children, name }) => {
+const PrivateRoute = ({ path, children, name, group = "" }) => {
     const { signOut } = useContext(AuthContext);
     const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ const PrivateRoute = ({ path, children, name }) => {
 
     return (
         <>
-            <CustomMenu switchSidebar={handleSwitchSidebar} name={name} />
+            <CustomMenu switchSidebar={handleSwitchSidebar} name={group} />
             <Sidebar sidebarIsOpened={sidebarIsOpened} switchSidebar={event => handleSwitchSidebar(event)} />
             <div className="container-fluid">
                 {children}

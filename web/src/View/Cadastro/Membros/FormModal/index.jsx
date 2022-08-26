@@ -18,7 +18,6 @@ const style = {
 };
 
 const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) => {
-	const [tabStatus, setTabStatus] = useState('1');
 	const [membro, setMembro] = useState({});
 	const [filhos, setFilhos] = useState([]);
 	const session = getSession();
@@ -39,10 +38,6 @@ const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) =>
 
 	}, [idMembro, session.token]);
 
-	const handleTabStatus = (newStatus) => {
-		setTabStatus(newStatus);
-	};
-
 	const handleChange = (field, value) => {
 		setMembro({
 			...membro,
@@ -56,22 +51,49 @@ const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) =>
 			onClose={handleShow}
 		>
 			<Box sx={style}>
-				<TabContext value={tabStatus}>
+				<Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<TabList onChange={(_, value) => handleTabStatus(value)}>
-							<Tab label="Perfil" value="1" />
-							<Tab label="Contato" value="2" />
-							<Tab label="Endereço" value="3" />
-							<Tab label="Dados Igreja" value="4" />
-						</TabList>
-					</Box>
-					<TabPanel value='1'>
+						<Box
+							component="h3"
+							borderBottom="1px solid grey"
+						>
+							Perfil
+						</Box>
 						<Perfil membros={membros} membro={membro} handleChange={(field, value) => handleChange(field, value)} />
-					</TabPanel>
-					<TabPanel value='2'>Contato</TabPanel>
-					<TabPanel value='3'>Endereço</TabPanel>
-					<TabPanel value='4'>Dados Igreja</TabPanel>
-				</TabContext>
+					</Box>
+					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+						<Box
+							component="h3"
+							borderBottom="1px solid grey"
+						>
+							Contato
+						</Box>
+					</Box>
+					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+						<Box
+							component="h3"
+							borderBottom="1px solid grey"
+						>
+							Endereço
+						</Box>
+					</Box>
+					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+						<Box
+							component="h3"
+							borderBottom="1px solid grey"
+						>
+							Familia
+						</Box>
+					</Box>
+					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+						<Box
+							component="h3"
+							borderBottom="1px solid grey"
+						>
+							Dados Igreja
+						</Box>
+					</Box>
+				</Box>
 				<Divider />
 				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 					<Button variant='outlined' color="error" sx={{ m: "1em" }}>Cancelar</Button>

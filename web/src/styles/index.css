@@ -2,3 +2,6 @@ html, body {
   margin: 0 auto;
   display: initial;
 }
+.container-fluid {
+  padding: 0;
+}

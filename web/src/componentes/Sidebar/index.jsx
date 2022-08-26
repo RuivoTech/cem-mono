@@ -70,12 +70,23 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             selected={selectedIndex === 1}
                             onClick={(event) => handleListItemClick(event, 1)}
                             sx={{ pl: 6 }}
-                            id="pessoas"
+                            id="membros"
                         >
                             <ListItemIcon>
                                 <ArrowForward />
                             </ListItemIcon>
-                            <ListItemText primary="Pessoas" />
+                            <ListItemText primary="Membros" />
+                        </ListItemButton>
+                        <ListItemButton
+                            selected={selectedIndex === 1}
+                            onClick={(event) => handleListItemClick(event, 1)}
+                            sx={{ pl: 6 }}
+                            id="visitantes"
+                        >
+                            <ListItemIcon>
+                                <ArrowForward />
+                            </ListItemIcon>
+                            <ListItemText primary="Visitantes" />
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 2}

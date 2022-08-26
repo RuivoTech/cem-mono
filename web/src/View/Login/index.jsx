@@ -65,7 +65,7 @@ const Login = () => {
                     <LockOutlined />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Entrar
                 </Typography>
                 <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
                     <TextField
@@ -110,21 +110,22 @@ const Login = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "10em"
+                    alignItems: "flex-end",
+                    justifyContent: "flex-end",
+                    height: "10em",
+                    fontSize: "0.8rem"
                 }}
             >
                 <Box>
                     Copyright <Copyright fontSize="small" /> {" "}
-                    <Link href="https://github.com/RuivoTech" color="inherit">
+                    <Link href="https://github.com/RuivoTech" color="inherit" target="_blank">
                         RuivoTech
                     </Link>{" "}
                     {year}
                 </Box>
 
-                <Link href={`https://github.com/RuivoTech/tree/${packageJson.version}`} color="inherit">
-                    {packageJson.version}
+                <Link href={`https://github.com/RuivoTech/tree/${packageJson.version}`} color="inherit" target="_blank">
+                    V{packageJson.version}
                 </Link>
             </Box>
         </Container>

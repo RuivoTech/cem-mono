@@ -12,7 +12,7 @@ const Utils = {
                 dataConvertida = dia + '/' + mes;
                 break;
             case "DD/MM/YY":
-                dataConvertida = dia + '/' + mes + "/" + ano.substring(2, 4);
+                dataConvertida = dia + '/' + mes + "/" + ano.toString().substring(2, 4);
                 break;
             case "DD":
                 dataConvertida = dia;

@@ -16,7 +16,8 @@ import Inscricoes from "./View/Inscricoes";
 import ConfiguracaoPerfil from "./View/Configuracao/Perfil";
 import ConfiguracaoUsuario from "./View/Configuracao/Usuarios";
 
-import CadastroPessoas from "./View/Cadastro/Pessoas";
+import CadastroMembros from "./View/Cadastro/Membros";
+import CadastroVisitantes from "./View/Cadastro/Visitantes";
 import CadastroMinisterio from "./View/Cadastro/Ministerio";
 import CadastroEvento from "./View/Cadastro/Evento";
 
@@ -71,23 +72,31 @@ const App = () => {
                         <Route
                             path="/dashboard"
                             element={
-                                <PrivateRoute name="Dashboard">
+                                <PrivateRoute name="Dashboard" group="Dashboard">
                                     <Home />
                                 </PrivateRoute>
                             }
                         />
                         <Route
-                            path="/pessoas"
+                            path="/membros"
                             element={
-                                <PrivateRoute name="Pessoas">
-                                    <CadastroPessoas />
+                                <PrivateRoute name="Membros" group="Secretaria">
+                                    <CadastroMembros />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/visitantes"
+                            element={
+                                <PrivateRoute name="Visitantes" group="Secretaria">
+                                    <CadastroVisitantes />
                                 </PrivateRoute>
                             }
                         />
                         <Route
                             path="/ministerios"
                             element={
-                                <PrivateRoute name="Ministérios">
+                                <PrivateRoute name="Ministérios" group="Secretaria">
                                     <CadastroMinisterio />
                                 </PrivateRoute>
                             }
@@ -95,7 +104,7 @@ const App = () => {
                         <Route
                             path="/eventos"
                             element={
-                                <PrivateRoute name="Eventos">
+                                <PrivateRoute name="Eventos" group="Secretaria">
                                     <CadastroEvento />
                                 </PrivateRoute>
                             }
@@ -103,7 +112,7 @@ const App = () => {
                         <Route
                             path="/campanhas"
                             element={
-                                <PrivateRoute name="Campanhas">
+                                <PrivateRoute name="Campanhas" group="Secretaria">
                                     <DeliveryCampanha />
                                 </PrivateRoute>
                             }
@@ -111,7 +120,7 @@ const App = () => {
                         <Route
                             path="/pedidos"
                             element={
-                                <PrivateRoute name="Pedidos">
+                                <PrivateRoute name="Pedidos" group="Secretaria">
                                     <DeliveryPedido />
                                 </PrivateRoute>
                             }
@@ -127,7 +136,7 @@ const App = () => {
                         <Route
                             path="/usuarios"
                             element={
-                                <PrivateRoute name="Usuários">
+                                <PrivateRoute name="Usuários" group="Configurações">
                                     <ConfiguracaoUsuario />
                                 </PrivateRoute>
                             }

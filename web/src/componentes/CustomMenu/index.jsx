@@ -67,7 +67,7 @@ export default function CustomMenu({ switchSidebar, name }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ width: "100%" }}>
+      <AppBar position="static" sx={{ width: "100%" }} color="secondary">
         <Toolbar>
           <IconButton
             size="large"

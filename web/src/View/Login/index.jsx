@@ -17,6 +17,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [error, setError] = useState("");
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -25,28 +26,27 @@ const Login = () => {
 
         if (!email) {
             setEmailError(!emailError);
+            setLoading(false);
             return;
         }
 
         if (!password) {
             setPasswordError(!passwordError);
+            setLoading(false);
             return;
         }
 
-        try {
-            let response = await api.post("/login", { email, senha: password });
-            if (response.data.error) {
+        api.post("/login", { email, senha: password })
+            .then(response => {
+                signIn(response.data);
                 setLoading(false);
-                return;
-            }
-            signIn(response.data);
-
-            setLoading(false);
-
-            navigate("/dashboard");
-        } catch (error) {
-            console.log(error);
-        }
+                navigate("/dashboard");
+            })
+            .catch(error => {
+                setLoading(false);
+                if (error.response.status === 401)
+                    setError(error.response.data.message)
+            })
 
         return;
     };
@@ -92,9 +92,6 @@ const Login = () => {
                         onChange={event => setPassword(event.currentTarget.value)}
                         value={password}
                     />
-                    {loading ?
-                        <CircularProgress />
-                        :
                         <Button
                             type="submit"
                             fullWidth
@@ -103,7 +100,8 @@ const Login = () => {
                         >
                             Entrar
                         </Button>
-                    }
+                    {loading && <CircularProgress />}
+                    {error.length > 0 && <Typography component="h2" variant="h6" color="orangered">{error}</Typography>}
                 </Box>
             </Box>
             <Box

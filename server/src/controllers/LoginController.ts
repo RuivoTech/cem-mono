@@ -19,9 +19,22 @@ interface Usuario {
 class LoginController {
     async login(request: Request, response: Response) {
         const { email, senha } = request.body;
-        const token = await loginModel.login(email, senha);
+        loginModel.login(email, senha)
+            .then(result => {
+                return response.json(result)
+            })
+            .catch(error => {
+                console.log(error)
+                return response.status(401).json({ message: error.message });
+            })
 
-        return response.json(token);
+        /* try {
+            const token = await loginModel.login(email, senha);
+
+            return response.json(token);            
+        } catch (error) {
+            return response.status(401).json(error);
+        } */
     }
 
     async verificarToken(request: Request, response: Response, next: NextFunction) {

@@ -38,6 +38,8 @@ export default function CustomMenu({ switchSidebar, name }) {
     handleMenuClose();
   }
 
+  const handleNavigateToSettings = () => { }
+
   const handleLogOut = () => {
     signOut();
     navigate("/");
@@ -59,8 +61,13 @@ export default function CustomMenu({ switchSidebar, name }) {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      sx={{
+        marginTop: 4,
+        width: 280
+      }}
     >
       <MenuItem onClick={handleNavigateToPerfil}>Perfil</MenuItem>
+      <MenuItem onClick={handleNavigateToSettings}>Configurações</MenuItem>
       <MenuItem onClick={handleLogOut}>Sair</MenuItem>
     </Menu>
   );

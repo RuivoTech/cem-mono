@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Button, Divider, Modal, Tab } from '@mui/material';
+import { Box, Button, CircularProgress, Divider, Modal, Typography } from '@mui/material';
 import Perfil from './Perfil';
 import api from '../../../../services/api';
 import { getSession } from '../../../../services/auth';
@@ -17,49 +16,90 @@ const style = {
 	p: 2
 };
 
-const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) => {
-	const [membro, setMembro] = useState({});
+const FormModal = ({ membros, idMembro, show, handleShow }) => {
+	const [membro, setMembro] = useState({
+		nome: "",
+		sexo: "",
+		identidade: ""
+	});
 	const [filhos, setFilhos] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const session = getSession();
 
 	useEffect(() => {
-		const fetchMembro = async () => {
-			const response = idMembro > 0 ? await api.get("/membros/" + idMembro, {
-				headers: {
-					Authorization: `Bearer ${session.token}`
-				}
-			}) : { ministerios: [] };
-
-			setMembro(response.data);
-			setFilhos(response.data?.parentes.filhos);
+		if (idMembro === 0) {
+			setMembro({});
+			return;
+		} else {
+			setLoading(true);
+			fetchMembro(idMembro);
 		}
-
-		fetchMembro();
-
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [idMembro, session.token]);
 
+	const fetchMembro = ((id) => {
+		api.get("/membros/" + id)
+			.then(response => {
+				setMembro(response.data);
+				setFilhos(response.data?.parentes?.filhos);
+				setLoading(false);
+			})
+			.catch(error => {
+				setLoading(false);
+				console.log(error);
+			})
+
+	})
+
 	const handleChange = (field, value) => {
+		if (field === "membro") {
+			setMembro({ ...value })
+			return;
+		}
+
 		setMembro({
 			...membro,
 			[field]: value
-		})
+		});
+	}
+
+	const handleClick = (item) => {
+		if (typeof item !== undefined) {
+			setLoading(true);
+			fetchMembro(item);
+		}
 	}
 
 	return (
 		<Modal
 			open={show}
 			onClose={handleShow}
+			keepMounted 
 		>
+			{loading ?
+				<CircularProgress />
+				:
 			<Box sx={style}>
 				<Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Typography variant="h6" component="h2">
+								{membro?.id ? `#${membro?.id} - ${membro?.nome}` : "Novo membro"}
+							</Typography>
+						</Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box
 							component="h3"
 							borderBottom="1px solid grey"
 						>
 							Perfil
 						</Box>
-						<Perfil membros={membros} membro={membro} handleChange={(field, value) => handleChange(field, value)} />
+							<Perfil
+								membros={membros}
+								handleChange={(field, value) => handleChange(field, value)}
+								membro={membro}
+								handleClick={handleClick}
+								loading={loading}
+							/>
 					</Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box
@@ -100,6 +140,7 @@ const FormModal = ({ membros, ministerios, idMembro = [], show, handleShow }) =>
 					<Button variant='contained' color='success' sx={{ m: "1em" }}>Salvar</Button>
 				</Box>
 			</Box>
+			}
 		</Modal>
 	);
 }

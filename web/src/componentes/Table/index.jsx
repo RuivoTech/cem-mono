@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Paper, CircularProgress, TableContainer, Table, TableHead, Box, TableRow, TableCell, TableBody, TablePagination, Button, Divider } from '@mui/material';
 import Options from './Options';
 
@@ -104,7 +104,8 @@ function CustomTable({
                         return <Options
                           key={column.id}
                           deleteMember={deleteMember}
-                          editMember={editMember} id={row.id}
+                          editMember={editMember}
+                          id={row.id}
                         />
                       }
 

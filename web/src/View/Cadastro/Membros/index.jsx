@@ -54,70 +54,32 @@ const colums = {
 
 const Membros = () => {
     const [membros, setMembros] = useState([]);
+    const [quantidades, setQuantidades] = useState({
+        ativos: 0,
+        novos: 0,
+        batizados: 0
+    })
     const [loading, setLoading] = useState(true);
-    const [membroSelecionado, setMembroSelecionado] = useState(0);
-    const [membrosPesquisa, setMembrosPesquisa] = useState([]);
-    const [ministerios, setMinisterios] = useState([]);
-    const [quantidadeAtivos, setQuantidadeAtivos] = useState(0);
-    const [quantidadeNovos, setQuantidadeNovos] = useState(0);
-    const [quantidadeBatizados, setQuantidadeBatizados] = useState(0);
-    const [show, setShow] = useState(false);
-    const [showRelatorio, setShowRelatorio] = useState(false);
-    const [pesquisa, setPesquisa] = useState("");
+    const [showForm, setShowForm] = useState(false);
+    const [idMembro, setIdMembro] = useState(0);
     const session = getSession();
 
     useEffect(() => {
-        const fetchMinisterios = async () => {
-            const response = await api.get("/ministerios", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-
-            setMinisterios(response.data);
-            setLoading(false);
-        }
-
         const fetchMembros = async () => {
-            const response = await api.get("/membros", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-
-            setQuantidadeAtivos(response.data.quantidadeAtivos);
-            setQuantidadeBatizados(response.data.quantidadeBatizados);
-            setQuantidadeNovos(response.data.quantidadeNovos);
+            const response = await api.get("/membros");
             setMembros(response.data.membros);
-
-            await fetchMinisterios();
+            setQuantidades({
+                ativos: response.data.quantidadeAtivos,
+                novos: response.data.quantidadeNovos,
+                batizados: response.data.quantidadeBatizados
+            })
+            setLoading(false)
         }
 
         document.title = "Membros - Cadastro de membros CEM";
 
         fetchMembros();
     }, [session.token]);
-
-    useEffect(() => {
-        const fetchMembros = async () => {
-            const response = await api.get("/membros", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-
-            setQuantidadeAtivos(response.data.quantidadeAtivos);
-            setQuantidadeBatizados(response.data.quantidadeBatizados);
-            setQuantidadeNovos(response.data.quantidadeNovos);
-            setMembros(response.data.membros);
-            setMembrosPesquisa(response.data.membros);
-            setLoading(false);
-        }
-        if (!show) {
-            fetchMembros();
-            setLoading(true);
-        }
-    }, [session.token, show]);
 
     const pesquisar = e => {
         let filteredSuggestions = membros.filter((suggestion) => {
@@ -132,17 +94,10 @@ const Membros = () => {
                         .toLowerCase()
                 );
         });
-
-        setMembrosPesquisa(filteredSuggestions);
-        setPesquisa(e.target.value);
     }
 
     const remover = async (id) => {
-        const request = await api.delete("/membros/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const request = await api.delete("/membros/" + id);
 
         if (!request.data.error) {
             const items = membros.filter(item => item.id !== id);
@@ -154,17 +109,10 @@ const Membros = () => {
         }
     }
 
-    const handleShow = event => {
-        if (event?.key === "Escape") {
-            return;
-        }
+    const handleShowForm = (id) => {
+        setShowForm(!showForm);
 
-        setMembroSelecionado();
-        setShow(!show);
-    }
-
-    const handleShowRelatorio = () => {
-        setShowRelatorio(!showRelatorio);
+        setIdMembro(id);
     }
 
     return (
@@ -189,9 +137,9 @@ const Membros = () => {
                     justifyContent: "flex-start"
                 }}
             >
-                <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidadeAtivos} titulo="Ativos" />
-                <InfoBox corFundo="success" icone="check-circle" quantidade={quantidadeNovos} titulo="Novos" />
-                <InfoBox corFundo="danger" icone="heart" quantidade={quantidadeBatizados} titulo="Batizados" />
+                <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidades.ativos} titulo="Ativos" />
+                <InfoBox corFundo="success" icone="check-circle" quantidade={quantidades.novos} titulo="Novos" />
+                <InfoBox corFundo="danger" icone="heart" quantidade={quantidades.batizados} titulo="Batizados" />
             </Box>
             <CustomTable
                 data={membros}
@@ -200,21 +148,15 @@ const Membros = () => {
                 showOptions
                 showHeaderButtons
                 deleteMember={(memberId) => remover(memberId)}
-                editMember={(memberId) => {
-                    setMembroSelecionado(memberId)
-                    setShow(true)
-                }}
-                openFormModal={(event) => handleShow(event)}
+                editMember={(memberId) => { handleShowForm(memberId) }}
+                openFormModal={() => { handleShowForm(0) }}
             />
             <FormModal
-                show={show}
-                handleShow={handleShow}
+                show={showForm}
+                handleShow={handleShowForm}
                 membros={membros}
-                ministerios={ministerios}
-                idMembro={membroSelecionado}
+                idMembro={idMembro}
             />
-
-            <RelatorioModal show={showRelatorio} handleShow={handleShowRelatorio} ministerios={ministerios} />
         </Container>
     )
 }

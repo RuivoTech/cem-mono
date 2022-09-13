@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
-import packageJson from '../../../package.json';
-import { useNavigate } from "react-router-dom";
-import { Avatar, Box, Button, CircularProgress, Container, Link, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import { Avatar, Box, Container, Link, TextField, Typography } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Copyright, LockOutlined } from "@mui/icons-material";
+import packageJson from '../../../package.json';
 
-import { AuthContext } from "../../context";
-import api from "../../services/api";
+import { useAuth } from "../../context/auth";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const { Login } = useAuth();
     const date = new Date();
     const year = date.getFullYear();
-    const navigate = useNavigate();
-    const { signIn } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,36 +19,30 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState("");
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-
+    const handleLogin = async () => {
         setLoading(true);
 
         if (!email) {
-            setEmailError(!emailError);
+            setEmailError(true);
             setLoading(false);
             return;
+        } else {
+            setEmailError(false);
         }
 
         if (!password) {
-            setPasswordError(!passwordError);
+            setPasswordError(true);
             setLoading(false);
             return;
+        } else {
+            setPasswordError(false);
         }
 
-        api.post("/login", { email, senha: password })
-            .then(response => {
-                signIn(response.data);
-                setLoading(false);
-                navigate("/dashboard");
-            })
-            .catch(error => {
-                setLoading(false);
-                if (error.response.status === 401)
-                    setError(error.response.data.message)
-            })
+        const request = await Login(email, password);
 
-        return;
+        if (Boolean(request)) {
+            navigate("/dashboard");
+        }
     };
 
     return (
@@ -67,7 +61,7 @@ const Login = () => {
                 <Typography component="h1" variant="h5">
                     Entrar
                 </Typography>
-                <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+                <Box noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
                         required
@@ -79,6 +73,8 @@ const Login = () => {
                         autoFocus
                         onChange={event => setEmail(event.currentTarget.value)}
                         value={email}
+                        error={emailError}
+                        helperText={emailError ? "Por favor, informe o seu e-mail!" : null}
                     />
                     <TextField
                         margin="normal"
@@ -91,16 +87,19 @@ const Login = () => {
                         autoComplete="current-password"
                         onChange={event => setPassword(event.currentTarget.value)}
                         value={password}
+                        error={passwordError}
+                        helperText={passwordError ? "Por favor, informe a sua senha!" : null}
+                        onKeyDown={event => event.key === "Enter" ? handleLogin() : null}
                     />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Entrar
-                        </Button>
-                    {loading && <CircularProgress />}
+                    <LoadingButton
+                        onClick={handleLogin}
+                        loading={loading}
+                        variant="contained"
+                        fullWidth
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Entrar
+                    </LoadingButton>
                     {error.length > 0 && <Typography component="h2" variant="h6" color="orangered">{error}</Typography>}
                 </Box>
             </Box>
@@ -115,7 +114,7 @@ const Login = () => {
                 }}
             >
                 <Box>
-                    Copyright <Copyright fontSize="small" /> {" "}
+                    Copyright <Copyright sx={{ fontSize: 12 }} /> {" "}
                     <Link href="https://github.com/RuivoTech" color="inherit" target="_blank">
                         RuivoTech
                     </Link>{" "}

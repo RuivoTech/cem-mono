@@ -4,7 +4,7 @@ import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Evento from "../../../Model/Evento";
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className }) => {
     const [evento, setEvento] = useState({});

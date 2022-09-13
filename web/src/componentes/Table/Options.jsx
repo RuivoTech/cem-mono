@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import React from 'react';
 import { useState } from 'react';
 
-function Options({ deleteMember = () => { }, editMember = () => { }, id = 0 }) {
+function Options({ deleteMember = () => { }, editMember = () => { }, id = 0, minWidth = 40 }) {
   const [dialogOpened, setDialogOpened] = useState(false);
 
   function handleCloseDialog() {
@@ -18,13 +18,13 @@ function Options({ deleteMember = () => { }, editMember = () => { }, id = 0 }) {
 
   return (
     <>
-      <TableCell sx={{ minWidth: "40px", width: "40px" }}>
-        <Tooltip title="Editar membro">
+      <TableCell sx={{ minWidth: `${minWidth}px`, width: `${minWidth}px` }}>
+        <Tooltip title="Editar">
           <IconButton onClick={() => editMember(id)} size="small" color='primary'>
             <Edit />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Remover membro">
+        <Tooltip title="Remover">
           <IconButton onClick={() => setDialogOpened(true)} size='small' color='error'>
             <DeleteOutline />
           </IconButton>
@@ -36,10 +36,10 @@ function Options({ deleteMember = () => { }, editMember = () => { }, id = 0 }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Remover membro</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Remover</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Tem certeza que quer remover este membro?
+            Tem certeza que quer remover esta informação?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

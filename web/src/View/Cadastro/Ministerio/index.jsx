@@ -7,7 +7,7 @@ import Coluna from '../../../componentes/Coluna';
 import api from "../../../services/api";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
-import { getSession } from '../../../services/auth';
+import { getSession } from '../../../services/authStorage';
 
 const Ministerios = () => {
     const [ministerios, setMinisterios] = useState([]);

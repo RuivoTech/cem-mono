@@ -4,7 +4,7 @@ import { Modal, Button, ModalHeader, ModalBody, ModalFooter, Nav, NavItem, NavLi
 import Usuario from "../../../Model/Usuario";
 import api from "../../../services/api";
 import Autocomplete from "../../../componentes/Autocomplete";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className, membros, listaMenu }) => {
     const [usuario, setUsuario] = useState({});

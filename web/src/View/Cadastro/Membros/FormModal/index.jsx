@@ -1,45 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Divider, Modal, Typography } from '@mui/material';
-import Perfil from './Perfil';
+
+import Profile from './Profile';
 import api from '../../../../services/api';
-import { getSession } from '../../../../services/auth';
+import Membro from '../../../../Model/Membro';
+import Contact from './Contact';
+import Address from './Address';
+import Family from './Family';
 
 const style = {
 	position: 'absolute',
-	top: '50%',
+	top: '10px',
 	left: '50%',
-	transform: 'translate(-50%, -50%)',
+	transform: 'translate(-50%, 0%)',
 	width: "80%",
 	bgcolor: 'background.paper',
 	border: '2px solid #c7c7c7',
 	boxShadow: 24,
-	p: 2
+	padding: 2,
+	marginTop: 4
 };
 
 const FormModal = ({ membros, idMembro, show, handleShow }) => {
-	const [membro, setMembro] = useState({
-		nome: "",
-		sexo: "",
-		identidade: ""
-	});
+	const MembroModel = new Membro();
+	const [membro, setMembro] = useState(MembroModel);
 	const [filhos, setFilhos] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const session = getSession();
 
 	useEffect(() => {
-		if (idMembro === 0) {
-			setMembro({});
+		if (parseInt(idMembro) === 0) {
+			setMembro(MembroModel);
 			return;
 		} else {
 			setLoading(true);
 			fetchMembro(idMembro);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [idMembro, session.token]);
+	}, [idMembro]);
 
 	const fetchMembro = ((id) => {
 		api.get("/membros/" + id)
 			.then(response => {
+				if (response.data.message) {
+					setLoading(false);
+					setMembro(MembroModel)
+					return
+				}
 				setMembro(response.data);
 				setFilhos(response.data?.parentes?.filhos);
 				setLoading(false);
@@ -51,9 +57,22 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 
 	})
 
-	const handleChange = (field, value) => {
+	const handleChange = (field = "", value) => {
+		console.log(field, value);
+		const [item, subItem] = field.split(".");
 		if (field === "membro") {
 			setMembro({ ...value })
+			return;
+		}
+		console.log(item, subItem)
+		if (Boolean(subItem)) {
+			setMembro({
+				...membro,
+				[item]: {
+					...membro[item],
+					[subItem]: value
+				}
+			})
 			return;
 		}
 
@@ -64,9 +83,11 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 	}
 
 	const handleClick = (item) => {
-		if (typeof item !== undefined) {
+		if (item !== null) {
 			setLoading(true);
-			fetchMembro(item);
+			fetchMembro(item.id);
+		} else {
+			setMembro(MembroModel);
 		}
 	}
 
@@ -75,6 +96,7 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 			open={show}
 			onClose={handleShow}
 			keepMounted 
+			sx={{ overflowY: "auto" }}
 		>
 			{loading ?
 				<CircularProgress />
@@ -93,9 +115,9 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 						>
 							Perfil
 						</Box>
-							<Perfil
+							<Profile
 								membros={membros}
-								handleChange={(field, value) => handleChange(field, value)}
+								handleChange={handleChange}
 								membro={membro}
 								handleClick={handleClick}
 								loading={loading}
@@ -108,6 +130,7 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 						>
 							Contato
 						</Box>
+							<Contact membro={membro} handleChange={handleChange} />
 					</Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box
@@ -116,14 +139,16 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 						>
 							Endereço
 						</Box>
+							<Address membro={membro} handleChange={handleChange} />
 					</Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box
 							component="h3"
 							borderBottom="1px solid grey"
 						>
-							Familia
+								Família
 						</Box>
+							<Family membro={membro} filhos={filhos} membros={membros} handleChange={handleChange} />
 					</Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box

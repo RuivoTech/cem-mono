@@ -5,7 +5,7 @@ import Axios from "axios";
 import Visitante from "../../../Model/Visitante";
 import Utils from "../../../componentes/Utils";
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className }) => {
     const [visitante, setVisitante] = useState({});

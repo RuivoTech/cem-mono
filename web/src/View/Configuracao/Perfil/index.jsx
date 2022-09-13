@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
 import api from "../.././../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import { AuthContext } from "../../../context";
 
 const Perfil = () => {

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
 import Utils from '../../../componentes/Utils';
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 

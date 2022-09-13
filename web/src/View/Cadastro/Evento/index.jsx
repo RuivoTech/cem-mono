@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
@@ -37,16 +36,11 @@ const Evento = () => {
     const [show, setShow] = useState(false);
     const [eventosPesquisa, setEventosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
-    const session = getSession();
 
     useEffect(() => {
         const fetchEventos = async () => {
             document.title = "Eventos - Cadastro de membros CEM";
-            let request = await api.get("/eventos", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            let request = await api.get("/eventos");
 
             setEventos(request.data);
             setQuantidadeTotal(request.data.length);
@@ -55,18 +49,14 @@ const Evento = () => {
         if (!show) {
             fetchEventos();
         }
-    }, [session.token, setQuantidadeTotal, show]);
+    }, [setQuantidadeTotal, show]);
 
     const eventoAtivo = (evento) => {
         return evento.status ? "Ativo" : "Inativo";
     }
 
     const remover = async (id) => {
-        const respose = await api.delete("/eventos/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const respose = await api.delete("/eventos/" + id);
 
         if (!respose.data.error) {
             const items = eventos.filter(item => item.id !== id);

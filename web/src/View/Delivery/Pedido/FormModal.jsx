@@ -9,7 +9,7 @@ import Tabela from "../../../componentes/Tabela";
 import Pedido from "../../../Model/Pedido";
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import Coluna from "../../../componentes/Coluna";
 
 const FormModal = ({ data, show, handleShow, className, campaign }) => {

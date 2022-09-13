@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
 import Ministerio from "../../../Model/Ministerio";
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className }) => {
     const [ministerio, setMinisterio] = useState({});

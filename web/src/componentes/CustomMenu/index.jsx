@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,15 +9,16 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../../context';
-import { getThemeInUse } from '../../services/auth';
 import { Brightness4Rounded, Brightness7Rounded } from '@mui/icons-material';
 import { Tooltip } from '@mui/material';
 
+import { getThemeInUse, onChangeTheme } from '../../services/authStorage';
+import { useAuth } from '../../context/auth';
+
 export default function CustomMenu({ switchSidebar, name }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const { signOut, changeTheme } = React.useContext(AuthContext);
+  const { Logout, toggleTheme } = useAuth();
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -30,7 +31,7 @@ export default function CustomMenu({ switchSidebar, name }) {
   };
 
   const handleChangeTheme = () => {
-    changeTheme();
+    toggleTheme();
   }
 
   const handleNavigateToPerfil = () => {
@@ -41,7 +42,7 @@ export default function CustomMenu({ switchSidebar, name }) {
   const handleNavigateToSettings = () => { }
 
   const handleLogOut = () => {
-    signOut();
+    Logout();
     navigate("/");
   }
 

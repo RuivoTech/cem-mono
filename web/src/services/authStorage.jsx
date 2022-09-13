@@ -11,7 +11,7 @@ export const onSignOut = () => {
 export const isSignedIn = () => {
   const token = sessionStorage.getItem(TOKEN_KEY);
 
-  return token !== null ? true : false;
+  return Boolean(token);
 };
 
 export const getSession = () => {
@@ -22,13 +22,11 @@ export const getSession = () => {
 
 export const onChangeTheme = () => {
   const themeInUse = getThemeInUse();
-  console.log("onChangeTheme", themeInUse);
   themeInUse === "light" ? setThemeInUse("dark") : setThemeInUse("light");
   return themeInUse === "light" ? "dark" : "light";
 }
 
 export const setThemeInUse = (theme) => {
-  console.log("setThemeInUse", theme)
   localStorage.setItem("@SystemCEM:theme", theme);
 }
 

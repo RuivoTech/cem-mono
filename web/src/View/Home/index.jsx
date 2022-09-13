@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../../services/api";
-import { getSession } from "../../services/auth";
 import InfoBox from "../../componentes/InfoBox";
 import CustomTable from "../../componentes/Table";
 import Utils from "../../componentes/Utils";
 import { Box, Container } from "@mui/material";
+import { useAuth } from "../../context/auth";
 
 const mes = new Date().toLocaleString('pt-BR', { month: "long" });
 
@@ -54,24 +54,24 @@ const columsWedding = {
 }
 
 const Home = () => {
+    const { user } = useAuth();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchHome = async () => {
-            const token = getSession();
-            let response = await api.get("/home", {
-                headers: {
-                    Authorization: `Bearer ${token.token}`
-                }
-            });
-
-            setData(response.data);
-            setLoading(false);
-        };
         document.title = "Dashboard - Cadastro de Membros CEM";
-        fetchHome();
     }, []);
+
+    useEffect(() => {
+        fetchHome();
+    }, [user])
+
+    const fetchHome = async () => {
+        let response = await api.get("/home");
+
+        setData(response.data);
+        setLoading(false);
+    };
 
     return (
         <Container

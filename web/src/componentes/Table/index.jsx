@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Paper, CircularProgress, TableContainer, Table, TableHead, Box, TableRow, TableCell, TableBody, TablePagination, Button, Divider } from '@mui/material';
 import Options from './Options';
 
 function CustomTable({
   data = [],
   colums = {},
-  loading = true,
+  loading = false,
   showOptions = false,
   showHeaderButtons = false,
   deleteMember,
@@ -106,6 +106,7 @@ function CustomTable({
                           deleteMember={deleteMember}
                           editMember={editMember}
                           id={row.id}
+                          minWidth={column.minWidth}
                         />
                       }
 

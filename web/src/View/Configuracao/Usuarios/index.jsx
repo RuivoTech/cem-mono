@@ -7,7 +7,7 @@ import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import FormModal from './FormModal';
 import InfoBox from '../../../componentes/InfoBox';
-import { getSession } from '../../../services/auth';
+import { getSession } from '../../../services/authStorage';
 
 const Usuarios = () => {
     const [usuarios, setUsuarios] = useState([]);

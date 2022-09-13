@@ -7,7 +7,7 @@ import RelatorioModal from "./RelatorioModal";
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import InfoBox from '../../../componentes/InfoBox';
-import { getSession } from '../../../services/auth';
+import { getSession } from '../../../services/authStorage';
 
 const Visitantes = () => {
     const [visitantes, setVisitantes] = useState([]);

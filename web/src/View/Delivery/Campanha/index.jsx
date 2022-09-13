@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';

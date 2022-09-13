@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Box, Container } from '@mui/material';
 
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
 import Utils from "../../../componentes/Utils";
 
 import InfoBox from '../../../componentes/InfoBox';
 import FormModal from './FormModal/';
 import RelatorioModal from './RelatorioModal';
 import CustomTable from '../../../componentes/Table';
+import { useAuth } from '../../../context/auth';
 
 const colums = {
     title: "Membros",
@@ -16,18 +16,18 @@ const colums = {
         {
             id: "options",
             label: "Ações",
-            minWidth: 4,
+            minWidth: 80,
             align: "center"
         },
         {
             id: "nome",
             label: "Nome",
-            minWidth: 180
+            minWidth: 160
         },
         {
             id: "contato.email",
             label: "E-mail",
-            minWidth: 120
+            minWidth: 100
         },
         {
             id: "endereco",
@@ -53,6 +53,7 @@ const colums = {
 }
 
 const Membros = () => {
+    const { user } = useAuth();
     const [membros, setMembros] = useState([]);
     const [quantidades, setQuantidades] = useState({
         ativos: 0,
@@ -62,7 +63,6 @@ const Membros = () => {
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [idMembro, setIdMembro] = useState(0);
-    const session = getSession();
 
     useEffect(() => {
         const fetchMembros = async () => {
@@ -79,7 +79,7 @@ const Membros = () => {
         document.title = "Membros - Cadastro de membros CEM";
 
         fetchMembros();
-    }, [session.token]);
+    }, [user]);
 
     const pesquisar = e => {
         let filteredSuggestions = membros.filter((suggestion) => {

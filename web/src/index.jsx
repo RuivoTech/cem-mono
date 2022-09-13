@@ -5,7 +5,11 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 
 import "./styles/index.css";
+import { AuthProvider } from './context/auth';
 
 library.add(fas)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <AuthProvider>
+    <App />
+  </AuthProvider>, document.getElementById('root'));

@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 import api, { URL_BASE } from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 import imageBackground from "../../../images/no-image.png";
 import Utils from "../../../componentes/Utils";

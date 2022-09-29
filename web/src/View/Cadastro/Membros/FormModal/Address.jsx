@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, InputAdornment, TextField } from '@mui/material';
+import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import Axios from 'axios';
 import { Place } from '@mui/icons-material';
 
 const Address = ({ membro, handleChange }) => {
-  const { endereco } = membro;
+  const endereco = membro?.endereco;
   const [address, setAddress] = useState({})
 
   useEffect(() => {
@@ -36,11 +36,11 @@ const Address = ({ membro, handleChange }) => {
 
   return (
     <Box>
+      <Box display="flex" justifyContent="flex-start" alignItems="center">
       <TextField
         label="CEP"
         value={address.zipCode}
-        onChange={(event) => handleChange("endereco.cep", event.target.value)}
-        onBlur={() => fetchAddress()}
+          onChange={(event) => handleChange("endereco.cep", event.target.value)}
         sx={{ margin: 1 }}
         InputProps={{
           startAdornment: (
@@ -50,6 +50,8 @@ const Address = ({ membro, handleChange }) => {
           ),
         }}
       />
+        <Button variant='outlined' color='primary' size='large' onClick={() => fetchAddress()}>Buscar</Button>
+      </Box>
       <Box display="flex" justifyContent="space-between">
         <TextField
           InputLabelProps={{
@@ -61,6 +63,8 @@ const Address = ({ membro, handleChange }) => {
           onChange={(event) => handleChange("endereco.logradouro", event.target.value)}
           sx={{ margin: 1 }}
         />
+      </Box>
+      <Box display="flex" justifyContent="flex-start">
         <TextField
           label="Número"
           value={address.number}
@@ -72,6 +76,7 @@ const Address = ({ membro, handleChange }) => {
           value={address.complement}
           onChange={(event) => handleChange("endereco.complemento", event.target.value)}
           sx={{ margin: 1 }}
+          fullWidth
         />
       </Box>
       <Box display="flex" justifyContent="flex-start">

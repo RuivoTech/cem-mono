@@ -25,7 +25,7 @@ const Contact = ({ membro, handleChange }) => {
       <TextField
         fullWidth
         label="E-mail"
-        value={contact.email}
+        value={contact.email ? contact.email : ""}
         onChange={(event) => handleChange("contato.email", event.target.value)}
         sx={{ margin: 1, width: "calc(100% - 16px)" }}
       />
@@ -33,7 +33,7 @@ const Contact = ({ membro, handleChange }) => {
         <TextField
           fullWidth
           label="Celular"
-          value={contact.celular}
+          value={contact.celular ? contact.celular : ""}
           onChange={(event) => handleChange("contato.celular", event.target.value)}
           onBlur={(event) => handleMask("contato.celular", event.target.value)}
           sx={{ margin: 1 }}
@@ -41,7 +41,7 @@ const Contact = ({ membro, handleChange }) => {
         <TextField
           fullWidth
           label="Telefone"
-          value={contact.telefone}
+          value={contact.telefone ? contact.telefone : ""}
           onChange={(event) => handleChange("contato.telefone", event.target.value)}
           onBlur={(event) => handleMask("contato.telefone", event.target.value)}
           sx={{ margin: 1 }}

@@ -6,41 +6,52 @@ const Profile = ({ membros = [], handleChange, handleClick, membro }) => {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    setProfile({
-      id: membro.id,
-      nome: membro.nome,
-      sexo: membro.sexo,
-      ativo: membro.ativo,
-      dataCadastro: membro.dataCadastro,
-      dataCasamento: membro.dataCasamento,
-      dataNascimento: membro.dataNascimento,
-      estadoCivil: membro.estadoCivil,
-      identidade: membro.identidade,
-      profissao: membro.profissao
-    })
+    if (membro?.id) {
+      setProfile({
+        id: membro.id,
+        nome: membro.nome,
+        sexo: membro.sexo,
+        ativo: membro.ativo,
+        dataCadastro: membro.dataCadastro,
+        dataCasamento: membro.dataCasamento,
+        dataNascimento: membro.dataNascimento,
+        estadoCivil: membro.estadoCivil,
+        identidade: membro.identidade,
+        profissao: membro.profissao
+      })
+    }
   }, [membro])
 
   return (
     <Box>
+      <Box display="flex" justifyContent="space-between">
       <Autocomplete
         fullWidth
         freeSolo
-        getOptionLabel={option => option.nome}
-        options={membros}
-        value={membro}
+          options={membros.map((membro) => membro.nome)}
+          value={membro?.nome}
         onChange={(event, newValue) => handleClick(newValue)}
-        inputValue={profile?.nome}
+          inputValue={profile?.nome ? profile?.nome : ""}
         onInputChange={(event, newInputValue) => handleChange("nome", newInputValue)}
-        renderInput={params => <TextField label="Nome" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
+          renderInput={params => <TextField label="Nome" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
       />
+        <DesktopDatePicker
+          label="Data de nascimento"
+          inputFormat='DD/MM/YYYY'
+          disableFuture
+          value={profile.dataNascimento ? profile?.dataNascimento : null}
+          onChange={value => handleChange("dataNascimento", value)}
+          renderInput={(params) => <TextField sx={{ margin: 1 }} {...params} />}
+        />
+      </Box>
       <Box display="flex" justifyContent="flex-start">
-        <FormControl sx={{ margin: 1, minWidth: 150 }}>
+        <FormControl sx={{ margin: 1, minWidth: 150 }} fullWidth>
           <InputLabel id="label-sexo">Sexo</InputLabel>
           <Select
             displayEmpty
             labelId='label-sexo'
             id="select-sexo"
-            value={parseInt(profile?.sexo)}
+            value={profile?.sexo ? parseInt(profile?.sexo) : 0}
             label="Sexo"
             onChange={(event) => handleChange("sexo", event.target.value)}
           >
@@ -49,21 +60,13 @@ const Profile = ({ membros = [], handleChange, handleClick, membro }) => {
             <MenuItem value={2}>Mulher</MenuItem>
           </Select>
         </FormControl>
-        <DesktopDatePicker
-          label="Data de nascimento"
-          inputFormat='DD/MM/YYYY'
-          disableFuture
-          value={profile.dataNascimento}
-          onChange={value => handleChange("dataNascimento", value)}
-          renderInput={(params) => <TextField sx={{ margin: 1 }} {...params} />}
-        />
-        <FormControl sx={{ margin: 1, minWidth: 150 }}>
+        <FormControl sx={{ margin: 1, minWidth: 150 }} fullWidth>
           <InputLabel id="label-estadoCivil">Estado Civil</InputLabel>
           <Select
             displayEmpty
             labelId='label-estadoCivil'
             id="select-estadoCivil"
-            value={parseInt(profile?.estadoCivil)}
+            value={profile?.estadoCivil ? parseInt(profile?.estadoCivil) : 0}
             label="Estado Civil"
             onChange={(event) => handleChange("estadoCivil", event.target.value)}
           >
@@ -79,15 +82,17 @@ const Profile = ({ membros = [], handleChange, handleClick, membro }) => {
       <Box display="flex" justifyContent="flex-start">
         <TextField
           label="Identidade"
-          value={profile.identidade}
+          value={profile.identidade ? profile.identidade : ""}
           onChange={(event) => handleChange("identidade", event.target.value)}
           sx={{ margin: 1 }}
+          fullWidth
         />
         <TextField
           label="Profissão"
-          value={profile.profissao}
+          value={profile.profissao ? profile.profissao : ""}
           onChange={(event) => handleChange("profissao", event.target.value)}
           sx={{ margin: 1 }}
+          fullWidth
         />
       </Box>
     </Box>

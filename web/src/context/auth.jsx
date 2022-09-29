@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const themeInUse = getThemeInUse();
-    console.log(themeInUse)
+
     setTheme(themeInUse);
     const session = getSession();
     if (Boolean(session)) {

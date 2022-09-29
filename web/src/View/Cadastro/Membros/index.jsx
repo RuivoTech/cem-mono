@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, TextField } from '@mui/material';
 
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
@@ -55,6 +55,7 @@ const colums = {
 const Membros = () => {
     const { user } = useAuth();
     const [membros, setMembros] = useState([]);
+    const [filteredData, setFilteredData] = useState(null);
     const [quantidades, setQuantidades] = useState({
         ativos: 0,
         novos: 0,
@@ -81,19 +82,21 @@ const Membros = () => {
         fetchMembros();
     }, [user]);
 
-    const pesquisar = e => {
+    const searchData = event => {
         let filteredSuggestions = membros.filter((suggestion) => {
             return suggestion.nome
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .toLowerCase()
                 .includes(
-                    e.currentTarget.value
+                    event.currentTarget.value
                         .normalize('NFD')
                         .replace(/[\u0300-\u036f]/g, '')
                         .toLowerCase()
                 );
         });
+
+        setFilteredData(filteredSuggestions);
     }
 
     const remover = async (id) => {
@@ -112,7 +115,7 @@ const Membros = () => {
     const handleShowForm = (id) => {
         setShowForm(!showForm);
 
-        setIdMembro(id);
+        setIdMembro(id > 0 ? id : 0);
     }
 
     return (
@@ -141,8 +144,14 @@ const Membros = () => {
                 <InfoBox corFundo="success" icone="check-circle" quantidade={quantidades.novos} titulo="Novos" />
                 <InfoBox corFundo="danger" icone="heart" quantidade={quantidades.batizados} titulo="Batizados" />
             </Box>
+            <TextField
+                onChange={event => searchData(event)}
+                label="Pesquisar membros pelo nome"
+                sx={{ marginLeft: 2, width: "50%" }}
+                variant="filled"
+            />
             <CustomTable
-                data={membros}
+                data={filteredData ? filteredData : membros}
                 colums={colums}
                 loading={loading}
                 showOptions

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, TextField } from '@mui/material';
+import { Autocomplete, Box, TextField } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import CustomTable from '../../../../componentes/Table';
 
@@ -30,68 +30,103 @@ const colums = {
   ]
 }
 
-const Family = ({ membro, filhos, membros, handleChange }) => {
-  const [family, setFamily] = useState({})
+const Family = ({ membro, membros = [], handleChange }) => {
+  const [spouse, setSpouse] = useState(null);
+  const [dad, setDad] = useState(null);
+  const [mother, setMother] = useState(null);
 
   useEffect(() => {
-    setFamily({
-      spouseID: membro.parentes.chEsConjuge,
-      spouse: membro.parentes.nomeConjuge,
-      weddingDate: membro.dataCasamento,
-      motherId: membro.parentes.chEsMae,
-      mother: membro.parentes.nomeMae,
-      dadID: membro.parentes.chEsPai,
-      dad: membro.parentes.nomePai,
-      children: membro.parentes.filhos
-    })
-  }, [membro])
+    if (membro?.id) {
+      const newSpouse = membros.filter(member => member.id === membro?.parentes.chEsConjuge);
+      setSpouse(newSpouse[0]);
+      const newDad = membros.filter(member => member.id === membro?.parentes.chEsPai);
+      setDad(newDad[0]);
+      const newMother = membros.filter(member => member.id === membro?.parentes.chEsMae);
+      setMother(newMother[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function handleClick(field, value) {
+    switch (field) {
+      case "spouse":
+        setSpouse(value)
+        break;
+      case "dad":
+        setDad(value);
+        break;
+      case "mother":
+        setMother(value);
+        break;
+      default:
+        break;
+    }
+  }
+
+  function handleClickChild(child) {
+
+  }
 
   return (
     <Box>
       <Box display="flex" justifyContent="space-between">
-        <TextField
+        <Autocomplete
+          disabled={membro?.estadoCivil !== 2}
           fullWidth
-          label="Cônjuge"
-          value={family.spouse}
-          onChange={(event) => handleChange("parentes.nomeConjuge", event.target.value)}
-          sx={{ margin: 1, width: "calc(100% - 16px)" }}
+          freeSolo
+          getOptionLabel={membro => membro.nome}
+          options={membros}
+          value={spouse}
+          onChange={(_, newValue) => handleClick("spouse", newValue)}
+          inputValue={membro?.parentes?.nomeConjuge ? membro?.parentes?.nomeConjuge : ""}
+          onInputChange={(_, newInputValue) => handleChange("parentes.nomeConjuge", newInputValue)}
+          renderInput={params => <TextField label="Conjuge" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
         />
         <DesktopDatePicker
+          disabled={membro?.estadoCivil !== 2}
           label="Data de casamento"
           inputFormat='DD/MM/YYYY'
-          disableFuture
-          value={family.weddingDate}
+          value={membro?.dataCasamento ? membro?.dataCasamento : null}
           onChange={value => handleChange("dataCasamento", value)}
           renderInput={(params) => <TextField sx={{ margin: 1 }} {...params} />}
         />
       </Box>
       <Box display="flex" justifyContent="space-between">
-        <TextField
+        <Autocomplete
           fullWidth
-          label="Pai"
-          value={family.dad}
-          onChange={(event) => handleChange("parentes.pai", event.target.value)}
-          sx={{ margin: 1, width: "calc(100% - 16px)" }}
+          freeSolo
+          getOptionLabel={membro => membro.nome}
+          options={membros}
+          value={dad}
+          onChange={(_, newValue) => handleClick("dad", newValue)}
+          inputValue={membro?.parentes?.nomePai ? membro?.parentes?.nomePai : ""}
+          onInputChange={(_, newInputValue) => handleChange("parentes.nomePai", newInputValue)}
+          renderInput={params => <TextField label="Pai" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
         />
-        <TextField
+        <Autocomplete
           fullWidth
-          label="Mãe"
-          value={family.mother}
-          onChange={(event) => handleChange("parentes.mae", event.target.value)}
-          sx={{ margin: 1, width: "calc(100% - 16px)" }}
+          freeSolo
+          getOptionLabel={membro => membro.nome}
+          options={membros}
+          value={mother}
+          onChange={(_, newValue) => handleClick("mother", newValue)}
+          inputValue={membro?.parentes?.nomeMae ? membro?.parentes?.nomeMae : ""}
+          onInputChange={(_, newInputValue) => handleChange("parentes.nomeMae", newInputValue)}
+          renderInput={params => <TextField label="Mãe" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
         />
       </Box>
       <Box display="flex" justifyContent="space-between">
-        <TextField
-          label="Filho(a)"
-          value={family.mother}
-          onChange={(event) => handleChange("parentes.mae", event.target.value)}
-          sx={{ margin: 1, width: "calc(50% - 16px)" }}
+        <Autocomplete
+          fullWidth
+          freeSolo
+          options={membros.map((membro) => membro.nome)}
+          onChange={(_, newValue) => handleClickChild(newValue)}
+          renderInput={params => <TextField label="Filho(a)" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
         />
       </Box>
       <Box>
         <CustomTable
-          data={family.children}
+          data={membro?.parentes?.filhos}
           colums={colums}
         />
       </Box>

@@ -8,28 +8,14 @@ import Contact from './Contact';
 import Address from './Address';
 import Family from './Family';
 
-const style = {
-	position: 'absolute',
-	top: '10px',
-	left: '50%',
-	transform: 'translate(-50%, 0%)',
-	width: "80%",
-	bgcolor: 'background.paper',
-	border: '2px solid #c7c7c7',
-	boxShadow: 24,
-	padding: 2,
-	marginTop: 4
-};
-
 const FormModal = ({ membros, idMembro, show, handleShow }) => {
 	const MembroModel = new Membro();
-	const [membro, setMembro] = useState(MembroModel);
-	const [filhos, setFilhos] = useState([]);
+	const [membro, setMembro] = useState(null);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		if (parseInt(idMembro) === 0) {
-			setMembro(MembroModel);
+			setMembro(null);
 			return;
 		} else {
 			setLoading(true);
@@ -47,7 +33,6 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 					return
 				}
 				setMembro(response.data);
-				setFilhos(response.data?.parentes?.filhos);
 				setLoading(false);
 			})
 			.catch(error => {
@@ -58,13 +43,12 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 	})
 
 	const handleChange = (field = "", value) => {
-		console.log(field, value);
 		const [item, subItem] = field.split(".");
 		if (field === "membro") {
 			setMembro({ ...value })
 			return;
 		}
-		console.log(item, subItem)
+
 		if (Boolean(subItem)) {
 			setMembro({
 				...membro,
@@ -95,13 +79,26 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 		<Modal
 			open={show}
 			onClose={handleShow}
-			keepMounted 
 			sx={{ overflowY: "auto" }}
 		>
 			{loading ?
 				<CircularProgress />
 				:
-			<Box sx={style}>
+				<Box sx={{
+					position: 'absolute',
+					top: '10px',
+					left: '50%',
+					transform: 'translate(-50%, 0%)',
+					width: {
+						xs: "80%",
+						md: "60%"
+					},
+					bgcolor: 'background.paper',
+					border: '2px solid #c7c7c7',
+					boxShadow: 24,
+					padding: 2,
+					marginTop: 4
+				}}>
 				<Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 							<Typography variant="h6" component="h2">
@@ -148,7 +145,7 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 						>
 								Família
 						</Box>
-							<Family membro={membro} filhos={filhos} membros={membros} handleChange={handleChange} />
+							<Family membro={membro} membros={membros} handleChange={handleChange} />
 					</Box>
 					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 						<Box

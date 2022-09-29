@@ -15,7 +15,10 @@ class FamiliaModel {
                 chEsMembro,
                 chEsConjuge: parentes?.chEsConjuge,
                 chEsPai: parentes?.chEsPai,
-                chEsMae: parentes?.chEsMae
+                chEsMae: parentes?.chEsMae,
+                nomeConjuge: parentes.nomeConjuge,
+                noemPai: parentes.nomePai,
+                nomeMae: parentes.nomeMae
             }
 
             await knex("familia").delete().where("chEsMembro", chEsMembro);
@@ -39,17 +42,17 @@ class FamiliaModel {
     async update(parentes: Parentes, chEsMembro: Number) {
         try {
             const familiaAtualizar = {
-                chEsMembro,
                 chEsConjuge: parentes?.chEsConjuge,
                 chEsPai: parentes?.chEsPai,
-                chEsMae: parentes?.chEsMae
+                chEsMae: parentes?.chEsMae,
+                nomeConjuge: parentes.nomeConjuge,
+                noemPai: parentes.nomePai,
+                nomeMae: parentes.nomeMae
             }
 
-            const query = knex("familia")
+            await knex("familia")
                 .where("chEsMembro", chEsMembro)
-                .update(familiaAtualizar).toQuery();
-            console.log(query);
-
+                .update(familiaAtualizar)
 
             const filhos = await filhosModel.create(parentes.filhos, chEsMembro);
 
@@ -65,12 +68,8 @@ class FamiliaModel {
     }
 
     async findMembro(id: Number) {
-        const familia: Familia = await knex<Familia>("familia")
-            .leftJoin("membros as conjuge", "conjuge.id", "familia.chEsConjuge")
-            .leftJoin("membros as pai", "pai.id", "familia.chEsPai")
-            .leftJoin("membros as mae", "mae.id", "familia.chEsMae")
-            .where("familia.chEsMembro", id)
-            .select("familia.*", "conjuge.nome as nomeConjuge", "pai.nome as nomePai", "mae.nome as nomeMae")
+        const familia = await knex<Familia>("familia")
+            .where("familia.chEsMembro", "=", id.toString())
             .first();
 
         const filhos: Filhos[] = await knex<Filhos[]>("filhos AS f")

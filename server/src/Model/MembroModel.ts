@@ -8,6 +8,8 @@ import MinisterioMembroModel from "./MinisterioMembroModel";
 import Utils from "../Utils";
 
 import { Membro } from "../interfaces/MembroInterface";
+import { Contato } from "../interfaces/ContatoInterface";
+import { Endereco } from "../interfaces/EnderecoInterface";
 
 const contatoModel = new ContatoModel();
 const enderecoModel = new EnderecoModel();
@@ -95,8 +97,8 @@ class MembroModel {
             const insertedId = await knex("membros").insert(membroIserir);
             const membroId = insertedId[0];
 
-            const novoContato = await contatoModel.create(membro.contato);
-            const novoEndereco = await enderecoModel.create(membro.endereco);
+            const novoContato = await contatoModel.create(membro.contato) as Contato;
+            const novoEndereco = await enderecoModel.create(membro.endereco) as Endereco;
             const novaIgreja = await igrejaModel.create(membro.igreja, membroId);
             const novaFamilia = await familiaController.save(membro.parentes, membroId);
             const novoMinisterios = await ministerioMembroModel.create(membro.ministerios, membro.id);

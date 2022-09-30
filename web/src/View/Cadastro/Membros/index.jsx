@@ -1,62 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Container, TextField } from '@mui/material';
+import { Box, Container } from '@mui/material';
+import { Badge, Edit } from '@mui/icons-material';
 
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
-
 import InfoBox from '../../../componentes/InfoBox';
 import FormModal from './FormModal/';
 import RelatorioModal from './RelatorioModal';
 import CustomTable from '../../../componentes/Table';
 import { useAuth } from '../../../context/auth';
-
-const colums = {
-    title: "Membros",
-    fields: [
-        {
-            id: "options",
-            label: "Ações",
-            minWidth: 80,
-            align: "center"
-        },
-        {
-            id: "nome",
-            label: "Nome",
-            minWidth: 160
-        },
-        {
-            id: "contato.email",
-            label: "E-mail",
-            minWidth: 100
-        },
-        {
-            id: "endereco",
-            label: "Endereço",
-            minWidth: 180,
-            format: (row) => (
-                `${row.logradouro}, ${row.numero} - ${row.cidade}`
-            )
-        },
-        {
-            id: "contato.telefone",
-            label: "Telefone",
-            minWidth: 104,
-            format: (row) => Utils.mascaraTelefone(row)
-        },
-        {
-            id: "contato.celular",
-            label: "Celular",
-            minWidth: 104,
-            format: (row) => Utils.mascaraTelefone(row)
-        }
-    ]
-}
+import { GridActionsCellItem } from '@mui/x-data-grid';
 
 const Membros = () => {
+    const colums = [
+        {
+            field: "actions",
+            headerName: "Ações",
+            type: "actions",
+            getActions: ({ id }) => {
+                return [
+                    <GridActionsCellItem
+                        icon={<Badge />}
+                        label="Ver"
+                        onClick={() => { }}
+                    />,
+                    <GridActionsCellItem
+                        icon={<Edit />}
+                        label="Editar"
+                        onClick={() => handleShowForm(id)}
+                    />,
+                ];
+            }
+        },
+        {
+            field: "nome",
+            headerName: "Nome",
+            width: 240,
+        },
+        {
+            field: "contato.email",
+            headerName: "E-mail",
+            width: 240,
+            renderCell: ({ row }) => row.contato.email,
+        },
+        {
+            field: "endereco",
+            headerName: "Endereço",
+            width: 240,
+            valueGetter: ({ value }) => `${value.logradouro}, ${value.numero} - ${value.cidade}`,
+        },
+        {
+            field: "contato.celular",
+            headerName: "Celular",
+            width: 120,
+            renderCell: ({ row }) => Utils.mascaraTelefone(row.contato.celular),
+        },
+        {
+            field: "contato.telefone",
+            headerName: "Telefone",
+            width: 120,
+            renderCell: ({ row }) => Utils.mascaraTelefone(row.contato.telefone),
+        }
+    ]
     const { user } = useAuth();
     const [membros, setMembros] = useState([]);
-    const [filteredData, setFilteredData] = useState(null);
     const [quantidades, setQuantidades] = useState({
+        total: 0,
         ativos: 0,
         novos: 0,
         batizados: 0
@@ -70,6 +79,7 @@ const Membros = () => {
             const response = await api.get("/membros");
             setMembros(response.data.membros);
             setQuantidades({
+                total: response.data.quantidadeTotal,
                 ativos: response.data.quantidadeAtivos,
                 novos: response.data.quantidadeNovos,
                 batizados: response.data.quantidadeBatizados
@@ -81,23 +91,6 @@ const Membros = () => {
 
         fetchMembros();
     }, [user]);
-
-    const searchData = event => {
-        let filteredSuggestions = membros.filter((suggestion) => {
-            return suggestion.nome
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase()
-                .includes(
-                    event.currentTarget.value
-                        .normalize('NFD')
-                        .replace(/[\u0300-\u036f]/g, '')
-                        .toLowerCase()
-                );
-        });
-
-        setFilteredData(filteredSuggestions);
-    }
 
     const remover = async (id) => {
         const request = await api.delete("/membros/" + id);
@@ -140,25 +133,22 @@ const Membros = () => {
                     justifyContent: "flex-start"
                 }}
             >
+                <InfoBox corFundo="info" icone="user-circle" quantidade={quantidades.total} titulo="Total" />
                 <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidades.ativos} titulo="Ativos" />
                 <InfoBox corFundo="success" icone="check-circle" quantidade={quantidades.novos} titulo="Novos" />
                 <InfoBox corFundo="danger" icone="heart" quantidade={quantidades.batizados} titulo="Batizados" />
             </Box>
-            <TextField
-                onChange={event => searchData(event)}
-                label="Pesquisar membros pelo nome"
-                sx={{ marginLeft: 2, width: "50%" }}
-                variant="filled"
-            />
             <CustomTable
-                data={filteredData ? filteredData : membros}
-                colums={colums}
+                title="Membros"
+                data={membros}
+                columns={colums}
                 loading={loading}
                 showOptions
                 showHeaderButtons
                 deleteMember={(memberId) => remover(memberId)}
                 editMember={(memberId) => { handleShowForm(memberId) }}
                 openFormModal={() => { handleShowForm(0) }}
+                rowHeight={48}
             />
             <FormModal
                 show={showForm}

@@ -11,7 +11,7 @@ import Axios from "axios";
 import { getSession } from "../../../services/auth";
 
 const FormModal = ({ data, show, handleShow, className, membros, ministerios }) => {
-    const [membro, setMembro] = useState({ ministerios: [] });
+    const [membro, setMembro] = useState(new Membro());
     const [idMembro, setIdMembro] = useState(0);
     const [tabAtivo, setTabAtivo] = useState("perfil");
     const [carregando, setCarregando] = useState(false);
@@ -63,7 +63,7 @@ const FormModal = ({ data, show, handleShow, className, membros, ministerios }) 
         novoMembro.estadoCivil = membro?.estadoCivil;
         novoMembro.chEsConjuge = membro?.chEsConjuge;
         novoMembro.conjuge = membro?.conjuge;
-        novoMembro.ativo = 0;
+        novoMembro.ativo = membro?.ativo ? membro?.ativo : true;
 
         novoMembro.contato.id = membro?.contato?.id;
         novoMembro.contato.email = membro?.contato?.email;

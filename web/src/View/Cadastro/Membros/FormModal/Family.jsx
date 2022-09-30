@@ -1,36 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, Box, TextField } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
+import { GridActionsCellItem } from '@mui/x-data-grid';
+import { Badge, Edit } from '@mui/icons-material';
+
 import CustomTable from '../../../../componentes/Table';
 
-const colums = {
-  title: "Filhos",
-  fields: [
+const Family = ({ membro, membros = [], handleChange }) => {
+  const columns = [
     {
-      id: "nome",
-      label: "Nome",
-      minWidth: 180
+      field: "nome",
+      headerName: "Nome",
+      width: 180
     },
     {
-      id: "email",
-      label: "E-mail",
-      minWidth: 180
+      field: "email",
+      headerName: "E-mail",
+      width: 180
     },
     {
-      id: "celular",
-      label: "Celular",
-      minWidth: 120
+      field: "celular",
+      headerName: "Celular",
+      width: 120
     },
     {
-      id: "options",
-      label: "Ações",
-      minWidth: 80,
-      align: "center"
+      field: "actions",
+        headerName: "Ações",
+        type: "actions",
+        getActions: ({ id }) => {
+            return [
+                <GridActionsCellItem
+                    icon={<Badge />}
+                    label="Save"
+                    onClick={() => { }}
+                />,
+                <GridActionsCellItem
+                    icon={<Edit />}
+                    label="Save"
+                    onClick={() => { }}
+                />,
+            ];
+        }
     }
   ]
-}
-
-const Family = ({ membro, membros = [], handleChange }) => {
   const [spouse, setSpouse] = useState(null);
   const [dad, setDad] = useState(null);
   const [mother, setMother] = useState(null);
@@ -126,8 +138,10 @@ const Family = ({ membro, membros = [], handleChange }) => {
       </Box>
       <Box>
         <CustomTable
+        title="Filhos"
           data={membro?.parentes?.filhos}
-          colums={colums}
+          columns={columns}
+          getRowId={(row) => row.chEsFilho}
         />
       </Box>
     </Box>

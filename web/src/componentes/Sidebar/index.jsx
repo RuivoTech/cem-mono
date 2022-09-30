@@ -79,7 +79,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 1}
-                            onClick={(event) => handleListItemClick(event, 1)}
+                            onClick={(event) => handleListItemClick(event, 2)}
                             sx={{ pl: 6 }}
                             id="visitantes"
                         >
@@ -90,7 +90,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 2}
-                            onClick={(event) => handleListItemClick(event, 2)}
+                            onClick={(event) => handleListItemClick(event, 3)}
                             sx={{ pl: 6 }}
                             id="ministerios"
                         >
@@ -101,7 +101,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 3}
-                            onClick={(event) => handleListItemClick(event, 3)}
+                            onClick={(event) => handleListItemClick(event, 4)}
                             sx={{ pl: 6 }}
                             id="eventos"
                         >
@@ -112,7 +112,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 4}
-                            onClick={(event) => handleListItemClick(event, 4)}
+                            onClick={(event) => handleListItemClick(event, 5)}
                             sx={{ pl: 6 }}
                             id="inscricoes"
                         >
@@ -137,7 +137,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             selected={selectedIndex === 5}
-                            onClick={(event) => handleListItemClick(event, 5)}
+                            onClick={(event) => handleListItemClick(event, 6)}
                             sx={{ pl: 6 }}
                             id="receitas"
                         >
@@ -148,7 +148,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 6}
-                            onClick={(event) => handleListItemClick(event, 6)}
+                            onClick={(event) => handleListItemClick(event, 7)}
                             sx={{ pl: 6 }}
                             id="despesas"
                         >
@@ -174,7 +174,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             selected={selectedIndex === 7}
-                            onClick={(event) => handleListItemClick(event, 7)}
+                            onClick={(event) => handleListItemClick(event, 8)}
                             sx={{ pl: 6 }}
                             id="cursos"
                         >
@@ -185,7 +185,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 8}
-                            onClick={(event) => handleListItemClick(event, 8)}
+                            onClick={(event) => handleListItemClick(event, 9)}
                             sx={{ pl: 6 }}
                             id="classes"
                         >
@@ -196,7 +196,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 9}
-                            onClick={(event) => handleListItemClick(event, 9)}
+                            onClick={(event) => handleListItemClick(event, 10)}
                             sx={{ pl: 6 }}
                             id="professores"
                         >
@@ -207,7 +207,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 10}
-                            onClick={(event) => handleListItemClick(event, 10)}
+                            onClick={(event) => handleListItemClick(event, 11)}
                             sx={{ pl: 6 }}
                             id="alunos"
                         >
@@ -218,7 +218,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 11}
-                            onClick={(event) => handleListItemClick(event, 11)}
+                            onClick={(event) => handleListItemClick(event, 12)}
                             sx={{ pl: 6 }}
                             id="aulas"
                         >
@@ -243,7 +243,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                     <List component="div" disablePadding>
                         <ListItemButton
                             selected={selectedIndex === 12}
-                            onClick={(event) => handleListItemClick(event, 12)}
+                            onClick={(event) => handleListItemClick(event, 13)}
                             sx={{ pl: 6 }}
                             id="usuarios"
                         >
@@ -254,7 +254,7 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 13}
-                            onClick={(event) => handleListItemClick(event, 13)}
+                            onClick={(event) => handleListItemClick(event, 14)}
                             sx={{ pl: 6 }}
                             id="sistema"
                         >

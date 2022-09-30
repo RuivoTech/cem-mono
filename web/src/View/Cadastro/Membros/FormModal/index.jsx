@@ -10,12 +10,12 @@ import Family from './Family';
 
 const FormModal = ({ membros, idMembro, show, handleShow }) => {
 	const MembroModel = new Membro();
-	const [membro, setMembro] = useState(null);
+	const [membro, setMembro] = useState(new Membro());
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		if (parseInt(idMembro) === 0) {
-			setMembro(null);
+			setMembro(new Membro());
 			return;
 		} else {
 			setLoading(true);
@@ -29,7 +29,7 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 			.then(response => {
 				if (response.data.message) {
 					setLoading(false);
-					setMembro(MembroModel)
+					setMembro(new Membro())
 					return
 				}
 				setMembro(response.data);

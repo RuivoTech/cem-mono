@@ -7,53 +7,46 @@ import Utils from "../../componentes/Utils";
 import { Box, Container } from "@mui/material";
 import { useAuth } from "../../context/auth";
 
-const mes = new Date().toLocaleString('pt-BR', { month: "long" });
+const columsBirthDay = [
+        {
+        field: "dataNascimento",
+        headerName: "Dia",
+        width: 24,
+        valueGetter: ({ value }) => Utils.converteData(value, "DD"),
+        },
+        {
+            field: "nome",
+            headerName: "Nome",
+            minWidth: 320,
+        },
+        {
+            field: "idade",
+            headerName: "Idade",
+            width: 24
+        },
+]
 
-const columsBirthDay = {
-    title: `Aniversariantes de ${mes}`,
-    fields: [
+const columsWedding = [
         {
-            id: "dataNascimento",
-            label: "Dia",
-            minWidth: 10,
-            format: (value) => Utils.converteData(value, "DD")
+        field: "dataCasamento",
+        headerName: "Dia",
+        width: 24,
+        valueGetter: ({ value }) => Utils.converteData(value, "DD"),
         },
         {
-            id: "nome",
-            label: "Nome",
-            minWidth: 224
+            field: "nome",
+            headerName: "Nome",
+            minWidth: 306,
         },
         {
-            id: "idade",
-            label: "Idade",
-            minWidth: 15
+            field: "idade",
+            headerName: "Tempo",
+            width: 64,
         },
-    ]
-}
-
-const columsWedding = {
-    title: `Casados em ${mes}`,
-    fields: [
-        {
-            id: "dataCasamento",
-            label: "Dia",
-            minWidth: 10,
-            format: (value) => Utils.converteData(value, "DD")
-        },
-        {
-            id: "nome",
-            label: "Nome",
-            minWidth: 224
-        },
-        {
-            id: "idade",
-            label: "Tempo",
-            minWidth: 16
-        },
-    ]
-}
+]
 
 const Home = () => {
+    const mes = new Date().toLocaleString('pt-BR', { month: "long" });
     const { user } = useAuth();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -125,16 +118,18 @@ const Home = () => {
                 }}
             >
                 <CustomTable
+                    title={`Aniversáriantes de ${mes}`}
                     data={data.aniversariantes}
-                    colums={columsBirthDay}
+                    columns={columsBirthDay}
                     loading={loading}
                     sx={{
                         width: "calc(100% - 34px)"
                     }}
                 />
                 <CustomTable
+                    title={`Casados de ${mes}`}
                     data={data.casados}
-                    colums={columsWedding}
+                    columns={columsWedding}
                     loading={loading}
                     sx={{
                         width: "calc(100% - 34px)"

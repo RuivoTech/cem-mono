@@ -27,20 +27,24 @@ const utils = new Utils();
 class MembroModel {
     async index() {
         const membros = await knex<Membro>('membros')
-            .orderBy("nome").select("id", "nome")
+            .where("ativo", "=", true)
+            .orderBy("nome").select("id", "nome");
+
+        const total = await knex("membros")
+            .count("id AS quantidade")
 
         const ativos = await knex("membros")
-            .where("ativo", "=", true)
-            .count("id as quantidade").first() || { quantidade: 0 };
+            .whereRaw("ativo=TRUE")
+            .count("id as quantidade");
 
         const novos = await knex("membros")
-            .where("dataCadastro", ">=", "DATE_SUB(CURDATE(),INTERVAL 30 DAY)")
-            .count("id AS quantidade").first() || { quantidade: 0 };
+            .whereRaw("dataCadastro >= (CURRENT_DATE - INTERVAL 30 DAY)")
+            .count("id AS quantidade");
 
         const batizados = await knex("membros AS m")
             .join("igreja AS i", "i.chEsMembro", "m.id")
             .where("i.ehBatizado", "=", "true")
-            .count("m.id as quantidade").first() || { quantidade: 0 };
+            .count("m.id as quantidade");
 
         const membrosFiltrados = await Promise.all(membros.map(async (membro) => {
             const contato = await contatoModel.findMembro(Number(membro.id));
@@ -56,9 +60,10 @@ class MembroModel {
         }));
 
         return {
-            quantidadeAtivos: ativos.quantidade,
-            quantidadeBatizados: batizados.quantidade,
-            quantidadeNovos: novos.quantidade,
+            quantidadeTotal: total[0].quantidade,
+            quantidadeAtivos: ativos[0].quantidade,
+            quantidadeBatizados: batizados[0].quantidade,
+            quantidadeNovos: novos[0].quantidade,
             membros: membrosFiltrados
         };
     }

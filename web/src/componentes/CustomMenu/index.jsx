@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { Brightness4Rounded, Brightness7Rounded } from '@mui/icons-material';
 import { Tooltip } from '@mui/material';
 
-import { getThemeInUse, onChangeTheme } from '../../services/authStorage';
+import { getThemeInUse } from '../../services/authStorage';
 import { useAuth } from '../../context/auth';
 
 export default function CustomMenu({ switchSidebar, name }) {

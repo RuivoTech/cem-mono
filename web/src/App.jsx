@@ -14,20 +14,6 @@ import { useAuth } from "./context/auth";
 const App = () => {
     const { theme } = useAuth();
 
-    const getFaviconEl = () => {
-        return document.getElementById("favicon");
-    }
-
-    useEffect(() => {
-        document.title = "Cadastro de membros CEM";
-
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            const favicon = getFaviconEl();
-
-            favicon.href = "logo_cem_branca.png";
-        }
-    }, []);
-
     return (
         <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">

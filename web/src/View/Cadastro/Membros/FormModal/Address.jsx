@@ -39,7 +39,7 @@ const Address = ({ membro, handleChange }) => {
       <Box display="flex" justifyContent="flex-start" alignItems="center">
       <TextField
         label="CEP"
-        value={address.zipCode}
+          value={address.zipCode ? address.zipCode : ""}
           onChange={(event) => handleChange("endereco.cep", event.target.value)}
         sx={{ margin: 1 }}
         InputProps={{
@@ -59,7 +59,7 @@ const Address = ({ membro, handleChange }) => {
           }}
           fullWidth
           label="Endereço"
-          value={address.place}
+          value={address.place ? address.place : ""}
           onChange={(event) => handleChange("endereco.logradouro", event.target.value)}
           sx={{ margin: 1 }}
         />
@@ -67,13 +67,13 @@ const Address = ({ membro, handleChange }) => {
       <Box display="flex" justifyContent="flex-start">
         <TextField
           label="Número"
-          value={address.number}
+          value={address.number ? address.number : ""}
           onChange={(event) => handleChange("endereco.numero", event.target.value)}
           sx={{ margin: 1 }}
         />
         <TextField
           label="Complemento"
-          value={address.complement}
+          value={address.complement ? address.complement : ""}
           onChange={(event) => handleChange("endereco.complemento", event.target.value)}
           sx={{ margin: 1 }}
           fullWidth
@@ -85,7 +85,7 @@ const Address = ({ membro, handleChange }) => {
             shrink: Boolean(address.city)
           }}
           label="Cidade"
-          value={address.city}
+          value={address.city ? address.city : ""}
           onChange={(event) => handleChange("endereco.cidade", event.target.value)}
           sx={{ margin: 1 }}
         />
@@ -94,7 +94,7 @@ const Address = ({ membro, handleChange }) => {
             shrink: Boolean(address.state)
           }}
           label="Estado"
-          value={address.state}
+          value={address.state ? address.state : ""}
           onChange={(event) => handleChange("endereco.estado", event.target.value)}
           sx={{ margin: 1, width: 80 }}
         />

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Paper, CircularProgress, Box, Button, Divider } from '@mui/material';
-import Options from './Options';
 import { DataGrid, ptBR } from '@mui/x-data-grid';
 
 function CustomTable({
   title,
   data = [],
-  columns = {},
+  columns = [],
   loading = false,
   showOptions = false,
   showHeaderButtons = false,
@@ -32,7 +31,7 @@ function CustomTable({
     <Paper sx={{
       padding: "16px",
       margin: "16px",
-      width: "calc(100% - 34px)",
+      width: "calc(100% - 32px)",
       ...sx
     }}
     >

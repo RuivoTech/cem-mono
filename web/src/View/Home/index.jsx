@@ -52,10 +52,6 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        document.title = "Dashboard - Cadastro de Membros CEM";
-    }, []);
-
-    useEffect(() => {
         fetchHome();
     }, [user])
 
@@ -72,6 +68,7 @@ const Home = () => {
                 width: "100vw",
                 minWidth: "98vw",
                 padding: 0,
+                paddingBottom: "40px",
                 margin: 0,
                 xs: {
                     paddingLeft: "12px",
@@ -92,17 +89,24 @@ const Home = () => {
                     display: "flex",
                     flexDirection: {
                         xs: "column",
-                        sm: "row",
-                        md: "row",
-                        lg: "row",
-                        xl: "row"
+                        sm: "row"
                     },
-                    justifyContent: "center"
+                    justifyContent: {
+                        xs: "center",
+                        sm: "center",
+                        md: "flex-start"
+                    }
                 }}
             >
-                <InfoBox corFundo="success" icone="users" quantidade={data.quantidadeMembros} titulo="Membros" />
-                <InfoBox corFundo="danger" icone="globe" quantidade={data.quantidadeVisitantes} titulo="Visitantes" />
-                <InfoBox corFundo="info" icone="calendar" quantidade={data.quantidadeEventos} titulo="Eventos" />
+                <Box width="25%">
+                    <InfoBox corFundo="success" icone="users" quantidade={data.quantidadeMembros} titulo="Membros" />
+                </Box>
+                <Box width="25%">
+                    <InfoBox corFundo="danger" icone="globe" quantidade={data.quantidadeVisitantes} titulo="Visitantes" />
+                </Box>
+                <Box width="25%">
+                    <InfoBox corFundo="info" icone="calendar" quantidade={data.quantidadeEventos} titulo="Eventos" />
+                </Box>
             </Box>
             <Box
                 sx={{

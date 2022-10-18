@@ -17,6 +17,8 @@ class Membro {
         this.nome = "";
         this.identidade = "";
         this.dataNascimento = null;
+        this.dataCasamento = null;
+        this.dataCadastro = null;
         this.idade = "";
         this.sexo = 0;
         this.profissao = "";

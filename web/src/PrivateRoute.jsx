@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router';
+import CustomFooter from './componentes/CustomFooter';
 
 import CustomMenu from "./componentes/CustomMenu";
 import Sidebar from "./componentes/Sidebar";
@@ -20,7 +21,8 @@ function PrivateRoute({ group, children }) {
         <>
             <CustomMenu name={group} switchSidebar={switchSidebar} />
             <Sidebar sidebarIsOpened={sidebarOpened} switchSidebar={switchSidebar} />
-            {children}        
+            {children}
+            <CustomFooter />
         </>
     );
 }

@@ -25,27 +25,42 @@ const Profile = ({ membros = [], handleChange, handleClick, membro }) => {
   return (
     <Box>
       <Box display="flex" justifyContent="space-between">
-      <Autocomplete
-        fullWidth
-        freeSolo
+        <Autocomplete
+          fullWidth
+          freeSolo
           options={membros.map((membro) => membro.nome)}
           value={membro?.nome}
-        onChange={(event, newValue) => handleClick(newValue)}
+          onChange={(event, newValue) => handleClick(newValue)}
           inputValue={profile?.nome ? profile?.nome : ""}
-        onInputChange={(event, newInputValue) => handleChange("nome", newInputValue)}
+          onInputChange={(event, newInputValue) => handleChange("nome", newInputValue)}
           renderInput={params => <TextField label="Nome" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
-      />
+        />
+        <FormControl sx={{ margin: 1, minWidth: 150 }}>
+          <InputLabel id="label-active">Ativo</InputLabel>
+          <Select
+            displayEmpty
+            labelId='label-active'
+            id="select-active"
+            value={profile?.ativo ? parseInt(profile?.ativo) : -1}
+            label="Ativo"
+            onChange={(event) => handleChange("ativo", event.target.value)}
+          >
+            <MenuItem value={-1}>Escolha</MenuItem>
+            <MenuItem value={1}>Sim</MenuItem>
+            <MenuItem value={0}>Não</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Box display="flex" justifyContent="flex-start">
         <DesktopDatePicker
           label="Data de nascimento"
           inputFormat='DD/MM/YYYY'
           disableFuture
           value={profile.dataNascimento ? profile?.dataNascimento : null}
           onChange={value => handleChange("dataNascimento", value)}
-          renderInput={(params) => <TextField sx={{ margin: 1 }} {...params} />}
+          renderInput={(params) => <TextField fullWidth sx={{ margin: 1 }} {...params} />}
         />
-      </Box>
-      <Box display="flex" justifyContent="flex-start">
-        <FormControl sx={{ margin: 1, minWidth: 150 }} fullWidth>
+        <FormControl sx={{ margin: 1 }} fullWidth>
           <InputLabel id="label-sexo">Sexo</InputLabel>
           <Select
             displayEmpty
@@ -60,7 +75,7 @@ const Profile = ({ membros = [], handleChange, handleClick, membro }) => {
             <MenuItem value={2}>Mulher</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ margin: 1, minWidth: 150 }} fullWidth>
+        <FormControl sx={{ margin: 1 }} fullWidth>
           <InputLabel id="label-estadoCivil">Estado Civil</InputLabel>
           <Select
             displayEmpty

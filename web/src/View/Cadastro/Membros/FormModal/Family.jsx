@@ -1,60 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Autocomplete, Box, TextField } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import { Badge, Edit } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 
 import CustomTable from '../../../../componentes/Table';
 
-const Family = ({ membro, membros = [], handleChange }) => {
+const Family = ({ membro, membros = [], handleChange, handleSelectChild, handleRemoveChild }) => {
   const columns = [
     {
       field: "nome",
       headerName: "Nome",
-      width: 180
-    },
-    {
-      field: "email",
-      headerName: "E-mail",
-      width: 180
-    },
-    {
-      field: "celular",
-      headerName: "Celular",
-      width: 120
+      flex: 1
     },
     {
       field: "actions",
         headerName: "Ações",
         type: "actions",
         getActions: ({ id }) => {
+          console.log(id)
             return [
                 <GridActionsCellItem
-                    icon={<Badge />}
-                    label="Save"
-                    onClick={() => { }}
-                />,
-                <GridActionsCellItem
-                    icon={<Edit />}
-                    label="Save"
-                    onClick={() => { }}
+                icon={<Delete />}
+                label="Remove"
+                onClick={() => handleRemoveChild(id)}
                 />,
             ];
         }
     }
   ]
-  const [spouse, setSpouse] = useState(null);
-  const [dad, setDad] = useState(null);
-  const [mother, setMother] = useState(null);
+  const [spouse, setSpouse] = useState("");
+  const [dad, setDad] = useState("");
+  const [mother, setMother] = useState("");
+  const childRef = useRef();
 
   useEffect(() => {
     if (membro?.id) {
       const newSpouse = membros.filter(member => member.id === membro?.parentes.chEsConjuge);
-      setSpouse(newSpouse[0]);
       const newDad = membros.filter(member => member.id === membro?.parentes.chEsPai);
-      setDad(newDad[0]);
       const newMother = membros.filter(member => member.id === membro?.parentes.chEsMae);
-      setMother(newMother[0]);
+
+      setSpouse(newSpouse[0] ? newSpouse[0] : "");
+      setDad(newDad[0] ? newDad[0] : "");
+      setMother(newMother[0] ? newMother[0] : "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -76,7 +64,8 @@ const Family = ({ membro, membros = [], handleChange }) => {
   }
 
   function handleClickChild(child) {
-
+    handleSelectChild(child);
+    childRef.current.value = "";
   }
 
   return (
@@ -131,9 +120,16 @@ const Family = ({ membro, membros = [], handleChange }) => {
         <Autocomplete
           fullWidth
           freeSolo
-          options={membros.map((membro) => membro.nome)}
-          onChange={(_, newValue) => handleClickChild(newValue)}
-          renderInput={params => <TextField label="Filho(a)" sx={{ margin: 1, width: "calc(100% - 16px)" }} {...params} />}
+          getOptionLabel={(option) => option.nome}
+          options={membros}
+          onChange={(_, value) => handleClickChild(value)}
+          renderInput={params => <TextField
+            ref={childRef}
+            label="Filho(a)"
+            sx={{ margin: 1, width: "calc(100% - 16px)" }}
+            {...params}
+          />
+          }
         />
       </Box>
       <Box>

@@ -32,8 +32,7 @@ export const AuthProvider = ({ children }) => {
         return getUser(token.id);
       })
       .catch(error => {
-        if (error.response.status === 401)
-          console.log(error.data.message)
+        return error.response.data;
       })
   }
 

@@ -7,6 +7,8 @@ import Membro from '../../../../Model/Membro';
 import Contact from './Contact';
 import Address from './Address';
 import Family from './Family';
+import Church from './Church';
+import Ministry from './Ministry';
 
 const FormModal = ({ membros, idMembro, show, handleShow }) => {
 	const MembroModel = new Membro();
@@ -24,7 +26,7 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [idMembro]);
 
-	const fetchMembro = ((id) => {
+	function fetchMembro(id) {
 		api.get("/membros/" + id)
 			.then(response => {
 				if (response.data.message) {
@@ -40,9 +42,9 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 				console.log(error);
 			})
 
-	})
+	}
 
-	const handleChange = (field = "", value) => {
+	function handleChange(field = "", value) {
 		const [item, subItem] = field.split(".");
 		if (field === "membro") {
 			setMembro({ ...value })
@@ -66,7 +68,62 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 		});
 	}
 
-	const handleClick = (item) => {
+	function handleSelectChild(child) {
+		if (child === null) {
+			return
+		}
+
+		const newChild = {
+			chEsMembro: membro.id,
+			chEsFilho: child.id,
+			nome: child.nome
+		}
+		console.log(membro.parentes.filhos)
+		if (membro.parentes.filhos) {
+			addChild(newChild)
+		} else {
+			createChilds(newChild)
+		}
+	}
+
+	function addChild(child) {
+		setMembro({
+			...membro,
+			parentes: {
+				...membro.parentes,
+				filhos: [
+					...membro.parentes.filhos,
+					{
+						...child
+					}
+				]
+			}
+		})
+	}
+
+	function createChilds(child) {
+		setMembro({
+			...membro,
+			parentes: {
+				...membro.parentes,
+				filhos: [...child]
+			}
+		})
+	}
+
+	function handleRemoveChild(id) {
+		const childsFiltered = membro.parentes.filhos.filter(filho => parseInt(filho.chEsFilho) !== parseInt(id));
+		console.log(childsFiltered)
+		setMembro({
+			...membro,
+			parentes: {
+				...membro.parentes,
+				filhos: childsFiltered
+			}
+		})
+	}
+
+	function handleClick(item) {
 		if (item !== null) {
 			setLoading(true);
 			fetchMembro(item.id);
@@ -99,19 +156,19 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 					padding: 2,
 					marginTop: 4
 				}}>
-				<Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 							<Typography variant="h6" component="h2">
 								{membro?.id ? `#${membro?.id} - ${membro?.nome}` : "Novo membro"}
 							</Typography>
 						</Box>
 						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<Box
-							component="h3"
-							borderBottom="1px solid grey"
-						>
-							Perfil
-						</Box>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
+								Perfil
+							</Box>
 							<Profile
 								membros={membros}
 								handleChange={handleChange}
@@ -119,49 +176,65 @@ const FormModal = ({ membros, idMembro, show, handleShow }) => {
 								handleClick={handleClick}
 								loading={loading}
 							/>
-					</Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<Box
-							component="h3"
-							borderBottom="1px solid grey"
-						>
-							Contato
 						</Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
+								Contato
+							</Box>
 							<Contact membro={membro} handleChange={handleChange} />
-					</Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<Box
-							component="h3"
-							borderBottom="1px solid grey"
-						>
-							Endereço
 						</Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
+								Endereço
+							</Box>
 							<Address membro={membro} handleChange={handleChange} />
-					</Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<Box
-							component="h3"
-							borderBottom="1px solid grey"
-						>
+						</Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
 								Família
+							</Box>
+							<Family
+								membro={membro}
+								membros={membros}
+								handleChange={handleChange}
+								handleSelectChild={handleSelectChild}
+								handleRemoveChild={handleRemoveChild}
+							/>
 						</Box>
-							<Family membro={membro} membros={membros} handleChange={handleChange} />
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
+								Dados Igreja
+							</Box>
+							<Church membro={membro} handleChange={handleChange} />
+						</Box>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+							<Box
+								component="h3"
+								borderBottom="1px solid grey"
+							>
+								Ministério
+							</Box>
+							<Ministry />
+						</Box>
 					</Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-						<Box
-							component="h3"
-							borderBottom="1px solid grey"
-						>
-							Dados Igreja
-						</Box>
+					<Divider />
+					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+						<Button variant='outlined' color="error" sx={{ m: "1em" }}>Cancelar</Button>
+						<Button variant='contained' color='success' sx={{ m: "1em" }}>Salvar</Button>
 					</Box>
 				</Box>
-				<Divider />
-				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-					<Button variant='outlined' color="error" sx={{ m: "1em" }}>Cancelar</Button>
-					<Button variant='contained' color='success' sx={{ m: "1em" }}>Salvar</Button>
-				</Box>
-			</Box>
 			}
 		</Modal>
 	);

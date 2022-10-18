@@ -6,6 +6,7 @@ import { Copyright, LockOutlined } from "@mui/icons-material";
 import packageJson from '../../../package.json';
 
 import { useAuth } from "../../context/auth";
+import CustomFooter from "../../componentes/CustomFooter";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -40,13 +41,16 @@ const Login = () => {
 
         const request = await Login(email, password);
 
-        if (Boolean(request)) {
+        if (!Boolean(request.message)) {
             navigate("/dashboard");
+        } else {
+            setError(request.message);
+            setLoading(false);
         }
     };
 
     return (
-        <Container maxWidth="xs">
+        <Container maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 16px)" }}>
             <Box
                 sx={{
                     marginTop: 8,
@@ -103,28 +107,7 @@ const Login = () => {
                     {error.length > 0 && <Typography component="h2" variant="h6" color="orangered">{error}</Typography>}
                 </Box>
             </Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    justifyContent: "flex-end",
-                    height: "10em",
-                    fontSize: "0.8rem"
-                }}
-            >
-                <Box>
-                    Copyright <Copyright sx={{ fontSize: 12 }} /> {" "}
-                    <Link href="https://github.com/RuivoTech" color="inherit" target="_blank">
-                        RuivoTech
-                    </Link>{" "}
-                    {year}
-                </Box>
-
-                <Link href={`https://github.com/RuivoTech/tree/${packageJson.version}`} color="inherit" target="_blank">
-                    V{packageJson.version}
-                </Link>
-            </Box>
+            <CustomFooter />
         </Container>
     );
 }

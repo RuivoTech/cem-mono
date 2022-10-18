@@ -12,7 +12,7 @@ import { useAuth } from '../../../context/auth';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 
 const Membros = () => {
-    const colums = [
+    const columns = [
         {
             field: "actions",
             headerName: "Ações",
@@ -35,7 +35,7 @@ const Membros = () => {
         {
             field: "nome",
             headerName: "Nome",
-            width: 240,
+            width: 256,
         },
         {
             field: "contato.email",
@@ -46,7 +46,7 @@ const Membros = () => {
         {
             field: "endereco",
             headerName: "Endereço",
-            width: 240,
+            width: 248,
             valueGetter: ({ value }) => `${value.logradouro}, ${value.numero} - ${value.cidade}`,
         },
         {
@@ -75,22 +75,20 @@ const Membros = () => {
     const [idMembro, setIdMembro] = useState(0);
 
     useEffect(() => {
-        const fetchMembros = async () => {
-            const response = await api.get("/membros");
-            setMembros(response.data.membros);
-            setQuantidades({
-                total: response.data.quantidadeTotal,
-                ativos: response.data.quantidadeAtivos,
-                novos: response.data.quantidadeNovos,
-                batizados: response.data.quantidadeBatizados
-            })
-            setLoading(false)
-        }
-
-        document.title = "Membros - Cadastro de membros CEM";
-
         fetchMembros();
     }, [user]);
+
+    const fetchMembros = async () => {
+        const response = await api.get("/membros");
+        setMembros(response.data.membros);
+        setQuantidades({
+            total: response.data.quantidadeTotal,
+            ativos: response.data.quantidadeAtivos,
+            novos: response.data.quantidadeNovos,
+            batizados: response.data.quantidadeBatizados
+        })
+        setLoading(false)
+    }
 
     const remover = async (id) => {
         const request = await api.delete("/membros/" + id);
@@ -114,48 +112,52 @@ const Membros = () => {
     return (
         <Container
             sx={{
-                width: "100vw",
-                minWidth: "98vw",
+                width: "100%",
                 padding: 0,
-                margin: 0
+                paddingBottom: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
             }}
         >
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: {
-                        xs: "column",
-                        sm: "row",
-                        md: "row",
-                        lg: "row",
-                        xl: "row"
-                    },
-                    justifyContent: "flex-start"
-                }}
-            >
-                <InfoBox corFundo="info" icone="user-circle" quantidade={quantidades.total} titulo="Total" />
-                <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidades.ativos} titulo="Ativos" />
-                <InfoBox corFundo="success" icone="check-circle" quantidade={quantidades.novos} titulo="Novos" />
-                <InfoBox corFundo="danger" icone="heart" quantidade={quantidades.batizados} titulo="Batizados" />
+            <Box width="100%">
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: {
+                            xs: "column",
+                            sm: "row",
+                            md: "row",
+                            lg: "row",
+                            xl: "row"
+                        },
+                        justifyContent: "flex-start"
+                    }}
+                >
+                    <InfoBox corFundo="info" icone="user-circle" quantidade={quantidades.total} titulo="Total" />
+                    <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidades.ativos} titulo="Ativos" />
+                    <InfoBox corFundo="success" icone="check-circle" quantidade={quantidades.novos} titulo="Novos" />
+                    <InfoBox corFundo="danger" icone="heart" quantidade={quantidades.batizados} titulo="Batizados" />
+                </Box>
+                <CustomTable
+                    title="Membros"
+                    data={membros}
+                    columns={columns}
+                    loading={loading}
+                    showOptions
+                    showHeaderButtons
+                    deleteMember={(memberId) => remover(memberId)}
+                    editMember={(memberId) => { handleShowForm(memberId) }}
+                    openFormModal={() => { handleShowForm(0) }}
+                    rowHeight={48}
+                />
+                <FormModal
+                    show={showForm}
+                    handleShow={handleShowForm}
+                    membros={membros}
+                    idMembro={idMembro}
+                />
             </Box>
-            <CustomTable
-                title="Membros"
-                data={membros}
-                columns={colums}
-                loading={loading}
-                showOptions
-                showHeaderButtons
-                deleteMember={(memberId) => remover(memberId)}
-                editMember={(memberId) => { handleShowForm(memberId) }}
-                openFormModal={() => { handleShowForm(0) }}
-                rowHeight={48}
-            />
-            <FormModal
-                show={showForm}
-                handleShow={handleShowForm}
-                membros={membros}
-                idMembro={idMembro}
-            />
         </Container>
     )
 }

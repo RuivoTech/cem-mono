@@ -6,43 +6,44 @@ import CustomTable from "../../componentes/Table";
 import Utils from "../../componentes/Utils";
 import { Box, Container } from "@mui/material";
 import { useAuth } from "../../context/auth";
+import { Link } from "react-router-dom";
 
 const columsBirthDay = [
-        {
+    {
         field: "dataNascimento",
         headerName: "Dia",
         width: 24,
         valueGetter: ({ value }) => Utils.converteData(value, "DD"),
-        },
-        {
-            field: "nome",
-            headerName: "Nome",
-            minWidth: 320,
-        },
-        {
-            field: "idade",
-            headerName: "Idade",
-            width: 24
-        },
+    },
+    {
+        field: "nome",
+        headerName: "Nome",
+        minWidth: 320,
+    },
+    {
+        field: "idade",
+        headerName: "Idade",
+        width: 24
+    },
 ]
 
 const columsWedding = [
-        {
+    {
         field: "dataCasamento",
         headerName: "Dia",
         width: 24,
         valueGetter: ({ value }) => Utils.converteData(value, "DD"),
-        },
-        {
-            field: "nome",
-            headerName: "Nome",
-            minWidth: 306,
-        },
-        {
-            field: "idade",
-            headerName: "Tempo",
-            width: 64,
-        },
+    },
+    {
+        field: "nome",
+        headerName: "Nome",
+        minWidth: 306,
+    },
+    {
+        field: "idade",
+        headerName: "Tempo",
+        width: 64,
+    },
 ]
 
 const Home = () => {
@@ -93,19 +94,45 @@ const Home = () => {
                     },
                     justifyContent: {
                         xs: "center",
-                        sm: "center",
-                        md: "flex-start"
+                        sm: "flex-start"
                     }
                 }}
             >
-                <Box width="25%">
-                    <InfoBox corFundo="success" icone="users" quantidade={data.quantidadeMembros} titulo="Membros" />
+                <Box
+                    sx={{
+                        width: {
+                            xs: "calc(100% - 24px)",
+                            sm: "25%"
+                        }
+                    }}
+                >
+                    <Link to="/membros">
+                        <InfoBox corFundo="success" icone="users" quantidade={data.quantidadeMembros} titulo="Membros" />
+                    </Link>
                 </Box>
-                <Box width="25%">
-                    <InfoBox corFundo="danger" icone="globe" quantidade={data.quantidadeVisitantes} titulo="Visitantes" />
+                <Box
+                    sx={{
+                        width: {
+                            xs: "calc(100% - 24px)",
+                            sm: "25%"
+                        }
+                    }}
+                >
+                    <Link to="/visitantes">
+                        <InfoBox corFundo="danger" icone="globe" quantidade={data.quantidadeVisitantes} titulo="Visitantes" />
+                    </Link>
                 </Box>
-                <Box width="25%">
-                    <InfoBox corFundo="info" icone="calendar" quantidade={data.quantidadeEventos} titulo="Eventos" />
+                <Box
+                    sx={{
+                        width: {
+                            xs: "calc(100% - 24px)",
+                            sm: "25%"
+                        }
+                    }}
+                >
+                    <Link to="/eventos">
+                        <InfoBox corFundo="info" icone="calendar" quantidade={data.quantidadeEventos} titulo="Eventos" />
+                    </Link>
                 </Box>
             </Box>
             <Box
@@ -118,7 +145,10 @@ const Home = () => {
                         lg: "row",
                         xl: "row"
                     },
-                    justifyContent: "flex-start"
+                    justifyContent: "flex-start",
+                    width: {
+
+                    }
                 }}
             >
                 <CustomTable

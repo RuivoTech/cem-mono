@@ -6,6 +6,7 @@ import Evento from './View/Cadastro/Evento';
 import Membros from './View/Cadastro/Membros';
 import Ministerios from './View/Cadastro/Ministerio';
 import Visitantes from './View/Cadastro/Visitantes';
+import Inscricao from './View/Financeiro/Inscricao';
 import Perfil from './View/Configuracao/Perfil';
 import Usuarios from './View/Configuracao/Usuarios';
 import Campanha from './View/Delivery/Campanha';
@@ -61,6 +62,14 @@ function CustomRoutes() {
         }
       />
       <Route
+        path="/inscricoes"
+        element={
+          <PrivateRoute name="Inscrições" group="Secretaria">
+            <Inscricao />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/campanhas"
         element={
           <PrivateRoute name="Campanhas" group="Secretaria">
@@ -96,7 +105,7 @@ function CustomRoutes() {
       <Route path="/recuperar" element={Recuperar} />
       <Route path="/inscricao" element={Inscricoes} />
       <Route index path="/" element={<Login />} />
-      <Route path="*" element={NotFound} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

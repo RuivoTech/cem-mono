@@ -72,18 +72,19 @@ const Sidebar = ({ sidebarIsOpened, switchSidebar }) => {
                             <Collapse in={categoryOpened[itemCategory.category]} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
                                     {itemCategory.items.map((item, itemIndex) => {
+                                        const itemKey = `${index}${itemIndex}`;
                                         const existPermission = user?.permissoes.filter(permissao => permissao.menuPermissao === item.field);
-
+                                        
                                         if (!existPermission) {
                                             return null;
                                         }
 
                                         return (
                                             <ListItemButton
-                                                key={itemIndex}
-                                                selected={selectedIndex === itemIndex}
-                                                onLoad={(event) => location.pathname.slice(0) === item.field ? handleListItemClick(event, itemIndex) : null}
-                                                onClick={(event) => handleListItemClick(event, itemIndex)}
+                                                key={itemKey}
+                                                selected={selectedIndex === itemKey}
+                                                onLoad={(event) => location.pathname.slice(0) === item.field ? handleListItemClick(event, itemKey) : null}
+                                                onClick={(event) => handleListItemClick(event, itemKey)}
                                                 sx={{ pl: 3 }}
                                                 id={item.field}
                                             >

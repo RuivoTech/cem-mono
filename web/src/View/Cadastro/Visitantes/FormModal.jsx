@@ -109,7 +109,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
     return (
         <>
-            <Modal isOpen={show} toggle={handleShow} className={className}>
+            <Modal isOpen={show} toggle={handleShow} className={className} style={{color: "#3B3B3B"}}>
                 <ModalHeader toggle={handleShow}>{visitante?.id ? `#${visitante.id} - ${visitante?.nome}` : "Novo Visitante"}</ModalHeader>
                 <ModalBody>
                     <div>

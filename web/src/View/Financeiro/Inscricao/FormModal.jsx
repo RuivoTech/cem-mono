@@ -4,12 +4,10 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import Autocomplete from "../../../componentes/Autocomplete";
 import Inscricao from "../../../Model/Inscricao";
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
 
 const FormModal = ({ data, show, handleShow, className, membros, eventos }) => {
     const [inscricao, setInscricao] = useState({});
     const [carregando, setCarregando] = useState(false);
-    const session = getSession();
 
     useEffect(() => {
         setInscricao(data);
@@ -34,17 +32,9 @@ const FormModal = ({ data, show, handleShow, className, membros, eventos }) => {
 
         let request = "";
         if (novaInscricao.id === 0) {
-            request = await api.post("/inscricoes", novaInscricao, {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            request = await api.post("/inscricoes", novaInscricao);
         } else {
-            request = await api.put("/inscricoes", novaInscricao, {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            request = await api.put("/inscricoes", novaInscricao);
         }
 
         if (!request.data.error) {
@@ -87,7 +77,7 @@ const FormModal = ({ data, show, handleShow, className, membros, eventos }) => {
 
     return (
         <>
-            <Modal isOpen={show} toggle={handleShow} className={className}>
+            <Modal isOpen={show} toggle={handleShow} className={className} style={{color: "#3B3B3B"}}>
                 <ModalHeader toggle={handleShow}>{inscricao?.id ? `#${inscricao.id} - ${inscricao?.nome}` : "Nova Inscrição"}</ModalHeader>
                 <ModalBody>
                     <div className="row">

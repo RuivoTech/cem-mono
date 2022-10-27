@@ -4,12 +4,10 @@ import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Evento from "../../../Model/Evento";
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
-import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className }) => {
     const [evento, setEvento] = useState({});
     const [carregando, setCarregando] = useState(false);
-    const session = getSession();
 
     useEffect(() => {
         setEvento(data);
@@ -41,17 +39,9 @@ const FormModal = ({ data, show, handleShow, className }) => {
         novoEvento.horaFim = evento.horaFim;
 
         if (Number(novoEvento.id) !== 0) {
-            response = await api.put("/eventos", novoEvento, {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            response = await api.put("/eventos", novoEvento);
         } else {
-            response = await api.post("/eventos", novoEvento, {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            response = await api.post("/eventos", novoEvento);
         }
 
         if (!response.data.error) {
@@ -106,7 +96,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
     return (
         <>
-            <Modal isOpen={show} toggle={handleShow} className={className}>
+            <Modal isOpen={show} toggle={handleShow} className={className} style={{color: "#3B3B3B"}}>
                 <ModalHeader toggle={handleShow}>{evento?.id ? `#${evento.id} - ${evento?.descricao}` : "Novo Evento"}</ModalHeader>
                 <ModalBody>
                     <div className="row">

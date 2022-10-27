@@ -113,6 +113,7 @@ const Membros = () => {
         <Container
             sx={{
                 width: "100%",
+                minWidth: "98vw",
                 padding: 0,
                 paddingBottom: "40px",
                 display: "flex",

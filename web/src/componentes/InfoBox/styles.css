@@ -6,7 +6,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    color: #FFFFFF
+    color: #FFFFFF;
 }
 
 .info-box.hover-expand-effect:hover::after {

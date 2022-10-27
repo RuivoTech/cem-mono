@@ -63,7 +63,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
     return (
         <>
-            <Modal isOpen={show} toggle={handleShow} className={className}>
+            <Modal isOpen={show} toggle={handleShow} className={className} style={{color: "#3B3B3B"}}>
                 <ModalHeader toggle={handleShow}>{ministerio?.id ? `#${ministerio.id} - ${ministerio?.nome}` : "Novo Ministerio"}</ModalHeader>
                 <ModalBody>
                     <div>

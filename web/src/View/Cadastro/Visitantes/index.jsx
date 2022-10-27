@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useAuth } from '../../../context/auth';
 import api from "../../../services/api";
 import FormModal from "./FormModal";
 import RelatorioModal from "./RelatorioModal";
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import InfoBox from '../../../componentes/InfoBox';
-import { getSession } from '../../../services/authStorage';
 
 const Visitantes = () => {
+    const { user } = useAuth();
     const [visitantes, setVisitantes] = useState([]);
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
     const [visitanteSelecionado, setVisitanteSelecionado] = useState({});
@@ -17,38 +18,18 @@ const Visitantes = () => {
     const [pesquisa, setPesquisa] = useState("");
     const [show, setShow] = useState(false);
     const [showRelatorio, setShowRelatorio] = useState(false);
-    const session = getSession();
 
     useEffect(() => {
-        document.title = "Visitantes - Cadastro de membros CEM";
-        const fetchVisitante = async () => {
-            const response = await api.get("/visitantes", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-            setVisitantes(response.data);
-            setQuantidadeTotal(response.data.length);
-        };
-
         fetchVisitante();
-    }, [session.token]);
+    }, [user]);
 
-    useEffect(() => {
-        const fetchVisitante = async () => {
-            const response = await api.get("/visitantes", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-            setVisitantes(response.data);
-            setVisitantesPesquisa(response.data);
-        };
-
-        if (!show) {
-            fetchVisitante();
+    const fetchVisitante = async () => {
+        const response = await api.get("/visitantes");
+        if(!response.data.error) {
+        setVisitantes(response.data);
+        setQuantidadeTotal(response.data.length);
         }
-    }, [session.token, show]);
+    };
 
     const pesquisar = e => {
         let filteredSuggestions = visitantes.filter((suggestion) => {
@@ -69,11 +50,7 @@ const Visitantes = () => {
     }
 
     const remover = async (id) => {
-        const response = await api.delete("/visitantes/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const response = await api.delete("/visitantes/" + id);
 
         if (!response.data.error) {
             const items = visitantes.filter(item => item.id !== id);
@@ -126,9 +103,11 @@ const Visitantes = () => {
 
     return (
         <>
-            <div className="wrapper-content row">
+            <div className="wrapper-content row" style={{width: "calc(100% - 8px)"}}>
+                    <div className="col-4">
                 <InfoBox corFundo="primary" icone="user-circle" quantidade={quantidadeTotal} titulo="Total" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-12 px-4">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="form-group">
@@ -150,7 +129,7 @@ const Visitantes = () => {
                     </div>
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4">
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? visitantesPesquisa : visitantes}

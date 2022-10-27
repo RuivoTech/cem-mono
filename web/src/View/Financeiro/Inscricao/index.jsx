@@ -6,7 +6,7 @@ import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
-import { getSession } from '../../../services/auth';
+import { useAuth } from '../../../context/auth';
 
 const Inscricoes = () => {
     const [inscricoes, setInscricoes] = useState([]);
@@ -17,53 +17,46 @@ const Inscricoes = () => {
     const [inscricoesPesquisa, setInscricoesPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
     const [show, setShow] = useState(false);
-    const session = getSession();
+    const {user} = useAuth();
 
     useEffect(() => {
         document.title = "Inscrições - Cadastro de membros CEM";
         fetchEventos();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user]);
 
     useEffect(() => {
-        const fetchInscricao = async () => {
-            const request = await api.get("/inscricoes", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
-
-            setInscricoes(request.data);
-            setQuantidadeTotal(request.data.length);
-        };
-
+        
         fetchInscricao();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [show]);
 
+    const fetchInscricao = async () => {
+        const request = await api.get("/inscricoes");
+        if(!request.data.error) {
+            setInscricoes(request.data);
+            setQuantidadeTotal(request.data.length);
+        }
+    };
+
     const fetchEventos = async () => {
         const request = await api.get("/eventos", {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            },
             params: {
                 ativo: true
             }
         });
-
-        setEventos(request.data);
+        if(!request.data.error) {
+            setEventos(request.data);
+        }
 
         await fetchMembros();
     };
 
     const fetchMembros = async () => {
-        const request = await api.get("/membros", {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
-
-        setMembros(request.data.membros);
+        const request = await api.get("/membros");
+        if(!request.data.error) {
+            setMembros(request.data.membros);
+        }
     };
 
     const handleShow = () => {
@@ -72,11 +65,7 @@ const Inscricoes = () => {
     }
 
     const remover = async (id) => {
-        const response = await api.delete("/inscricoes/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const response = await api.delete("/inscricoes/" + id);
 
         if (!response.data.error) {
             const items = inscricoes.filter(item => item.id !== id);
@@ -134,8 +123,10 @@ const Inscricoes = () => {
     return (
         <>
             <div className="wrapper-content row">
+                <div className="col-4">
                 <InfoBox corFundo="primary" icone="calendar-day" quantidade={quantidadeTotal} titulo="Total" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-12 px-4">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="form-group">
@@ -157,7 +148,7 @@ const Inscricoes = () => {
                     </div>
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4">
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? inscricoesPesquisa : inscricoes}

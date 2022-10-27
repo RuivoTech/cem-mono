@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { HashRouter } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";

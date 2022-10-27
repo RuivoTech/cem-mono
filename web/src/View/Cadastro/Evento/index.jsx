@@ -8,6 +8,7 @@ import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import Utils from "../../../componentes/Utils";
+import { useAuth } from '../../../context/auth';
 
 const frequencia = [
     "Diária",
@@ -36,20 +37,20 @@ const Evento = () => {
     const [show, setShow] = useState(false);
     const [eventosPesquisa, setEventosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
+    const {user } = useAuth();
 
     useEffect(() => {
-        const fetchEventos = async () => {
-            document.title = "Eventos - Cadastro de membros CEM";
-            let request = await api.get("/eventos");
+            fetchEventos();
+    }, [user, show]);
 
+    const fetchEventos = async () => {
+        document.title = "Eventos - Cadastro de membros CEM";
+        let request = await api.get("/eventos");
+        if(!request.data.error) {
             setEventos(request.data);
             setQuantidadeTotal(request.data.length);
         }
-
-        if (!show) {
-            fetchEventos();
-        }
-    }, [setQuantidadeTotal, show]);
+    }
 
     const eventoAtivo = (evento) => {
         return evento.status ? "Ativo" : "Inativo";
@@ -128,8 +129,10 @@ const Evento = () => {
     return (
         <>
             <div className="wrapper-content row">
+                <div className="col-4">
                 <InfoBox corFundo="primary" icone="calendar-week" quantidade={quantidadeTotal} titulo="Total" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-12 px-4">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="form-group">
@@ -151,7 +154,7 @@ const Evento = () => {
                     </div>
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4">
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? eventosPesquisa : eventos}

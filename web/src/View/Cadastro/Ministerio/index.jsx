@@ -7,7 +7,7 @@ import Coluna from '../../../componentes/Coluna';
 import api from "../../../services/api";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
-import { getSession } from '../../../services/authStorage';
+import { useAuth } from '../../../context/auth';
 
 const Ministerios = () => {
     const [ministerios, setMinisterios] = useState([]);
@@ -16,25 +16,20 @@ const Ministerios = () => {
     const [show, setShow] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
     const [ministeriosPesquisa, setMinisteriosPesquisa] = useState([]);
-    const session = getSession();
+    const {user} = useAuth();
 
     useEffect(() => {
-        const fetchMinisterio = async () => {
-            document.title = "Ministerios - Cadastro de membros CEM";
-            const request = await api.get("/ministerios", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            fetchMinisterio();
+    }, [user, show]);
 
+    const fetchMinisterio = async () => {
+        document.title = "Ministerios - Cadastro de membros CEM";
+        const request = await api.get("/ministerios");
+        if(!request.data.error){
             setMinisterios(request.data);
             setQuantidadeTotal(request.data.length);
-        };
-
-        if (!show) {
-            fetchMinisterio();
         }
-    }, [session.token, show]);
+    };
 
     const pesquisar = e => {
         let filteredSuggestions = ministerios.filter((suggestion) => {
@@ -55,11 +50,7 @@ const Ministerios = () => {
     }
 
     const remover = async (id) => {
-        const request = await api.delete("/ministerios/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const request = await api.delete("/ministerios/" + id);
 
         if (!request.data.error) {
             const items = ministerios.filter(item => item.id !== id);
@@ -109,8 +100,10 @@ const Ministerios = () => {
     return (
         <>
             <div className="wrapper-content row">
+                <div className="col-4">
                 <InfoBox corFundo="primary" icone="landmark" quantidade={quantidadeTotal} titulo="Total" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-12 px-4">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="form-group">
@@ -132,7 +125,7 @@ const Ministerios = () => {
                     </div>
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4">
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? ministeriosPesquisa : ministerios}
@@ -142,7 +135,7 @@ const Ministerios = () => {
                             handleShow={handleShow}
                         >
                             <Coluna campo="nome" titulo="Nome" tamanho="15" />
-                            <Coluna campo="descricao" titulo="Descrição" tamanho="50" />
+                            <Coluna campo="descricao" titulo="Descrição" tamanho="40" />
                             <Coluna titulo="Opções" corpo={(item) => opcoes(item)} tamanho="5" />
                         </Tabela>
                     </div>

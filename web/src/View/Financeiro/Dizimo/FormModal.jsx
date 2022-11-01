@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 
 import Dizimo from "../../../Model/Dizimo";
 import api from "../../../services/api";
@@ -11,12 +10,10 @@ import { getSession } from "../../../services/auth";
 const Form = ({ data, show, handleShow, className, membros }) => {
     const [dizimo, setDizimo] = useState({});
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         setDizimo(data);
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -51,10 +48,10 @@ const Form = ({ data, show, handleShow, className, membros }) => {
         }
 
         if (!response.data.error) {
-            addToast("Dizimo salvo com sucesso!", { appearance: "success" });
+            alert("Dizimo salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);

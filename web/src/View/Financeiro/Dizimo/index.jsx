@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -18,7 +17,6 @@ const Dizimos = () => {
     const [pesquisa, setPesquisa] = useState("");
     const [membros, setMembros] = useState([]);
     const [show, setShow] = useState(false);
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -36,7 +34,7 @@ const Dizimos = () => {
         if (!show) {
             fetchDizimo();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     useEffect(() => {
         const fetchMembro = async () => {
@@ -51,7 +49,7 @@ const Dizimos = () => {
         };
 
         fetchMembro();
-    }, []);
+    }, [session.token]);
 
 
     const remover = async (id) => {
@@ -66,9 +64,9 @@ const Dizimos = () => {
 
             setDizimos(items);
 
-            addToast("Dizimo removida com sucesso!", { appearance: 'success' });
+            alert("Dizimo removida com sucesso!", { appearance: 'success' });
         } else {
-            addToast("Não foi possível remover o dizimo!", { appearance: 'error' });
+            alert("Não foi possível remover o dizimo!", { appearance: 'error' });
         }
     }
 

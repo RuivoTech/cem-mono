@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from "react-toast-notifications";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
@@ -17,7 +16,6 @@ const Ofertas = () => {
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
     const [pesquisa, setPesquisa] = useState("");
     const [show, setShow] = useState(false);
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -36,7 +34,7 @@ const Ofertas = () => {
         if (!show) {
             fetchOferta();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     useEffect(() => {
         const fetchMembros = async () => {
@@ -51,7 +49,7 @@ const Ofertas = () => {
         if (!show) {
             fetchMembros();
         }
-    }, [show]);
+    }, [session.token, show]);
 
     const pesquisar = e => {
         let filteredSuggestions = ofertas.filter((suggestion) => {
@@ -74,9 +72,9 @@ const Ofertas = () => {
 
             setOfertas(items);
 
-            addToast("Oferta removida com sucesso!", { appearance: 'sucess' });
+            alert("Oferta removida com sucesso!", { appearance: 'sucess' });
         } else {
-            addToast("Não foi possível remover o oferta!", { appearance: 'error' });
+            alert("Não foi possível remover o oferta!", { appearance: 'error' });
         }
     }
 

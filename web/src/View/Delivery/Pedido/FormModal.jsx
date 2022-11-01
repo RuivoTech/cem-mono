@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 import Axios from "axios";
 
 import Autocomplete from "../../../componentes/Autocomplete";
@@ -10,7 +9,7 @@ import Tabela from "../../../componentes/Tabela";
 import Pedido from "../../../Model/Pedido";
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import Coluna from "../../../componentes/Coluna";
 
 const FormModal = ({ data, show, handleShow, className, campaign }) => {
@@ -22,7 +21,6 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
         quantity: 1
     });
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -36,7 +34,7 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
         if (campaign) {
             generateTimes();
         }
-    }, [show]);
+    }, [campaign, data, generateTimes, show]);
 
     const generateTimes = () => {
         let time = new Date(campaign.date.split("T")[0] + "T" + campaign.timeStart),
@@ -92,11 +90,11 @@ const FormModal = ({ data, show, handleShow, className, campaign }) => {
         }
 
         if (!response.data.error) {
-            addToast("Pedido salvo com sucesso!", { appearance: "success" });
+            alert("Pedido salvo com sucesso!", { appearance: "success" });
             handleLimpar();
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);

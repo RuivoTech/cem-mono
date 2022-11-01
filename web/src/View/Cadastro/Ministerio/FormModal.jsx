@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useToasts } from "react-toast-notifications";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
 import Ministerio from "../../../Model/Ministerio";
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className }) => {
     const [ministerio, setMinisterio] = useState({});
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         console.log(data);
         setMinisterio(data);
-        removeAllToasts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -48,10 +45,10 @@ const FormModal = ({ data, show, handleShow, className }) => {
         }
 
         if (!response.data.error) {
-            addToast("Ministerio salvo com sucesso!", { appearance: "success" });
+            alert("Ministerio salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
 
         setCarregando(false);
@@ -66,7 +63,7 @@ const FormModal = ({ data, show, handleShow, className }) => {
 
     return (
         <>
-            <Modal isOpen={show} toggle={handleShow} className={className}>
+            <Modal isOpen={show} toggle={handleShow} className={className} style={{color: "#3B3B3B"}}>
                 <ModalHeader toggle={handleShow}>{ministerio?.id ? `#${ministerio.id} - ${ministerio?.nome}` : "Novo Ministerio"}</ModalHeader>
                 <ModalBody>
                     <div>

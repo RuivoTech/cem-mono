@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
-import { useToasts } from "react-toast-notifications";
 
 import Usuario from "../../../Model/Usuario";
 import api from "../../../services/api";
 import Autocomplete from "../../../componentes/Autocomplete";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 
 const FormModal = ({ data, show, handleShow, className, membros, listaMenu }) => {
     const [usuario, setUsuario] = useState({});
     const [tabAtivo, setTabAtivo] = useState("perfil");
     const [carregando, setCarregando] = useState(false);
-    const { addToast, removeAllToasts } = useToasts();
     const session = getSession();
 
     useEffect(() => {
         setUsuario(data);
-        removeAllToasts();
-    }, [data, removeAllToasts]);
+    }, [data]);
 
     useEffect(() => {
         setCarregando(false);
@@ -57,10 +54,10 @@ const FormModal = ({ data, show, handleShow, className, membros, listaMenu }) =>
         }
 
         if (!response.data.error) {
-            addToast("Usuário salvo com sucesso!", { appearance: "success" });
+            alert("Usuário salvo com sucesso!", { appearance: "success" });
         } else {
             console.error(response.data.error);
-            addToast("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
+            alert("Alguma coisa deu errado, por favor falar com o administrador!", { appearance: "error" });
         }
         setCarregando(false);
     }

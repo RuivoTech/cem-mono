@@ -16,11 +16,13 @@ class Membro {
         this.id = 0;
         this.nome = "";
         this.identidade = "";
-        this.dataNascimento = "";
+        this.dataNascimento = null;
+        this.dataCasamento = null;
+        this.dataCadastro = null;
         this.idade = "";
         this.sexo = 0;
         this.profissao = "";
-        this.estadoCivil = "";
+        this.estadoCivil = 0;
         this.ativo = "";
         this.parentes = parentes;
         this.contato = contato;

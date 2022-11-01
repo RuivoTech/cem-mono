@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
@@ -18,7 +17,6 @@ const Campanha = () => {
     const [quantidadeTotal, setQuantidadeTotal] = useState(0);
     const [show, setShow] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
     const session = getSession();
 
     useEffect(() => {
@@ -37,7 +35,7 @@ const Campanha = () => {
         if (!show) {
             fetchCampanha();
         }
-    }, [setQuantidadeTotal, show]);
+    }, [session.token, setQuantidadeTotal, show]);
 
     useEffect(() => {
         campanhas.map(campaign => {
@@ -61,9 +59,9 @@ const Campanha = () => {
 
             setCampanhas(campanhasFiltradas);
 
-            addToast("Campanha removida com sucesso!", { appearance: "success" });
+            alert("Campanha removida com sucesso!", { appearance: "success" });
         } else {
-            addToast("Não foi possível remover a campanha!", { appearance: "error" });
+            alert("Não foi possível remover a campanha!", { appearance: "error" });
         }
     }
 

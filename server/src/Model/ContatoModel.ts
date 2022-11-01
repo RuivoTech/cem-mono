@@ -28,7 +28,7 @@ class ContatoModel {
             return {
                 id: contatoId,
                 ...contatoIserir
-            }
+            } as Contato
         } catch (error) {
             return error;
         }

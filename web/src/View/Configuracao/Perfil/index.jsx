@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
 import api from "../.././../services/api";
-import { getSession } from "../../../services/auth";
+import { getSession } from "../../../services/authStorage";
 import { AuthContext } from "../../../context";
 
 const Perfil = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const { signOut } = useContext(AuthContext);
     const [usuario, setUsuario] = useState({});
     const [verificarSenha, setVerificarSenha] = useState("");
@@ -30,7 +30,7 @@ const Perfil = () => {
         }
 
         request();
-    }, []);
+    }, [session.token]);
 
     const handleSubmit = async () => {
         let request = "";
@@ -57,7 +57,7 @@ const Perfil = () => {
 
                 if (confirmar) {
                     signOut();
-                    history.push("/");
+                    navigate("/", {replace: true});
                 }
             }
         } catch (erro) {

@@ -84,13 +84,6 @@ tbody {
     width: 100%;
 }
 
-td {
-    line-height: 1.42857;
-    padding: 8px;
-    vertical-align: top;
-    width: 25%;
-}
-
 .sorting_asc {
     width: 15%;
 }

@@ -5,10 +5,8 @@
     background-color: #fff;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
-    margin-top: 10px;
     border-radius: 10px;
-    color: #FFFFFF
+    color: #FFFFFF;
 }
 
 .info-box.hover-expand-effect:hover::after {

@@ -6,7 +6,6 @@ import { Usuario } from "../interfaces/UsuarioInterface";
 
 class LoginModel {
     async login(email: string, senha: string) {
-        try {
             const trx = await knex.transaction();
 
             const usuario = await trx<Usuario>('usuarios').transacting(trx)
@@ -40,13 +39,7 @@ class LoginModel {
                 return { token };
             }
 
-            return {
-                error: "Por favor, verifique suas credenciais!"
-            }
-        } catch (error) {
-            return { error: error }
-        }
-
+        throw new Error("Por favor, verifique suas credenciais!");
     }
 }
 

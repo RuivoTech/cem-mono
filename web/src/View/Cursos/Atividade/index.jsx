@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Collapse } from 'reactstrap';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useToasts } from "react-toast-notifications";
 
 import api from "../../../services/api";
 import Utils from "../../../componentes/Utils";
@@ -10,8 +9,6 @@ import NovaAtividade from "./form";
 import Menu from "../../../componentes/Menu";
 import Carregando from '../../../componentes/Carregando';
 import Atividade from "./Atividade";
-
-const { addToast } = useToasts();
 
 class Atividades extends Component {
 
@@ -115,7 +112,7 @@ class Atividades extends Component {
         });
         let data = await api.post("/atividade/salvar", atividade);
 
-        addToast("Atividade salvo com sucesso!", { appearance: "sucess" });
+        alert("Atividade salvo com sucesso!", { appearance: "sucess" });
 
         this.setState({
             carregando: false,
@@ -165,13 +162,13 @@ class Atividades extends Component {
                 data: items,
             });
 
-            addToast("Atividade removida com sucesso!", { appearance: 'sucess' });
+            alert("Atividade removida com sucesso!", { appearance: 'sucess' });
         } else {
 
             this.setState({
                 tabelaEstaAberta: true,
             });
-            addToast("Não foi possível remover o atividade!", { appearance: 'error' });
+            alert("Não foi possível remover o atividade!", { appearance: 'error' });
         }
     }
 

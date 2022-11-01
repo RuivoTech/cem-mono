@@ -8,6 +8,8 @@ import MinisterioMembroModel from "./MinisterioMembroModel";
 import Utils from "../Utils";
 
 import { Membro } from "../interfaces/MembroInterface";
+import { Contato } from "../interfaces/ContatoInterface";
+import { Endereco } from "../interfaces/EnderecoInterface";
 
 const contatoModel = new ContatoModel();
 const enderecoModel = new EnderecoModel();
@@ -25,36 +27,43 @@ const utils = new Utils();
 class MembroModel {
     async index() {
         const membros = await knex<Membro>('membros')
-            .orderBy("nome").select("id", "nome")
+            .where("ativo", "=", true)
+            .orderBy("nome").select("id", "nome");
+
+        const total = await knex("membros")
+            .count("id AS quantidade")
 
         const ativos = await knex("membros")
-            .where("ativo", "=", true)
-            .count("id as quantidade").first() || { quantidade: 0 };
+            .whereRaw("ativo=TRUE")
+            .count("id as quantidade");
 
         const novos = await knex("membros")
-            .where("dataCadastro", ">=", "DATE_SUB(CURDATE(),INTERVAL 30 DAY)")
-            .count("id AS quantidade").first() || { quantidade: 0 };
+            .whereRaw("dataCadastro >= (CURRENT_DATE - INTERVAL 30 DAY)")
+            .count("id AS quantidade");
 
         const batizados = await knex("membros AS m")
             .join("igreja AS i", "i.chEsMembro", "m.id")
             .where("i.ehBatizado", "=", "true")
-            .count("m.id as quantidade").first() || { quantidade: 0 };
+            .count("m.id as quantidade");
 
         const membrosFiltrados = await Promise.all(membros.map(async (membro) => {
             const contato = await contatoModel.findMembro(Number(membro.id));
+            const endereco = await enderecoModel.findMembro(Number(membro.id));
 
             return (
                 {
                     ...membro,
-                    contato
+                    contato,
+                    endereco
                 }
             )
         }));
 
         return {
-            quantidadeAtivos: ativos.quantidade,
-            quantidadeBatizados: batizados.quantidade,
-            quantidadeNovos: novos.quantidade,
+            quantidadeTotal: total[0].quantidade,
+            quantidadeAtivos: ativos[0].quantidade,
+            quantidadeBatizados: batizados[0].quantidade,
+            quantidadeNovos: novos[0].quantidade,
             membros: membrosFiltrados
         };
     }
@@ -93,8 +102,8 @@ class MembroModel {
             const insertedId = await knex("membros").insert(membroIserir);
             const membroId = insertedId[0];
 
-            const novoContato = await contatoModel.create(membro.contato);
-            const novoEndereco = await enderecoModel.create(membro.endereco);
+            const novoContato = await contatoModel.create(membro.contato) as Contato;
+            const novoEndereco = await enderecoModel.create(membro.endereco) as Endereco;
             const novaIgreja = await igrejaModel.create(membro.igreja, membroId);
             const novaFamilia = await familiaController.save(membro.parentes, membroId);
             const novoMinisterios = await ministerioMembroModel.create(membro.ministerios, membro.id);

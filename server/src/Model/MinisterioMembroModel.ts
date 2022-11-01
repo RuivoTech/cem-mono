@@ -36,7 +36,6 @@ class MinisterioMembroModel {
 
     async update(ministerios: MinisterioMembro[], chEsMembro: Number) {
         try {
-            console.log(ministerios);
             await knex("ministerioMembro")
                 .delete()
                 .where("chEsMembro", chEsMembro);

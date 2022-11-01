@@ -1,161 +1,114 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import { Avatar, Box, Container, Link, TextField, Typography } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Copyright, LockOutlined } from "@mui/icons-material";
 import packageJson from '../../../package.json';
-import { useHistory } from "react-router-dom";
 
-import { AuthContext } from "../../context";
-import logo3 from "../../images/Logo3.jpg";
-import logo1 from "../../images/Logo1.jpg";
-import api from "../../services/api";
+import { useAuth } from "../../context/auth";
+import CustomFooter from "../../componentes/CustomFooter";
 
 const Login = () => {
-    const history = useHistory();
-    const { signIn } = useContext(AuthContext);
-    const [carregando, setCarregando] = useState(false);
+    const navigate = useNavigate();
+    const { Login } = useAuth();
+    const date = new Date();
+    const year = date.getFullYear();
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState("");
 
-    const handleLogin = async e => {
-        e.preventDefault();
+    const handleLogin = async () => {
+        setLoading(true);
 
-        setCarregando(true);
-
-        if (!email || !senha) {
-            setError("Preencha e-mail e senha para continuar!");
+        if (!email) {
+            setEmailError(true);
+            setLoading(false);
+            return;
         } else {
-            try {
-                let response = await api.post("/login", { email, senha });
-                if (response.data.error) {
-                    setCarregando(false);
-                    setError(response.data.error);
-                } else {
-                    signIn(response.data);
+            setEmailError(false);
+        }
 
-                    setCarregando(false);
-                    history.push("/dashboard");
-                }
+        if (!password) {
+            setPasswordError(true);
+            setLoading(false);
+            return;
+        } else {
+            setPasswordError(false);
+        }
 
-            } catch (err) {
-                console.log(err);
-            }
+        const request = await Login(email, password);
+
+        if (!Boolean(request.message)) {
+            navigate("/dashboard");
+        } else {
+            setError(request.message);
+            setLoading(false);
         }
     };
 
     return (
-        <>
-            <main style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100vh"
-            }}
+        <Container maxWidth="xs" sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 16px)" }}>
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
             >
-                <img src={logo3} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.2,
-                }}
-                />
-                <img src={logo1} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.4,
-                }}
-                />
-
-                <div className="card" style={{
-                    width: "24vw",
-                    borderRadius: "10px",
-                    boxShadow: "15px 15px 12px 2px rgba(61, 61, 61, 0.8)"
-                }}>
-                    <div className="card-header">
-                        <h3 style={{
-                            textAlign: "center",
-                            marginTop: "2vh",
-                            lineHeight: 1,
-                        }}
-                        >
-                            Login
-                        </h3>
-                    </div>
-                    <div className="card-body">
-                        <form onSubmit={handleLogin}>
-                            <div className="form-group">
-                                <label htmlFor="email">E-mail</label>
-                                <input
-                                    type="text"
-                                    id="email"
-                                    className="form-control"
-                                    placeholder="Digite seu email..."
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    readOnly={carregando}
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="senha">Senha</label>
-                                <input
-                                    type="password"
-                                    id="senha"
-                                    className="form-control"
-                                    placeholder="Digite sua senha..."
-                                    value={senha}
-                                    onChange={e => setSenha(e.target.value)}
-                                    readOnly={carregando}
-                                />
-                            </div>
-
-                            <button className="btn btn-success btn-block" style={{
-                                fontSize: 18,
-                                fontWeight: 700,
-                                lineHeight: 1.2
-                            }}
-                                disabled={carregando}
-                            >
-                                Entrar
-                            </button>
-                        </form>
-                    </div>
-                    <div className="card-footer" style={{
-                        minHeight: "5vh",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between"
-                    }}>
-                        <div>
-                            {error && <p className="text-danger">{error}</p>}
-                        </div>
-                        <div>
-                            <p className="h5">
-                                <a
-                                    href="https://github.com/RuivoTech"
-                                    title="Todos os direitos reservados."
-                                    target="_blank"
-                                >
-                                    &copy; RuivoTech
-                                </a>
-                            </p>
-                            <span className="h6 font-weight-bold">
-                                Versão <a
-                                    href={`https://github.com/RuivoTech/cem-react/tree/${packageJson.version}`}
-                                    target="_blank"
-                                >
-                                    {packageJson.version}
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </>
+                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                    <LockOutlined />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Entrar
+                </Typography>
+                <Box noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        onChange={event => setEmail(event.currentTarget.value)}
+                        value={email}
+                        error={emailError}
+                        helperText={emailError ? "Por favor, informe o seu e-mail!" : null}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange={event => setPassword(event.currentTarget.value)}
+                        value={password}
+                        error={passwordError}
+                        helperText={passwordError ? "Por favor, informe a sua senha!" : null}
+                        onKeyDown={event => event.key === "Enter" ? handleLogin() : null}
+                    />
+                    <LoadingButton
+                        onClick={handleLogin}
+                        loading={loading}
+                        variant="contained"
+                        fullWidth
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Entrar
+                    </LoadingButton>
+                    {error.length > 0 && <Typography component="h2" variant="h6" color="orangered">{error}</Typography>}
+                </Box>
+            </Box>
+            <CustomFooter />
+        </Container>
     );
 }
 

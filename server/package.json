@@ -1,6 +1,6 @@
 {
   "name": "cem-express",
-  "version": "1.5.0",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "knex:seed": "knex --knexfile knexfile.ts seed:run",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
-    "knex:up": "knex --knexfile knexfile.ts migrate:up"
+    "knex:up": "knex --knexfile knexfile.ts migrate:up",
+    "knex:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
   "keywords": [],
   "author": "",

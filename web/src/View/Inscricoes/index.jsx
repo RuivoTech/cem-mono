@@ -3,10 +3,6 @@ import React, { useState, useEffect } from "react";
 import packageJson from "../../../package.json"
 
 import api from "../../services/api";
-import { useToasts } from "react-toast-notifications";
-
-import logo2 from "../../images/Logo2.jpg";
-import logo1 from "../../images/Logo1.jpg";
 
 import "./styles.css";
 
@@ -15,7 +11,6 @@ const Inscricoes = () => {
     const [eventos, setEventos] = useState([]);
     const [carregando, setCarregando] = useState(false);
     const [error, setError] = useState("");
-    const { addToast } = useToasts();
 
     useEffect(() => {
         const fetchEventos = async () => {
@@ -51,11 +46,11 @@ const Inscricoes = () => {
         const request = await api.post("/inscricao", inscricao);
 
         if (!request.data.error) {
-            addToast("Inscrição salva com sucesso!", { appearance: "success" });
+            alert("Inscrição salva com sucesso!", { appearance: "success" });
             setInscricao({});
         } else {
             console.error(request.data.error);
-            addToast("Desculpe, algo deu errado, por favor entre em contato com seu pastor.", { appearance: "error" });
+            alert("Desculpe, algo deu errado, por favor entre em contato com seu pastor.", { appearance: "error" });
             setError(request.data.error);
         }
 
@@ -71,25 +66,6 @@ const Inscricoes = () => {
                 height: "100vh"
             }}
             >
-                <img src={logo2} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.2,
-                }}
-                />
-                <img src={logo1} alt="Logo Sistema CEM" style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: 0,
-                    width: '50%',
-                    height: "100vh",
-                    opacity: 0.4,
-                }}
-                />
-
                 <div className="card inscricaoCard">
                     <div className="card-header">
                         <h3 style={{
@@ -147,6 +123,7 @@ const Inscricoes = () => {
                                     href="https://github.com/RuivoTech"
                                     title="Todos os direitos reservados."
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     &copy; RuivoTech
                                 </a>
@@ -155,6 +132,7 @@ const Inscricoes = () => {
                                 Versão <a
                                     href={`https://github.com/RuivoTech/cem-react/tree/${packageJson.version}`}
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     {packageJson.version}
                                 </a>

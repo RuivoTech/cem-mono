@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import api from "../../../services/api";
-import { getSession } from "../../../services/auth";
 import FormModal from "./FormModal";
 import InfoBox from '../../../componentes/InfoBox';
 import Tabela from '../../../componentes/Tabela';
 import Coluna from '../../../componentes/Coluna';
 import Utils from "../../../componentes/Utils";
+import { useAuth } from '../../../context/auth';
 
 const frequencia = [
     "Diária",
@@ -37,46 +37,36 @@ const Evento = () => {
     const [show, setShow] = useState(false);
     const [eventosPesquisa, setEventosPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState("");
-    const { addToast } = useToasts();
-    const session = getSession();
+    const {user } = useAuth();
 
     useEffect(() => {
-        const fetchEventos = async () => {
-            document.title = "Eventos - Cadastro de membros CEM";
-            let request = await api.get("/eventos", {
-                headers: {
-                    Authorization: `Bearer ${session.token}`
-                }
-            });
+            fetchEventos();
+    }, [user, show]);
 
+    const fetchEventos = async () => {
+        document.title = "Eventos - Cadastro de membros CEM";
+        let request = await api.get("/eventos");
+        if(!request.data.error) {
             setEventos(request.data);
             setQuantidadeTotal(request.data.length);
         }
-
-        if (!show) {
-            fetchEventos();
-        }
-    }, [setQuantidadeTotal, show]);
+    }
 
     const eventoAtivo = (evento) => {
         return evento.status ? "Ativo" : "Inativo";
     }
 
     const remover = async (id) => {
-        const respose = await api.delete("/eventos/" + id, {
-            headers: {
-                Authorization: `Bearer ${session.token}`
-            }
-        });
+        const respose = await api.delete("/eventos/" + id);
 
         if (!respose.data.error) {
             const items = eventos.filter(item => item.id !== id);
 
             setEventos(items);
 
-            addToast("Evento removido com sucesso!", { appearance: "success" });
+            alert("Evento removido com sucesso!", { appearance: "success" });
         } else {
-            addToast("Não foi possível remover o evento!", { appearance: "error" });
+            alert("Não foi possível remover o evento!", { appearance: "error" });
         }
     }
 
@@ -139,22 +129,24 @@ const Evento = () => {
     return (
         <>
             <div className="wrapper-content row">
+                <div className="col-4">
                 <InfoBox corFundo="primary" icone="calendar-week" quantidade={quantidadeTotal} titulo="Total" />
-                <div className="col-sm-12 col-md-12 col-lg-12">
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-12 px-4">
                     <div className="row">
                         <div className="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <div className="form-group">
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                            <i className="fa fa-search color-gray"></i>
+                                            <FontAwesomeIcon icon={faSearch} />
                                         </span>
                                     </div>
                                     <input
                                         className="form-control"
                                         onChange={pesquisar}
                                         value={pesquisa}
-                                        placeholder="Pesquise por evento"
+                                        placeholder="Pesquise por nome"
                                     />
                                 </div>
                             </div>
@@ -162,7 +154,7 @@ const Evento = () => {
                     </div>
                 </div>
 
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 px-4">
                     <div className="overflow-hidden align-items-center">
                         <Tabela
                             data={pesquisa ? eventosPesquisa : eventos}

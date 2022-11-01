@@ -1,7 +1,7 @@
 {
   "homepage": "https://ruivotech.github.io/",
   "name": "cem",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@date-io/dayjs": "^2.15.0",
